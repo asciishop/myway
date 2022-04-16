@@ -1,2 +1,2 @@
-# AdvancedNodeStarter
-Starting project for a course on Advanced Node @ Udemy
+# MyWay. colaborative storytelling for all
+Just the begining of a new life
