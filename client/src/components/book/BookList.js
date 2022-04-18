@@ -6,11 +6,11 @@ import { fetchBooks } from '../../actions';
 
 class BookList extends Component {
   componentDidMount() {
-    this.props.fetchBooks();
+    this.props.fetchListBooks();
   }
 
   renderBooks() {
-    return map(this.props.books, book => {
+    return map(this.props.listBooks, book => {
       return (
         <div className="card darken-1 horizontal" key={book._id}>
           <div className="card-stacked">
@@ -33,7 +33,7 @@ class BookList extends Component {
 }
 
 function mapStateToProps({ books }) {
-  return { books };
+  return { listBooks : books};
 }
 
-export default connect(mapStateToProps, { fetchBooks: fetchBooks })(BookList);
+export default connect(mapStateToProps, { fetchListBooks: fetchBooks })(BookList);
