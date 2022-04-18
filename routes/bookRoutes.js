@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
 
-const Book = mongoose.model('Book');
+const Book = mongoose.model('Books');
 
 module.exports = app => {
   app.get('/api/book/:id', requireLogin, async (req, res) => {
@@ -13,13 +13,13 @@ module.exports = app => {
     res.send(book);
   });
 
-  app.get('/api/books', requireLogin, async (req, res) => {
-    const books = await Book.find({ _user: req.user.id });
+  app.get('/api/book', requireLogin, async (req, res) => {
+    const book = await Book.find({ _user: req.user.id });
 
-    res.send(books);
+    res.send(book);
   });
 
-  app.post('/api/books', requireLogin, async (req, res) => {
+  app.post('/api/book', requireLogin, async (req, res) => {
     const { title, content } = req.body;
 
     const book = new Book({
