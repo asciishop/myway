@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_BLOGS, FETCH_BLOG } from './types';
+import { FETCH_USER, FETCH_BOOKS, FETCH_BOOK } from './types';
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
@@ -13,21 +13,21 @@ export const handleToken = token => async dispatch => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const submitBlog = (values, history) => async dispatch => {
-  const res = await axios.post('/api/blogs', values);
+export const submitBook = (values, history) => async dispatch => {
+  const res = await axios.post('/api/book', values);
 
-  history.push('/blogs');
-  dispatch({ type: FETCH_BLOG, payload: res.data });
+  history.push('/book');
+  dispatch({ type: FETCH_BOOK, payload: res.data });
 };
 
-export const fetchBlogs = () => async dispatch => {
-  const res = await axios.get('/api/blogs');
+export const fetchBooks = () => async dispatch => {
+  const res = await axios.get('/api/book');
 
-  dispatch({ type: FETCH_BLOGS, payload: res.data });
+  dispatch({ type: FETCH_BOOKS, payload: res.data });
 };
 
-export const fetchBlog = id => async dispatch => {
-  const res = await axios.get(`/api/blogs/${id}`);
+export const fetchBook = id => async dispatch => {
+  const res = await axios.get(`/api/book/${id}`);
 
-  dispatch({ type: FETCH_BLOG, payload: res.data });
+  dispatch({ type: FETCH_BOOK, payload: res.data });
 };

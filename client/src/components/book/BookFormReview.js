@@ -1,4 +1,4 @@
-// BlogFormReview shows users their form inputs for review
+// BookFormReview shows users their form inputs for review
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -6,7 +6,7 @@ import formFields from './formFields';
 import { withRouter } from 'react-router-dom';
 import * as actions from '../../actions';
 
-class BlogFormReview extends Component {
+class BookFormReview extends Component {
   renderFields() {
     const { formValues } = this.props;
 
@@ -32,8 +32,8 @@ class BlogFormReview extends Component {
           Back
         </button>
         <button className="green btn-flat right white-text">
-          Save Blog
-          <i className="material-icons right">email</i>
+          Save Book
+          <i className="material-icons right">book</i>
         </button>
       </div>
     );
@@ -42,9 +42,9 @@ class BlogFormReview extends Component {
   onSubmit(event) {
     event.preventDefault();
 
-    const { submitBlog, history, formValues } = this.props;
+    const { submitBook, history, formValues } = this.props;
 
-    submitBlog(formValues, history);
+    submitBook(formValues, history);
   }
 
   render() {
@@ -60,7 +60,7 @@ class BlogFormReview extends Component {
 }
 
 function mapStateToProps(state) {
-  return { formValues: state.form.blogForm.values };
+  return { formValues: state.form.bookForm.values };
 }
 
-export default connect(mapStateToProps, actions)(withRouter(BlogFormReview));
+export default connect(mapStateToProps, actions)(withRouter(BookFormReview));

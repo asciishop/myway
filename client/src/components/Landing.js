@@ -4,9 +4,9 @@ const Landing = () => {
   return (
     <div style={{ textAlign: 'center' }}>
       <h1>
-        Blogster!
+        MyWay
       </h1>
-      Write private blogs
+      Write stories !
     </div>
   );
 };
