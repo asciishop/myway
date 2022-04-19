@@ -1,12 +1,12 @@
 import React from 'react';
+//import { Link } from 'react-router-dom';
+import AllBooks from './book/AllBooks';
 
 const Landing = () => {
   return (
+
     <div style={{ textAlign: 'center' }}>
-      <h1>
-        MyWay
-      </h1>
-      Write stories !
+     <AllBooks />
     </div>
   );
 };
