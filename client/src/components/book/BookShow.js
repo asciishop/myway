@@ -1,10 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { fetchBook } from '../../actions';
+import Graph from './Graph'
+
+
 
 class BookShow extends Component {
   componentDidMount() {
-    this.props.fetchBook(this.props.match.params._id);
+
+
   }
 
   render() {
@@ -12,12 +16,30 @@ class BookShow extends Component {
       return '';
     }
 
-    const { title, content } = this.props.book;
+    this.props.fetchBook(this.props.match.params._id);
+
+    const { title, bookStory } = this.props.book;
+    const options = {
+      layout: {
+        hierarchical: false
+      },
+      edges: {
+        color: "#000000"
+      }
+    };
+
+    var data = {
+      nodes: bookStory.nodes,
+      edges: bookStory.edges
+    };
+
+    var events = { }
 
     return (
       <div>
-        <h3>{title}</h3>
-        <p>{content}</p>
+        <h3>Libro</h3>
+
+        <Graph />
       </div>
     );
   }

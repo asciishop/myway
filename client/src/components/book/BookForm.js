@@ -5,6 +5,7 @@ import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
 import BlogField from './BookField';
 import formFields from './formFields';
+import BookWrite from "./BookWrite";
 
 class BookForm extends Component {
   renderFields() {
@@ -26,6 +27,7 @@ class BookForm extends Component {
       <div>
         <form onSubmit={this.props.handleSubmit(this.props.onBlogSubmit)}>
           {this.renderFields()}
+          <BookWrite/>
           <Link to="/book" className="red btn-flat white-text">
             Cancel
           </Link>
