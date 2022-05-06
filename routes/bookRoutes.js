@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
 
+
+
 const Book = mongoose.model('Books');
 
 module.exports = app => {
@@ -18,6 +20,17 @@ module.exports = app => {
 
     res.send(book);
   });
+
+  app.get('/api/allbooks',async (req, res) => {
+   try {
+    const book = await Book.find({});
+    res.send(book);
+   } catch (error) {
+    res.status(400).json({ message: error.message })
+   }
+     
+  });
+
 
   app.post('/api/book', requireLogin, async (req, res) => {
     const { title, content } = req.body;
