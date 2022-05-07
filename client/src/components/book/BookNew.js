@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
-import BookForm from './BookForm';
-import BookFormReview from './BookFormReview';
 
 
 class BookNew extends Component {
@@ -16,6 +13,3 @@ class BookNew extends Component {
   }
 }
 
-export default reduxForm({
-  form: 'bookForm'
-})(BookNew);
