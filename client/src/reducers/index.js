@@ -6,5 +6,6 @@ import booksReducer from './bookReducer';
 export default combineReducers({
   auth: authReducer,
   form: reduxForm,
-  books: booksReducer
+  books: booksReducer,
+  book: booksReducer
 });

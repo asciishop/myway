@@ -6,6 +6,8 @@ import { fetchAllBooks } from '../../actions';
 
 class AllBooks extends Component {
   componentDidMount() {
+    console.log("LOLO")
+    console.log(this.props)
     this.props.fetchListBooks();
   }
 

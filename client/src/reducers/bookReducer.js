@@ -1,5 +1,5 @@
 import mapKeys from 'lodash/mapKeys';
-import { FETCH_BOOKS, FETCH_BOOK, FETCH_ALL_BOOKS } from '../actions/types';
+import { FETCH_BOOKS, FETCH_BOOK, FETCH_ALL_BOOKS, ADD_BOOK } from '../actions/types';
 
 export default function(state = {}, action) {
   switch (action.type) {
@@ -10,6 +10,8 @@ export default function(state = {}, action) {
       return { ...state, ...mapKeys(action.payload, '_id') };
     case FETCH_ALL_BOOKS:
         return { ...state, ...mapKeys(action.payload, '_id') };
+    case ADD_BOOK:
+      return state.concat([action.payload]);
     default:
       return state;
   }
