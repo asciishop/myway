@@ -1,7 +1,6 @@
 import React, { Component, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { fetchBook } from '../../actions';
-import Graph from './Graph'
 
 
 
@@ -39,7 +38,6 @@ class BookShow extends Component {
       <div>
         <h3>Libro</h3>
 
-        <Graph />
       </div>
     );
   }

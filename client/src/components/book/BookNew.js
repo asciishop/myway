@@ -12,10 +12,9 @@ class BookNew extends Component {
     handleClick() {
 
         let book = {title:this.props.book.title,
-                    content:"Loren Ipsum"};
+                    content:"Loren Ipsum",
+                    file : this.props.book.file};
 
-
-        this.props.book.content
         this.props.addBook(book,this.props.history);
     }
 
@@ -26,6 +25,15 @@ class BookNew extends Component {
 
     }
 
+    handleInputFileChange(event) {
+        let files = event.target.files;
+        let reader = new FileReader();
+        reader.readAsDataURL(files[0]);
+        reader.onload = (e) => {
+            this.props.book.file = e.target.result;
+
+        }
+    }
 
   render() {
 
@@ -41,6 +49,10 @@ class BookNew extends Component {
                   name="title"
                   onChange={this.handleOnChange.bind(this)}
               />
+              <input type="file"
+                     className="form-control"
+                     id="image"
+                     onChange={this.handleInputFileChange.bind(this)} />
           </div>
 
 
