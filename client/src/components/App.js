@@ -8,6 +8,7 @@ import Landing from './Landing';
 import Dashboard from './Dashboard';
 import BookNew from './book/BookNew';
 import BookShow from './book/BookShow';
+import Graph from "./book/Graph";
 
 class App extends Component {
   componentDidMount() {
@@ -22,9 +23,11 @@ class App extends Component {
             <Header />
             <Switch>
               <Route path="/book/new" component={BookNew} />
+              <Route path="/graph" component={Graph} />
               <Route exact path="/book/:_id" component={BookShow} />
               <Route path="/book" component={Dashboard} />
               <Route path="/" component={Landing} />
+
             </Switch>
           </div>
         </BrowserRouter>

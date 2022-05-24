@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {submitBook} from "../../actions";
+import Graph from "./Graph";
 
 class BookNew extends Component {
 
@@ -19,7 +20,7 @@ class BookNew extends Component {
     }
 
 
-    handleOnChange = e => {
+    handleOnChange (e)  {
         const { target: { value, title } } = e;
         this.props.book.title = value;
 
@@ -38,6 +39,7 @@ class BookNew extends Component {
   render() {
 
     return (
+
       <div>
           <div className="form-group">
               <label htmlFor="title">Titulo</label>
@@ -55,11 +57,11 @@ class BookNew extends Component {
                      onChange={this.handleInputFileChange.bind(this)} />
           </div>
 
-
         <button
             className="yellow darken-3 white-text btn-flat"
             onClick={this.handleClick.bind(this)}
         >Enviar</button>
+
       </div>
     );
   }
