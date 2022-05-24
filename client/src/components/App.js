@@ -23,7 +23,7 @@ class App extends Component {
             <Header />
             <Switch>
               <Route path="/book/new" component={BookNew} />
-              <Route path="/graph" component={Graph} />
+              <Route path="/graph/:bookid" component={Graph} />
               <Route exact path="/book/:_id" component={BookShow} />
               <Route path="/book" component={Dashboard} />
               <Route path="/" component={Landing} />

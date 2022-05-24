@@ -1,4 +1,4 @@
-export const nodes = [
+export const chapters = [
   { id: "abc",
     link : "",
     text : "La vida bella",

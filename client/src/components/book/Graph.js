@@ -1,16 +1,20 @@
 import React, {Component,Suspense} from 'react';
-import { nodes, edges } from './data.js'
+import { chapters} from './data.js'
 import ImageNode from "./ImageNode";
 import TextNode from "./TextNode";
 import AudioNode from "./AudioNode";
 import VideoNode from "./VideoNode";
 import Edge from "./Edge";
+import { useParams } from "react-router-dom";
+
 
 
 
 class Graph extends Component {
 
     componentDidMount() {
+        const { bookid } = this.props.match.params;
+
 
     }
 
@@ -18,7 +22,7 @@ class Graph extends Component {
 
         return (
                                 <div className='content'>
-                                    {nodes.map(function(node, index){
+                                    {chapters.map(function(node, index){
                                         switch(node.type) {
                                             case "image":
                                                 return <div><ImageNode node={node} /><Edge /></div>
