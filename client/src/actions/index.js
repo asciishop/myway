@@ -20,6 +20,12 @@ export const submitBook = (values, history) => async dispatch => {
   dispatch({ type: FETCH_BOOK, payload: res.data });
 };
 
+export const submitChapter = (values, history) => async dispatch => {
+  const res = await axios.patch('/api/book', values);
+
+  history.push('/book');
+  dispatch({ type: FETCH_BOOK, payload: res.data });
+};
 export const fetchBooks = () => async dispatch => {
   const res = await axios.get('/api/book');
 

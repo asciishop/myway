@@ -6,8 +6,6 @@ import { fetchBooks } from '../../actions';
 
 class BookList extends Component {
   componentDidMount() {
-    console.log("LOLO")
-    console.log(this.props)
 
     this.props.fetchListBooks();
   }
@@ -22,7 +20,7 @@ class BookList extends Component {
               <p>{book.content}</p>
             </div>
             <div className="card-action">
-              <Link to={`/book/${book._id}`}>Read</Link>
+              <Link to={`/graph/${book._id}`}>Read</Link>
             </div>
           </div>
         </div>

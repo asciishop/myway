@@ -9,6 +9,7 @@ import Dashboard from './Dashboard';
 import BookNew from './book/BookNew';
 import BookShow from './book/BookShow';
 import Graph from "./book/Graph";
+import ChapterNew from "./book/ChapterNew";
 
 class App extends Component {
   componentDidMount() {
@@ -23,6 +24,7 @@ class App extends Component {
             <Header />
             <Switch>
               <Route path="/book/new" component={BookNew} />
+              <Route path="/chapter/new" component={ChapterNew} />
               <Route path="/graph/:bookid" component={Graph} />
               <Route exact path="/book/:_id" component={BookShow} />
               <Route path="/book" component={Dashboard} />

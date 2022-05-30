@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {submitBook} from "../../actions";
+import {submitChapter} from "../../actions";
 import Graph from "./Graph";
 
-class BookNew extends Component {
+class ChapterNew extends Component {
 
     componentDidMount() {
         this.props.book.title = "";
@@ -12,19 +12,12 @@ class BookNew extends Component {
 
     handleClick() {
 
-        let book = {title:this.props.book.title,
-                    content:this.props.book.content,
+        let chapter = {content:this.props.book.content,
                     file : this.props.book.file};
 
-        this.props.addBook(book,this.props.history);
+        this.props.addChapter(chapter,this.props.history);
     }
 
-
-    handleOnChangeTitle (e)  {
-        const { target: { value, title } } = e;
-        this.props.book.title = value;
-
-    }
 
     handleOnChangeContent (e)  {
         const { target: { value, title } } = e;
@@ -48,15 +41,7 @@ class BookNew extends Component {
 
       <div>
           <div className="form-group">
-              <label htmlFor="title">Titulo</label>
-              <input
-                  type="text"
-                  className="form-control"
-                  id="title"
-                  required
-                  name="title"
-                  onChange={this.handleOnChangeTitle.bind(this)}
-              />
+
               <label htmlFor="title">Contenido</label>
               <input
                   type="text"
@@ -87,6 +72,6 @@ function mapStateToProps({ book }) {
     return { book};
 }
 
-export default connect(mapStateToProps, { addBook: submitBook})(BookNew);
+export default connect(mapStateToProps, { addChapter: submitChapter})(ChapterNew);
 
 

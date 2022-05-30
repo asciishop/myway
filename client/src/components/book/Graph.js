@@ -5,7 +5,7 @@ import TextNode from "./TextNode";
 import AudioNode from "./AudioNode";
 import VideoNode from "./VideoNode";
 import Edge from "./Edge";
-import { useParams } from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 
 
@@ -21,6 +21,13 @@ class Graph extends Component {
     render() {
 
         return (
+<div>
+            <div className="fixed-action-btn">
+                <Link to="/chapter/new" className="btn-floating btn-large red">
+                    <i className="material-icons">add</i>
+                </Link>
+            </div>
+
                                 <div className='content'>
                                     {chapters.map(function(node, index){
                                         switch(node.type) {
@@ -42,7 +49,7 @@ class Graph extends Component {
                                     })}
 
                                 </div>
-
+</div>
 
         );
     }
