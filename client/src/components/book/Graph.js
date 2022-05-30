@@ -1,4 +1,4 @@
-import React, {Component,Suspense} from 'react';
+import React, {Component, Suspense, useState} from 'react';
 import { chapters} from './data.js'
 import ImageNode from "./ImageNode";
 import TextNode from "./TextNode";
@@ -13,12 +13,24 @@ import map from 'lodash/map';
 
 class Graph extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading:true
+        }
+    }
+
+    componentDidMount() {
+        const { bookid } = this.props.match.params;
+        this.props.fetchBook(bookid,this.props.history);
+        this.state.loading = true;
+    }
 
     render() {
 
-        const { bookid } = this.props.match.params;
-        this.props.fetchBook(bookid,this.props.history);
-        console.log(this.props.book)
+        if (this.state.loading) {
+            return <div >Loading...</div>;
+        }
 
         return (
             <div>
