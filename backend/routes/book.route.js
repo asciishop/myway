@@ -1,3 +1,6 @@
+let bookSchema = require('../models/book')
+let fs = require("fs");
+
 let mongoose = require('mongoose'),
   express = require('express'),
   router = express.Router();
@@ -6,8 +9,7 @@ let mongoose = require('mongoose'),
 
 
 // book Model
-let bookSchema = require('../models/book')
-let fs = require("fs");
+
 
 // CREATE book
 router.route('/create-book').post((req, res, next) => {
