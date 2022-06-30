@@ -15,7 +15,7 @@ export default class bookList extends Component {
   }
 
   componentDidMount() {
-    axios.get(URL_BACKEND.concat('books/'))
+    axios.get(URL_BACKEND +"books/"))
       .then(res => {
         this.setState({
           books: res.data
