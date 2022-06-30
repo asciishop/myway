@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import {URL_BACKEND} from "./const";
+
 
 export default class Createbook extends Component {
 
@@ -31,7 +33,7 @@ export default class Createbook extends Component {
       content:this.state.content,
       file : this.state.file};
 
-    axios.post('http://localhost:4000/books/add-book', book)
+    axios.post(URL_BACKEND +'books/add-book', book)
         .then((res) => {
           console.log(res.data)
           console.log('book successfully created')
