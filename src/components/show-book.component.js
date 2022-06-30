@@ -7,6 +7,8 @@ import AudioNode from "./AudioNode";
 import {Link} from "react-router-dom";
 import Edge from "./Edge";
 import { BsFillNodePlusFill } from "react-icons/bs";
+import {URL_BACKEND} from "./const";
+
 
 export default class Showbook extends Component {
     constructor(props) {
@@ -25,7 +27,7 @@ export default class Showbook extends Component {
 
 
     componentDidMount() {
-        axios.get('http://localhost:4000/books/edit-book/' + this.props.match.params.id)
+        axios.get(URL_BACKEND +'books/edit-book/' + this.props.match.params.id)
             .then(res => {
                 this.setState({
                     title: res.data.title,
