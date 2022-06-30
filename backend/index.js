@@ -7,14 +7,18 @@ let bodyParser = require('body-parser');
 const bookRoute = require('../backend/routes/book.route')
 
 // Connecting mongoDB Database
-mongoose
-  .connect('mongodb://127.0.0.1:27017/mywaydb_app')
-  .then((x) => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
-  })
-  .catch((err) => {
-    console.error('Error connecting to mongo', err.reason)
-  })
+mongoose.connect(
+    `mongodb+srv://admin:8iDs3adGQ3W0RaXk@cluster0.7geci.mongodb.net/myway?retryWrites=true&w=majority`,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    }
+).then((x) => {
+  console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+})
+.catch((err) => {
+      console.error('Error connecting to mongo', err)
+})
 
 const app = express();
 app.use(express.static('public'));
