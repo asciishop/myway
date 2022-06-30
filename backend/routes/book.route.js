@@ -77,7 +77,7 @@ router.route('/add-chapter').post((req, res, next) => {
     let bufferImage =  decodeBase64Image(file);
     let mime = file.match(/[^:]\w+\/[\w-+\d.]+(?=;|,)/)[0];
     let localPath = './public/images';
-    let localServer = 'http://localhost:4000/images'
+    let localServer = 'http://190.114.253.4:4000/images'
     let fileName = "/book_TEST-USER_"+ (Math.floor(Math.random() * (1 - 1000)) + 1) +""+  mime.replace('image/','.').replace('audio/','.').replace('video/','.');
     let fileNameDisk = localPath+""+ fileName;
     let link = localServer+""+fileName;
