@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import BookTableRow from './BookTableRow';
+import {URL_BACKEND} from "./const";
 
 
 export default class bookList extends Component {
@@ -14,7 +15,7 @@ export default class bookList extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:4000/books/')
+    axios.get(URL_BACKEND+'books/')
       .then(res => {
         this.setState({
           books: res.data
