@@ -6,6 +6,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
+import Logo from "./asset/image/myway-logo.png";
+
 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
@@ -14,6 +16,7 @@ import Editbook from './components/edit-book.component'
 import BookList from './components/book-list.component'
 import Showbook from './components/show-book.component'
 import Createchapter from './components/create-chapter.component'
+import {TbBookUpload} from "react-icons/tb";
 
 
 
@@ -22,19 +25,22 @@ function App() {
     <div className="App">
       <Router>
         <header className="App-header">
-          <Navbar bg="dark" variant="dark">
+          <Navbar bg="white" variant="white">
             <Container>
               <Navbar.Brand>
                 <Link to={'/'} className="nav-link">
-                  My Way
+                  <img src={Logo} alt="MyWay :: colaborative storytelling" width="80%" height="80%" />
+
                 </Link>
               </Navbar.Brand>
 
               <Nav className="justify-content-end">
                 <Nav>
-                  <Link to={'/create-book'} className="nav-link">
-                    Create book
+
+                  <Link to={'/create-book/'} className="btn-floating btn-large red">
+                    <i className="material-icons btn btn-success btn-lg ml-auto"><h1><TbBookUpload /></h1></i>
                   </Link>
+
                 </Nav>
 
 
