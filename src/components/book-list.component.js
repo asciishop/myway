@@ -38,7 +38,7 @@ export default class bookList extends Component {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Title</th>
+            <th></th>
 
           </tr>
         </thead>
