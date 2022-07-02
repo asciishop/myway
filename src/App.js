@@ -29,7 +29,7 @@ function App() {
             <Container>
               <Navbar.Brand>
                 <Link to={'/'} className="nav-link">
-                  <img src={Logo} alt="MyWay :: colaborative storytelling" width="80%" height="80%" />
+                  <img src={Logo} alt="MyWay :: colaborative storytelling" width="90%" height="90%" />
 
                 </Link>
               </Navbar.Brand>
