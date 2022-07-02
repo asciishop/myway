@@ -70,7 +70,7 @@ export default class bookTableRow extends Component {
             <Card.Body>
               <h5 className="card-title">{this.props.obj.title}</h5>
               <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3"> <Link to={'/show-book/' + this.props.obj._id} className="btn-floating btn-large red">
-                <i className="material-icons btn btn-success btn-lg ml-auto"><h1><TbArrowBigRightLines /></h1></i>
+                <i className="material-icons btn btn-lg ml-auto"><h1><TbArrowBigRightLines /></h1></i>
               </Link></div></div>
 
                   {this.renderSwitch(this.props.obj.chapters[0])}
