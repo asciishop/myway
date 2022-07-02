@@ -8,9 +8,10 @@ import ImageNode from "./ImageNode";
 import TextNode from "./TextNode";
 import VideoNode from "./VideoNode";
 import AudioNode from "./AudioNode";
-
+import {TbArrowBigRightLines} from "react-icons/tb";
 
 export default class bookTableRow extends Component {
+
   constructor(props) {
     super(props)
     this.deletebook = this.deletebook.bind(this)
@@ -58,24 +59,23 @@ export default class bookTableRow extends Component {
     }
   }
 
+
   render() {
+
     return (
       <tr>
         <td>
-          <div className="container-fluid">
+
           <Card>
             <Card.Body>
-              <Link
-                className="" path={"product/:id"}
-                to={'/show-book/' + this.props.obj._id}
-            >
-
-                {this.props.obj.title}
+              <h5 className="card-title">{this.props.obj.title}</h5>
+              <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3"> <Link to={'/show-book/' + this.props.obj._id} className="btn-floating btn-large red">
+                <i className="material-icons btn btn-success btn-lg ml-auto"><h1><TbArrowBigRightLines /></h1></i>
+              </Link></div></div>
 
                   {this.renderSwitch(this.props.obj.chapters[0])}
-            </Link></Card.Body>
+            </Card.Body>
           </Card>
-          </div>
 
           </td>
 

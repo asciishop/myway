@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import {URL_BACKEND} from "./const";
+import {Col, Nav, Row, Tab} from "react-bootstrap";
 
 
 export default class Createchapter extends Component {
@@ -68,28 +69,50 @@ export default class Createchapter extends Component {
   render() {
     return (
 
-        <div>
-          <div className="form-group">
+        <div className="container-fluid">
+          <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"> <h2>Ingrese un capítulo</h2>          </div></div>
 
-            <label htmlFor="title">Contenido</label>
-            <input
-                type="text"
-                className="form-control"
-                id="content"
-                required
-                name="content"
-                onChange={this.handleOnChangeContent}
-            />
-            <input type="file"
-                   className="form-control"
-                   id="image"
-                   onChange={this.handleInputFileChange} />
-          </div>
 
-          <button
-              className="yellow darken-3 white-text btn-flat"
-              onClick={this.handleClick}
-          >Enviar</button>
+          <br/>
+          <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+            <Row>
+              <Col sm={3}>
+                <Nav variant="pills" className="flex-column">
+                  <Nav.Item>
+                    <Nav.Link eventKey="first">Texto</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="second">Imagen, Audio o Video</Nav.Link>
+                  </Nav.Item>
+                </Nav>
+              </Col>
+              <Col sm={9}>
+                <Tab.Content>
+                  <Tab.Pane eventKey="first">
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="content"
+                        required
+                        name="content"
+                        onChange={this.handleOnChangeContent}
+                    />
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="second">
+
+                    <input type="file"
+                           className="form-control"
+                           id="image"
+                           onChange={this.handleInputFileChange} />
+                  </Tab.Pane>
+                </Tab.Content>
+              </Col>
+            </Row>
+          </Tab.Container>
+
+
+          <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"> <Button variant="primary" onClick={this.handleClick}>Enviar</Button>
+          </div></div>
 
         </div>
     );
