@@ -122,7 +122,8 @@ export default class Createbook extends Component {
                       <input type="file"
                              className="form-control"
                              id="image"
-                             onChange={this.handleInputFileChange} />
+                             onChange={this.handleInputFileChange}
+                             accept="image/*" capture="environment"/>
                     </Tab.Pane>
                   </Tab.Content>
                 </Col>
