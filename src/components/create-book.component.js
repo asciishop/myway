@@ -41,13 +41,12 @@ export default class Createbook extends Component {
         .then((res) => {
           console.log(res.data)
           console.log('book successfully created')
+          this.props.history.push('/book-list')
         }).catch((error) => {
       console.log(error)
     })
 
 
-    // Redirect to book List
-    this.props.history.push('/book-list')
   }
 
 

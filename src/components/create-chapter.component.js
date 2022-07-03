@@ -38,13 +38,15 @@ export default class Createchapter extends Component {
         .then((res) => {
           console.log(res.data)
           console.log('chapter successfully created')
+          this.props.history.push('/show-book/'+ this.state.id)
+          //window.location.reload();
         }).catch((error) => {
       console.log(error)
     })
 
 
     // Redirect to book List
-    this.props.history.push('/show-book/'+ this.state.id)
+    //this.props.history.push('/show-book/'+ this.state.id)
   }
 
 
