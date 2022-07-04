@@ -21,6 +21,15 @@ mongoose.connect(
 })
 
 const app = express();
+const https = require('https');
+
+var key = fs.readFileSync('selfsigned.key');
+var cert = fs.readFileSync('selfsigned.crt');
+var options = {
+    key: key,
+    cert: cert
+};
+
 app.use(express.static('public'));
 app.use('/images', express.static('images'));
 app.use(express.json({limit: '25mb'}));
@@ -40,9 +49,15 @@ app.use('/books', bookRoute)
 
 // PORT
 const port = process.env.PORT || 4000;
+/*
 const server = app.listen(port, () => {
   console.log('Connected to port ' + port)
-})
+})*/
+
+var server = https.createServer(options, app);
+server.listen(port, () => {
+    console.log("server starting on port : " + port)
+});
 
 // 404 Error
 app.use((req, res, next) => {
