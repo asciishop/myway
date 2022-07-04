@@ -51,15 +51,15 @@ app.use('/books', bookRoute)
 
 // PORT
 const port = process.env.PORT || 4000;
-/*
+
 const server = app.listen(port, () => {
   console.log('Connected to port ' + port)
-})*/
-
+})
+/*
 var server = https.createServer(options, app);
 server.listen(port, () => {
     console.log("server starting on port : " + port)
-});
+});*/
 
 // 404 Error
 app.use((req, res, next) => {
