@@ -22,6 +22,8 @@ mongoose.connect(
 
 const app = express();
 const https = require('https');
+var fs = require('fs');
+
 
 var key = fs.readFileSync('selfsigned.key');
 var cert = fs.readFileSync('selfsigned.crt');
