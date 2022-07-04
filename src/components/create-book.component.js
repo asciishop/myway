@@ -87,16 +87,7 @@ export default class Createbook extends Component {
     }
   }
   componentDidMount() {
-    navigator.getUserMedia({ audio: true },
-        () => {
-          console.log('Permission Granted');
-          this.setState({ isBlocked: false });
-        },
-        () => {
-          console.log('Permission Denied');
-          this.setState({ isBlocked: true })
-        },
-    );
+    this.setState({ isBlocked: false })
   }
 
   start = () => {
