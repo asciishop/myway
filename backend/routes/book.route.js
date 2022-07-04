@@ -39,7 +39,8 @@ router.route('/add-book').post((req, res, next) => {
 
     let type = ''
     let extension = mime.replace('image/','').replace('audio/','').replace('video/','')
-
+    console.log("Extension")
+    console.log(extension)
     if (extension === "mpeg" || extension === "mp3" || extension === "aac"){
       type = "audio"
     } else if (extension === "png" || extension === "jpg" || extension === "gif"){
