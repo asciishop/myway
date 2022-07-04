@@ -25,12 +25,10 @@ const https = require('https');
 var fs = require('fs');
 
 
-var key = fs.readFileSync('selfsigned.key');
-var cert = fs.readFileSync('selfsigned.crt');
-var options = {
-    key: key,
-    cert: cert
-};
+const httpsOptions = {
+    key: fs.readFileSync('./security/cert.key'),
+    cert: fs.readFileSync('./security/cert.pem')
+}
 
 app.use(express.static('public'));
 app.use('/images', express.static('images'));
@@ -56,7 +54,7 @@ const server = app.listen(port, () => {
   console.log('Connected to port ' + port)
 })*/
 
-var server = https.createServer(options, app);
+var server = https.createServer(httpsOptions, app);
 server.listen(port, () => {
     console.log("server starting on port : " + port)
 });
