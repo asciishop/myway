@@ -7,7 +7,7 @@ let mongoose = require('mongoose'),
 
 //let fs = require('fs')
 
-const URL_SERVER = "https://190.114.253.4:4000"
+const URL_SERVER = "https://ec2-3-86-24-22.compute-1.amazonaws.com:4000"
 
 // book Model
 
