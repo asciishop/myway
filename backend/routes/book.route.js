@@ -2,11 +2,10 @@ let bookSchema = require('../models/book')
 let fs = require("fs");
 
 let mongoose = require('mongoose'),
-  express = require('express'),
-  router = express.Router();
+    express = require('express'),
+    router = express.Router();
 
 //let fs = require('fs')
-
 
 const URL_SERVER = "https://myways.cl:4000"
 
@@ -45,7 +44,7 @@ router.route('/add-book').post((req, res, next) => {
     console.log(extension)
     if (extension === "mpeg" || extension === "mp3" || extension === "aac"){
       type = "audio"
-    } else if (extension === "png" || extension === "jpg" || extension === "gif"){
+    } else if (extension === "png" || extension === "jpg" || extension === "gif" || extension === "jpeg" ){
       type = "image"
     } else if (extension === "mp4"){
       type = "video"
@@ -91,7 +90,7 @@ router.route('/add-chapter').post((req, res, next) => {
 
     if (extension === "mpeg" || extension === "mp3" || extension === "aac"){
       type = "audio"
-    } else if (extension === "png" || extension === "jpg" || extension === "gif"){
+    } else if (extension === "png" || extension === "jpg" || extension === "gif" || extension === "jpeg"){
       type = "image"
     } else if (extension === "mp4"){
       type = "video"
@@ -103,19 +102,19 @@ router.route('/add-chapter').post((req, res, next) => {
   }
 
 
-      bookSchema.findByIdAndUpdate(
-          id,
-          { $addToSet: { chapters: chapter }},
-          (error, data) => {
-            if (error) {
-              return next(error)
-              console.log(error)
-            } else {
-              res.json(data)
-              console.log('Chapter updated successfully !')
-            }
-          },
-      )
+  bookSchema.findByIdAndUpdate(
+      id,
+      { $addToSet: { chapters: chapter }},
+      (error, data) => {
+        if (error) {
+          return next(error)
+          console.log(error)
+        } else {
+          res.json(data)
+          console.log('Chapter updated successfully !')
+        }
+      },
+  )
 
 });
 
@@ -127,7 +126,7 @@ router.route('/').get((req, res) => {
     } else {
       res.json(data)
     }
-  })
+  }).sort({$natural:-1})
 })
 
 // Get Single book
@@ -144,19 +143,19 @@ router.route('/edit-book/:id').get((req, res) => {
 // Update book
 router.route('/update-book/:id').put((req, res, next) => {
   bookSchema.findByIdAndUpdate(
-    req.params.id,
-    {
-      $set: req.body,
-    },
-    (error, data) => {
-      if (error) {
-        return next(error)
-        console.log(error)
-      } else {
-        res.json(data)
-        console.log('book updated successfully !')
-      }
-    },
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      (error, data) => {
+        if (error) {
+          return next(error)
+          console.log(error)
+        } else {
+          res.json(data)
+          console.log('book updated successfully !')
+        }
+      },
   )
 })
 
