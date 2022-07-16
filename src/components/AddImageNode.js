@@ -124,9 +124,9 @@ export default class AddImageNode extends Component {
                     <Webcam
                         audio={false}
                         ref='webcam'
-                        height={720}
+
                         screenshotFormat="image/jpeg"
-                        width={1280}
+
                         videoConstraints={videoConstraints}
                     />
 
