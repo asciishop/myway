@@ -4,12 +4,11 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import {URL_BACKEND} from "./const";
 import {Card,Tab,Row,Col,Nav} from "react-bootstrap";
-import Camera from 'react-html5-camera-photo';
-import 'react-html5-camera-photo/build/css/index.css';
-import MicRecorder from 'mic-recorder-to-mp3';
+
+import {Link} from "react-router-dom";
+import {BsFillCameraFill, BsFillVolumeUpFill} from "react-icons/bs";
 
 
-const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
 export default class Createbook extends Component {
 
@@ -21,7 +20,6 @@ export default class Createbook extends Component {
     this.handleOnChangeTitle = this.handleOnChangeTitle.bind(this);
     this.handleOnChangeContent = this.handleOnChangeContent.bind(this);
     this.handleInputFileChange = this.handleInputFileChange.bind(this);
-    this.handleTakePhoto = this.handleTakePhoto.bind(this);
     this.handleClick = this.handleClick.bind(this);
 
 
@@ -35,14 +33,6 @@ export default class Createbook extends Component {
       blobURL: '',
       isBlocked: false,
     }
-  }
-
-  handleTakePhoto (dataUri) {
-    // Do stuff with the photo...
-    console.log('takePhoto');
-    console.log(dataUri);
-    this.setState({ file: dataUri })
-
   }
 
   handleClick() {
@@ -89,31 +79,6 @@ export default class Createbook extends Component {
   componentDidMount() {
     this.setState({ isBlocked: false })
   }
-
-  start = () => {
-    if (this.state.isBlocked) {
-      console.log('Permission Denied');
-    } else {
-      Mp3Recorder
-          .start()
-          .then(() => {
-            this.setState({ isRecording: true });
-          }).catch((e) => console.error(e));
-    }
-  };
-
-  stop = () => {
-    Mp3Recorder
-        .stop()
-        .getMp3()
-        .then(async ([buffer, blob]) => {
-          const blobURL = URL.createObjectURL(blob)
-          this.setState({blobURL, isRecording: false});
-          const audioBase64 = await this.blobToBase64(blob);
-          this.setState({file: audioBase64})
-
-        }).catch((e) => console.log(e));
-  };
 
   blobToBase64 = (blob) => {
     const reader = new FileReader();
@@ -176,15 +141,17 @@ export default class Createbook extends Component {
                     </Tab.Pane>
                     <Tab.Pane eventKey="second">
 
-                      <Camera
-                          onTakePhoto = { (dataUri) => { this.handleTakePhoto(dataUri); } }
-                      />
+                      <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3"> <Link to={'/take-picture-book'} className="btn-floating btn-large red">
+                        <i className="material-icons btn btn-success btn-lg ml-auto"><h1><BsFillCameraFill /></h1></i>
+                      </Link></div></div>
+
                     </Tab.Pane>
                     <Tab.Pane eventKey="third">
 
-                      <button onClick={this.start} disabled={this.state.isRecording}>Record</button>
-                      <button onClick={this.stop} disabled={!this.state.isRecording}>Stop</button>
-                      <audio src={this.state.blobURL} controls="controls" />
+                      <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3"> <Link to={'/take-audio-book'} className="btn-floating btn-large red">
+                        <i className="material-icons btn btn-success btn-lg ml-auto"><h1><BsFillVolumeUpFill /></h1></i>
+                      </Link></div></div>
+
 
                     </Tab.Pane>
                     <Tab.Pane eventKey="fourth">

@@ -17,6 +17,8 @@ import BookList from './components/book-list.component'
 import Showbook from './components/show-book.component'
 import Createchapter from './components/create-chapter.component'
 import {TbBookUpload} from "react-icons/tb";
+import AddImageNode from "./components/AddImageNode";
+import AddAudioNode from "./components/AddAudioNode";
 
 
 
@@ -84,6 +86,20 @@ function App() {
                       path="/create-chapter/:id"
                       component={(props) => <Createchapter {...props} />}
                   />
+
+                  <Route
+                      exact
+                      path="/take-picture-book"
+                      component={(props) => <AddImageNode {...props} />}
+                  />
+
+
+                  <Route
+                      exact
+                      path="/take-audio-book"
+                      component={(props) => <AddAudioNode {...props} />}
+                  />
+
                 </Switch>
               </div>
             </Col>
