@@ -21,6 +21,9 @@ export default class Createbook extends Component {
     this.handleOnChangeContent = this.handleOnChangeContent.bind(this);
     this.handleInputFileChange = this.handleInputFileChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleAudio = this.handleAudio.bind(this)
+    this.handlePicture = this.handlePicture.bind(this)
+
 
 
 
@@ -89,6 +92,28 @@ export default class Createbook extends Component {
       };
     });
   };
+
+  handlePicture(){
+    if (this.state.title === "")
+      alert("Debes ingresar el título")
+    else
+      this.props.history.push('/take-picture-book/book/'+this.state.title)
+
+
+
+  }
+
+
+  handleAudio(){
+    if (this.state.title === "")
+      alert("Debes ingresar el título")
+    else
+      this.props.history.push('/take-audio-book/book/'+this.state.title)
+
+
+
+  }
+
   render() {
     return (
 
@@ -141,16 +166,16 @@ export default class Createbook extends Component {
                     </Tab.Pane>
                     <Tab.Pane eventKey="second">
 
-                      <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3"> <Link to={'/take-picture-book/book/'+this.state.title}  className="btn-floating btn-large red">
+                      <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3" onClick={this.handlePicture} >
                         <i className="material-icons btn btn-success btn-lg ml-auto"><h1><BsFillCameraFill /></h1></i>
-                      </Link></div></div>
+                      </div></div>
 
                     </Tab.Pane>
                     <Tab.Pane eventKey="third">
 
-                      <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3"> <Link to={'/take-audio-book/book/'+this.state.title} className="btn-floating btn-large red">
+                      <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3" onClick={this.handleAudio}>
                         <i className="material-icons btn btn-success btn-lg ml-auto"><h1><BsFillVolumeUpFill /></h1></i>
-                      </Link></div></div>
+                      </div></div>
 
 
                     </Tab.Pane>
