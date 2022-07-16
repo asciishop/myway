@@ -16,7 +16,7 @@ export default class AddImageNode extends Component {
 
 
         this.handleTakePhoto = this.handleTakePhoto.bind(this);
-
+        this.handleClick = this.handleClick.bind(this);
 
 
         // Setting up state
@@ -39,10 +39,6 @@ export default class AddImageNode extends Component {
     }
 
     handleClick() {
-
-        let book = {title:this.state.title,
-            content:this.state.content,
-            file : this.state.file};
 
 
         if (this.state.id === "book"){
