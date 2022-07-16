@@ -25,6 +25,7 @@ export default class AddAudioNode extends Component {
             blobURL: '',
             isBlocked: false,
             id: this.props.match.params.id,
+            title: this.props.match.params.title
 
         }
 

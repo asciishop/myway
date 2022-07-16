@@ -89,14 +89,14 @@ function App() {
 
                   <Route
                       exact
-                      path="/take-picture-book/:id"
+                      path="/take-picture-book/:id/:title"
                       component={(props) => <AddImageNode {...props} />}
                   />
 
 
                   <Route
                       exact
-                      path="/take-audio-book/:id"
+                      path="/take-audio-book/:id/:title"
                       component={(props) => <AddAudioNode {...props} />}
                   />
 
