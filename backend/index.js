@@ -24,11 +24,11 @@ const app = express();
 const https = require('https');
 var fs = require('fs');
 
-/*
+
 const httpsOptions = {
-    key: fs.readFileSync('./security/cert.key'),
-    cert: fs.readFileSync('./security/cert.pem')
-}*/
+    key: fs.readFileSync('./cert.key'),
+    cert: fs.readFileSync('./cert.pem')
+}
 
 app.use(express.static('public'));
 app.use('/images', express.static('images'));
@@ -50,14 +50,11 @@ app.use('/books', bookRoute)
 // PORT
 const port = process.env.PORT || 4000;
 
-const server = app.listen(port, () => {
-  console.log('Connected to port ' + port)
-})
-/*
+
 var server = https.createServer(httpsOptions, app);
 server.listen(port, () => {
     console.log("server starting on port : " + port)
-});*/
+});
 
 // 404 Error
 app.use((req, res, next) => {
