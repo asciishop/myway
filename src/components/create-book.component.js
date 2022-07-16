@@ -141,14 +141,14 @@ export default class Createbook extends Component {
                     </Tab.Pane>
                     <Tab.Pane eventKey="second">
 
-                      <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3"> <Link to={'/take-picture-book'} className="btn-floating btn-large red">
+                      <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3"> <Link to={'/take-picture-book/book'} className="btn-floating btn-large red">
                         <i className="material-icons btn btn-success btn-lg ml-auto"><h1><BsFillCameraFill /></h1></i>
                       </Link></div></div>
 
                     </Tab.Pane>
                     <Tab.Pane eventKey="third">
 
-                      <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3"> <Link to={'/take-audio-book'} className="btn-floating btn-large red">
+                      <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3"> <Link to={'/take-audio-book/book'} className="btn-floating btn-large red">
                         <i className="material-icons btn btn-success btn-lg ml-auto"><h1><BsFillVolumeUpFill /></h1></i>
                       </Link></div></div>
 

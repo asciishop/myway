@@ -24,23 +24,49 @@ export default class AddAudioNode extends Component {
             isRecording: false,
             blobURL: '',
             isBlocked: false,
+            id: this.props.match.params.id,
+
         }
+
     }
 
     handleClick() {
 
-        let book = {title:this.state.title,
-            content:this.state.content,
-            file : this.state.file};
 
-        axios.post(URL_BACKEND +'books/add-book', book)
-            .then((res) => {
-                console.log(res.data)
-                console.log('book successfully created')
-                this.props.history.push('/book-list')
-            }).catch((error) => {
-            console.log(error)
-        })
+
+        if (this.state.id === "book"){
+
+            let book = {title:this.state.title,
+                content:this.state.content,
+                file : this.state.file};
+
+            axios.post(URL_BACKEND +'books/add-book', book)
+                .then((res) => {
+                    console.log(res.data)
+                    console.log('book successfully created')
+                    this.props.history.push('/book-list')
+                }).catch((error) => {
+                console.log(error)
+            })
+
+        } else {  //Chapter
+
+            let chapter = {
+                id:this.state.id,
+                content:this.state.content,
+                file : this.state.file};
+
+            axios.post(URL_BACKEND +'books/add-chapter', chapter)
+                .then((res) => {
+                    console.log(res.data)
+                    console.log('book successfully created')
+                    this.props.history.push('/book-list')
+                }).catch((error) => {
+                console.log(error)
+            })
+        }
+
+
 
 
     }

@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import {URL_BACKEND} from "./const";
 import {Col, Nav, Row, Tab} from "react-bootstrap";
+import {Link} from "react-router-dom";
+import {BsFillCameraFill, BsFillVolumeUpFill} from "react-icons/bs";
 
 
 export default class Createchapter extends Component {
@@ -76,6 +78,8 @@ export default class Createchapter extends Component {
 
 
           <br/>
+
+
           <Tab.Container id="left-tabs-example" defaultActiveKey="first">
             <Row>
               <Col sm={3}>
@@ -84,7 +88,13 @@ export default class Createchapter extends Component {
                     <Nav.Link eventKey="first">Texto</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="second">Imagen, Audio o Video</Nav.Link>
+                    <Nav.Link eventKey="second">Imagen</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="third">Audio</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="fourth">Archivo</Nav.Link>
                   </Nav.Item>
                 </Nav>
               </Col>
@@ -102,15 +112,34 @@ export default class Createchapter extends Component {
                   </Tab.Pane>
                   <Tab.Pane eventKey="second">
 
+                    <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3"> <Link to={'/take-picture-book/'+ this.state.id} className="btn-floating btn-large red">
+                      <i className="material-icons btn btn-success btn-lg ml-auto"><h1><BsFillCameraFill /></h1></i>
+                    </Link></div></div>
+
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="third">
+
+                    <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3"> <Link to={'/take-audio-book/'+ this.state.id} className="btn-floating btn-large red">
+                      <i className="material-icons btn btn-success btn-lg ml-auto"><h1><BsFillVolumeUpFill /></h1></i>
+                    </Link></div></div>
+
+
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="fourth">
+
                     <input type="file"
                            className="form-control"
                            id="image"
-                           onChange={this.handleInputFileChange} />
+                           onChange={this.handleInputFileChange}
+                           accept="image/*" capture="environment"/>
                   </Tab.Pane>
                 </Tab.Content>
               </Col>
             </Row>
           </Tab.Container>
+
+
+
 
 
           <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"> <Button variant="success" onClick={this.handleClick}>Enviar</Button>
