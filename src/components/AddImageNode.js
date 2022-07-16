@@ -69,7 +69,7 @@ export default class AddImageNode extends Component {
                 .then((res) => {
                     console.log(res.data)
                     console.log('book successfully created')
-                    this.props.history.push('/book-list')
+                    this.props.history.push('/show-book/'+ this.state.id)
                 }).catch((error) => {
                 console.log(error)
             })
