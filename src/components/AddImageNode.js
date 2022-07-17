@@ -107,7 +107,7 @@ export default class AddImageNode extends Component {
 
 
         const videoConstraints = {
-            width: 640,
+            width: 400,
             height: 360,
             facingMode : FACING_MODE_ENVIRONMENT
         };

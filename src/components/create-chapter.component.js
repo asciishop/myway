@@ -3,9 +3,9 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import {URL_BACKEND} from "./const";
-import {Col, Nav, Row, Tab} from "react-bootstrap";
+import {Col, Nav, Row, Tab, Tabs} from "react-bootstrap";
 import {Link} from "react-router-dom";
-import {BsFillCameraFill, BsFillVolumeUpFill} from "react-icons/bs";
+import {BsFileEarmarkText, BsFillCameraFill, BsFillVolumeUpFill} from "react-icons/bs";
 
 
 export default class Createchapter extends Component {
@@ -17,7 +17,8 @@ export default class Createchapter extends Component {
     this.handleOnChangeContent = this.handleOnChangeContent.bind(this);
     this.handleInputFileChange = this.handleInputFileChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-
+    this.handleAudio = this.handleAudio.bind(this)
+    this.handlePicture = this.handlePicture.bind(this)
 
 
     // Setting up state
@@ -30,6 +31,12 @@ export default class Createchapter extends Component {
 
 
   handleClick() {
+
+    if (this.state.file !== '' && this.state.content === ''){
+      alert("Debe ingresar el texto del capítulo")
+      return
+    }
+
 
     let book = {
       id:this.state.id,
@@ -69,6 +76,22 @@ export default class Createchapter extends Component {
     }
   }
 
+  handlePicture(){
+
+      this.props.history.push('/take-picture-book/'+ this.state.id +'/chapter')
+
+
+
+  }
+
+
+  handleAudio(){
+
+      this.props.history.push('/take-audio-book/'+ this.state.id +'/chapter')
+
+
+
+  }
 
   render() {
     return (
@@ -80,67 +103,46 @@ export default class Createchapter extends Component {
           <br/>
 
 
-          <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-            <Row>
-              <Col sm={3}>
-                <Nav variant="pills" className="flex-column">
-                  <Nav.Item>
-                    <Nav.Link eventKey="first">Texto</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey="second">Imagen</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey="third">Audio</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey="fourth">Archivo</Nav.Link>
-                  </Nav.Item>
-                </Nav>
-              </Col>
-              <Col sm={9}>
-                <Tab.Content>
-                  <Tab.Pane eventKey="first">
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="content"
-                        required
-                        name="content"
-                        onChange={this.handleOnChangeContent}
-                    />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="second">
 
-                    <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3"> <Link to={'/take-picture-book/'+ this.state.id +'/chapter'} className="btn-floating btn-large red">
-                      <i className="material-icons btn btn-success btn-lg ml-auto"><h1><BsFillCameraFill /></h1></i>
-                    </Link></div></div>
+          <Tabs
+              defaultActiveKey="texto"
+              id="uncontrolled-tab-example"
+              className="mb-3"
+          >
+            <Tab eventKey="texto" title={<BsFileEarmarkText />} >
+              <input
+                  type="text"
+                  className="form-control"
+                  id="content"
+                  required
+                  name="content"
+                  onChange={this.handleOnChangeContent}
+              />
+            </Tab>
+            <Tab eventKey="camera" title={<BsFillCameraFill />}>
+              <div className="row "><div className="col d-flex  pt-1" onClick={this.handlePicture} >
+                <i className="material-icons btn btn-primary btn-xs ml-auto"><h1>Tomar Foto</h1></i>
+              </div></div>
+            </Tab>
+            <Tab eventKey="audio" title={<BsFillVolumeUpFill />} >
 
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="third">
+              <div className="row"><div className="col d-flex  pt-1" onClick={this.handleAudio}>
+                <i className="material-icons btn btn-primary btn-xs ml-auto"><h1>Grabar Audio</h1></i>
+              </div></div>
 
-                    <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3"> <Link to={'/take-audio-book/'+ this.state.id +'/chapter'} className="btn-floating btn-large red">
-                      <i className="material-icons btn btn-success btn-lg ml-auto"><h1><BsFillVolumeUpFill /></h1></i>
-                    </Link></div></div>
-
-
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="fourth">
-
-                    <input type="file"
-                           className="form-control"
-                           id="image"
-                           onChange={this.handleInputFileChange}
-                           accept="image/*" capture="environment"/>
-                  </Tab.Pane>
-                </Tab.Content>
-              </Col>
-            </Row>
-          </Tab.Container>
+            </Tab>
+            {/* <Tab eventKey="archivo" title="Archivo" disabled>
+              <input type="file"
+                     className="form-control"
+                     id="image"
+                     onChange={this.handleInputFileChange}
+                     accept="image/*" capture="environment"/>
+            </Tab>*/}
+          </Tabs>
 
 
 
-
+          <br/>
 
           <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"> <Button variant="success" onClick={this.handleClick}>Enviar</Button>
           </div></div>
