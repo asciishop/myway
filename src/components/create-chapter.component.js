@@ -32,8 +32,8 @@ export default class Createchapter extends Component {
 
   handleClick() {
 
-    if (this.state.file !== '' && this.state.content === ''){
-      alert("Debe ingresar el texto del capítulo")
+    if (this.state.file === '' && this.state.content === ''){
+      alert("Debe ingresar el contenido del capítulo")
       return
     }
 
