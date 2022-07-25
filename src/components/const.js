@@ -1,1 +1,1 @@
-export const URL_BACKEND = "https://myways.cl:4000/"
+export const URL_BACKEND = "http://localhost:4000/"

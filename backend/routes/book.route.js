@@ -2,12 +2,13 @@ let bookSchema = require('../models/book')
 let fs = require("fs");
 
 let mongoose = require('mongoose'),
-    express = require('express'),
-    router = express.Router();
+  express = require('express'),
+  router = express.Router();
 
-//let fs = require('fs')
+require("dotenv").config()
 
-const URL_SERVER = "https://myways.cl:4000"
+
+const URL_SERVER = process.env.URL_SERVER;
 
 // book Model
 
@@ -102,19 +103,19 @@ router.route('/add-chapter').post((req, res, next) => {
   }
 
 
-  bookSchema.findByIdAndUpdate(
-      id,
-      { $addToSet: { chapters: chapter }},
-      (error, data) => {
-        if (error) {
-          return next(error)
-          console.log(error)
-        } else {
-          res.json(data)
-          console.log('Chapter updated successfully !')
-        }
-      },
-  )
+      bookSchema.findByIdAndUpdate(
+          id,
+          { $addToSet: { chapters: chapter }},
+          (error, data) => {
+            if (error) {
+              return next(error)
+              console.log(error)
+            } else {
+              res.json(data)
+              console.log('Chapter updated successfully !')
+            }
+          },
+      )
 
 });
 
@@ -143,19 +144,19 @@ router.route('/edit-book/:id').get((req, res) => {
 // Update book
 router.route('/update-book/:id').put((req, res, next) => {
   bookSchema.findByIdAndUpdate(
-      req.params.id,
-      {
-        $set: req.body,
-      },
-      (error, data) => {
-        if (error) {
-          return next(error)
-          console.log(error)
-        } else {
-          res.json(data)
-          console.log('book updated successfully !')
-        }
-      },
+    req.params.id,
+    {
+      $set: req.body,
+    },
+    (error, data) => {
+      if (error) {
+        return next(error)
+        console.log(error)
+      } else {
+        res.json(data)
+        console.log('book updated successfully !')
+      }
+    },
   )
 })
 
