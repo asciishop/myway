@@ -37,11 +37,16 @@ export default class Createchapter extends Component {
       return
     }
 
+      let user = {nickName :"Anonymous"}
+      if (localStorage.getItem("user")) {
+          user = JSON.parse(localStorage.getItem("user"));
+      }
 
     let book = {
       id:this.state.id,
       content:this.state.content,
-      file : this.state.file};
+      file : this.state.file,
+      user : user};
 
     axios.post(URL_BACKEND +'books/add-chapter', book)
         .then((res) => {

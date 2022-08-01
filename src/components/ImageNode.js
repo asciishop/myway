@@ -9,6 +9,7 @@ export default ({ node}) => {
                 width='100px'
                 height='100px'
             />
+            <h3>By{node.user.lastName}</h3>
         </div>
     );
 };

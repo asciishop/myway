@@ -26,7 +26,7 @@ router.route('/create-book').post((req, res, next) => {
 })
 
 router.route('/add-book').post((req, res, next) => {
-  const { title, content, file } = req.body;
+  const { title, content, file, user } = req.body;
   let chapter = [{'text': '', 'type': '', 'link':''}];
 
   if(file) {
@@ -51,11 +51,13 @@ router.route('/add-book').post((req, res, next) => {
       type = "video"
     }
 
-    chapter = [{'text': '', 'type': type, 'link':link}];
+    chapter = [{'text': '', 'type': type, 'link':link, 'user' : user, 'date': new Date()}];
   } else {
-    chapter = [{'text': content, 'type': 'text', 'link': ''}];
+    chapter = [{'text': content, 'type': 'text', 'link': '', 'user' : user, 'date': new Date()}];
   }
   let book_main = {
+    user,
+    dateCreation : new Date(),
     title,
     chapters: chapter
   };
@@ -73,7 +75,7 @@ router.route('/add-book').post((req, res, next) => {
 });
 
 router.route('/add-chapter').post((req, res, next) => {
-  const { id, content, file } = req.body;
+  const { id, content, file, user } = req.body;
   let chapter = [{'text': '', 'type': '', 'link':''}];
 
   if(file) {
@@ -97,9 +99,9 @@ router.route('/add-chapter').post((req, res, next) => {
       type = "video"
     }
 
-    chapter = {'text': '', 'type': type, 'link':link};
+    chapter = {'text': '', 'type': type, 'link':link, 'user' : user, 'date': new Date()};
   } else {
-    chapter = {'text': content, 'type': 'text', 'link': ''};
+    chapter = {'text': content, 'type': 'text', 'link': '', 'user' : user, 'date': new Date()};
   }
 
 

@@ -38,25 +38,44 @@ export default class Createbook extends Component {
     }
   }
 
-  handleClick() {
+  getUser() {
 
-    if (this.state.title === ''){
+    axios.get(URL_BACKEND +"users/me",{headers: { Authorization: 'Bearer '+ localStorage.getItem("token") }})
+        .then(res => {
+          return res.data
+
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+  }
+
+  async handleClick() {
+
+    if (this.state.title === '') {
       alert("Debe ingresar el título del libro")
       return
     }
 
-    if (this.state.file === '' && this.state.content === ''){
+    if (this.state.file === '' && this.state.content === '') {
       alert("Debe ingresar el contenido del libro")
       return
     }
 
+    let user = {nickName :"Anonymous"}
+    if (localStorage.getItem("user")) {
+      user = JSON.parse(localStorage.getItem("user"));
+    }
 
 
-    let book = {title:this.state.title,
-      content:this.state.content,
-      file : this.state.file};
+    let book = {
+      title: this.state.title,
+      content: this.state.content,
+      file: this.state.file,
+      user : user
+    };
 
-    axios.post(URL_BACKEND +'books/add-book', book)
+    axios.post(URL_BACKEND + 'books/add-book', book)
         .then((res) => {
           console.log(res.data)
           console.log('book successfully created')

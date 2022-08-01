@@ -23,6 +23,29 @@ constructor() {
 }
 
 
+    setUser(token) {
+
+    axios.get(URL_BACKEND +'users/me', {headers: { Authorization: 'Bearer '+ token }})
+        .then( async (response) => {
+
+            if (response.status === 200) {
+                localStorage.setItem("user", JSON.stringify(response.data))
+                window.location.href = "http://localhost:3000/"
+
+
+            } else {
+                this.state.error("Error getting user.")
+            }
+
+        }).catch((error) => {
+        console.log(error)
+    })
+
+
+}
+
+
+
     handleSubmit() {
 
 
@@ -34,7 +57,7 @@ constructor() {
 
         let user = { username: this.state.email, password : this.state.password }
         axios.post(URL_BACKEND +'users/login', user)
-            .then( (response) => {
+            .then( async (response) => {
 
                 if (response.status === 400) {
                     this.state.error("Please fill all the fields correctly!")
@@ -42,8 +65,11 @@ constructor() {
                     this.state.error("Invalid email and password combination.")
                 } else if (response.status === 200) {
                     localStorage.setItem("token", response.data.token)
-                    window.location.href = "http://localhost:3000/"
-                    //this.props.history.push('/')
+                    this.setUser(response.data.token)
+
+
+
+
                     //this.props.history.push('/')
 
 

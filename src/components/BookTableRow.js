@@ -43,6 +43,7 @@ export default class bookTableRow extends Component {
         return <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><TextNode node={node} /></div></div>
 
 
+
         break;
       case "video":
 
