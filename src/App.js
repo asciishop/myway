@@ -21,6 +21,9 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import {  NavDropdown } from "react-bootstrap";
 import { ReactComponent as Logo } from "./logo.svg";
+import axios from "axios";
+import {URL_BACKEND} from "./components/const";
+import UserInfo from "./components/UserInfo";
 
 
 function getToken () {
@@ -40,7 +43,10 @@ function parseJwt (token) {
 
 
 
+
 function App() {
+
+
 
 
   return (
@@ -85,7 +91,7 @@ function App() {
 
 
             {localStorage.getItem("token") &&
-                <h6>Hola User </h6>
+                <UserInfo/>
 
             }
 

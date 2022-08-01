@@ -24,7 +24,7 @@ router.route('/signup').post((req, res, next) => {
                     user.firstName = req.body.firstName
                     user.lastName = req.body.lastName || ""
                     const token = getToken({ _id: user._id })
-                    const refreshToken = getRefreshToken({ _id: user._id })
+                    const refreshToken = getRefreshToken({ _id: user._id, nickName : user.lastName})
                     user.refreshToken.push({ refreshToken })
                     user.save((err, user) => {
                         if (err) {

@@ -31,13 +31,13 @@ export default class Register extends Component {
     handleSubmit() {
 
 
-        if (this.state.email === '' && this.state.password === ''){
-            alert("Debe ingresar usuario y password")
+        if (this.state.email === '' && this.state.password === '' && this.state.firstname === ''){
+            alert("Debe ingresar Nombre, mail y password")
             return
         }
 
 
-        let user = { username: this.state.email, password : this.state.password }
+        let user = { username: this.state.email, password : this.state.password, firstname : this.state.firstname, lastname : this.state.lastname }
         axios.post(URL_BACKEND +'users/signup', user)
             .then( (response) => {
                 console.log(response.data)
@@ -50,7 +50,7 @@ export default class Register extends Component {
                     this.state.error("Invalid email and password combination.")
                 } else if (response.status === 200) {
                     localStorage.setItem("token", response.data.token)
-                    this.props.history.push('/')
+                    window.location.href = "http://localhost:3000/"
                 }
 
 
@@ -82,9 +82,19 @@ export default class Register extends Component {
 
     handleOnChangeLastname (e)  {
         const { target: { value, lastname } } = e;
-        this.setState({ password: value })
+        this.setState({ lastname: value })
 
     }
+
+    parseJwt (token) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        return JSON.parse(jsonPayload);
+    };
 
     render() {
 

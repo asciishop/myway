@@ -35,9 +35,6 @@ constructor() {
         let user = { username: this.state.email, password : this.state.password }
         axios.post(URL_BACKEND +'users/login', user)
             .then( (response) => {
-                console.log(response.data)
-                console.log('book successfully created')
-
 
                 if (response.status === 400) {
                     this.state.error("Please fill all the fields correctly!")
@@ -45,9 +42,11 @@ constructor() {
                     this.state.error("Invalid email and password combination.")
                 } else if (response.status === 200) {
                     localStorage.setItem("token", response.data.token)
-                    localStorage.setItem("user",JSON.stringify(this.parseJwt(response.data.token)))
+                    window.location.href = "http://localhost:3000/"
                     //this.props.history.push('/')
-                    window.location.href = "https://myways.cl/"
+                    //this.props.history.push('/')
+
+
                 }
 
 
