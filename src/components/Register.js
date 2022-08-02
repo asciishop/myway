@@ -28,6 +28,27 @@ export default class Register extends Component {
     }
 
 
+    setUser(token) {
+
+        axios.get(URL_BACKEND +'users/me', {headers: { Authorization: 'Bearer '+ token }})
+            .then( async (response) => {
+
+                if (response.status === 200) {
+                    localStorage.setItem("user", JSON.stringify(response.data))
+                    window.location.href = "https://myways.cl/"
+
+
+                } else {
+                    this.state.error("Error getting user.")
+                }
+
+            }).catch((error) => {
+            console.log(error)
+        })
+
+
+    }
+
     handleSubmit() {
 
 
@@ -50,7 +71,7 @@ export default class Register extends Component {
                     this.state.error("Invalid email and password combination.")
                 } else if (response.status === 200) {
                     localStorage.setItem("token", response.data.token)
-                    window.location.href = "http://localhost:3000/"
+                    this.setUser(response.data.token)
                 }
 
 
