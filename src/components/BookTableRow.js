@@ -34,13 +34,27 @@ export default class bookTableRow extends Component {
     switch(node.type) {
       case "image":
 
-        return <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><ImageNode node={node} /></div></div>
+        return <div className="row d-flex justify-content-center">
+                <div className="col d-flex align-items-center justify-content-center pt-3">
+                  <ImageNode node={node} />
+                </div>
+                <div className="col d-flex align-items-center justify-content-center pt-3">
+                  By {node.user.lastName}
+                </div>
+        </div>
 
         break;
       case "text":
 
 
-        return <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><TextNode node={node} /></div></div>
+        return <div className="row d-flex justify-content-center">
+                  <div className="col d-flex align-items-center justify-content-center pt-3">
+                    <TextNode node={node} />
+                  </div>
+                  <div className="col d-flex align-items-center justify-content-center pt-3">
+                    By {node.user.lastName}
+                  </div>
+               </div>
 
 
 

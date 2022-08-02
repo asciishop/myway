@@ -24,6 +24,8 @@ import { ReactComponent as Logo } from "./logo.svg";
 import axios from "axios";
 import {URL_BACKEND} from "./components/const";
 import UserInfo from "./components/UserInfo";
+import AddImageNode from "./components/AddImageNode";
+import AddAudioNode from "./components/AddAudioNode";
 
 
 function getToken () {
@@ -143,6 +145,22 @@ function App() {
                         path="/register"
                         component={(props) => <Register {...props} />}
                     />
+
+                    <Route
+                        exact
+                        path="/take-picture-book/:id"
+                        path="/take-picture-book/:id/:title"
+                        component={(props) => <AddImageNode {...props} />}
+                    />
+
+                    <Route
+                        exact
+                        path="/take-audio-book/:id"
+                        path="/take-audio-book/:id/:title"
+                        component={(props) => <AddAudioNode {...props} />}
+                    />
+
+
                   </Switch>
                 </div>
               </Col>

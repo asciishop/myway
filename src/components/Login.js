@@ -30,7 +30,7 @@ constructor() {
 
             if (response.status === 200) {
                 localStorage.setItem("user", JSON.stringify(response.data))
-                window.location.href = "http://localhost:3000/"
+                window.location.href = "https://myways.cl/"
 
 
             } else {
