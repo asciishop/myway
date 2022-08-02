@@ -58,7 +58,7 @@ export default class Register extends Component {
         }
 
 
-        let user = { username: this.state.email, password : this.state.password, firstname : this.state.firstname, lastname : this.state.lastname }
+        let user = { username: this.state.email, password : this.state.password, firstName : this.state.firstname, lastName : this.state.lastname }
         axios.post(URL_BACKEND +'users/signup', user)
             .then( (response) => {
                 console.log(response.data)
