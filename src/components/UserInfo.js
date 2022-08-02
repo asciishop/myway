@@ -28,7 +28,7 @@ export default class UserInfo extends Component {
     }
 
     DataTable() {
-        return <h2>Hola {this.state.user.lastName}</h2>;
+        return <h2>Hola {this.state.user.username}</h2>;
 
         /*
         return this.state.books.map((res, i) => {

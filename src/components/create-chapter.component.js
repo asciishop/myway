@@ -37,7 +37,7 @@ export default class Createchapter extends Component {
       return
     }
 
-      let user = {nickName :"Anonymous"}
+      let user = {username :"Anonymous"}
       if (localStorage.getItem("user")) {
           user = JSON.parse(localStorage.getItem("user"));
       }

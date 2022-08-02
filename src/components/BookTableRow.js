@@ -39,7 +39,14 @@ export default class bookTableRow extends Component {
                   <ImageNode node={node} />
                 </div>
                 <div className="col d-flex align-items-center justify-content-center pt-3">
-                  By {node.user.lastName}
+
+
+                  {node.user &&
+                      <h6> By {node.user.username}
+                      </h6>
+
+                  }
+
                 </div>
         </div>
 
@@ -52,7 +59,10 @@ export default class bookTableRow extends Component {
                     <TextNode node={node} />
                   </div>
                   <div className="col d-flex align-items-center justify-content-center pt-3">
-                    By {node.user.lastName}
+                    {node.user &&
+                        <h6> By {node.user.username}
+                        </h6>
+                    }
                   </div>
                </div>
 
