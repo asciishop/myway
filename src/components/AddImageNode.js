@@ -11,7 +11,8 @@ import {BsFillCameraFill} from "react-icons/bs";
 import Webcam from "react-webcam";
 import Camera from "./Camera";
 import BackCamera from "./BackCamera";
-
+import Spinner from "./Spinner";
+import "./styles.css";
 
 const FACING_MODE_USER = "user";
 const FACING_MODE_ENVIRONMENT = "environment";
@@ -22,6 +23,11 @@ const components = {
 
 }
 
+const CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+};
 
 export default class AddImageNode extends Component {
 
@@ -42,7 +48,8 @@ export default class AddImageNode extends Component {
             blobURL: '',
             isBlocked: false,
             id: this.props.match.params.id,
-            title: this.props.match.params.title
+            title: this.props.match.params.title,
+            loading : true
 
 
         }
@@ -101,7 +108,9 @@ export default class AddImageNode extends Component {
 
     }
 
-
+    handleUserMedia = () => {
+        this.setState({ loading: false });
+    }
 
     render() {
 
@@ -121,14 +130,18 @@ export default class AddImageNode extends Component {
 
                 <br/>
 
-                    <Webcam
-                        audio={false}
-                        ref='webcam'
-
-                        screenshotFormat="image/jpeg"
-
-                        videoConstraints={videoConstraints}
-                    />
+                <div className="row d-flex justify-content-center">
+                    <div className="col d-flex align-items-center justify-content-center pt-3">
+                        {this.state.loading && <Spinner />}
+                        <Webcam
+                            audio={false}
+                            ref='webcam'
+                            screenshotFormat="image/jpeg"
+                            videoConstraints={videoConstraints}
+                            onUserMedia={this.handleUserMedia}
+                        />
+                    </div>
+                </div>
 
                     <br/>
 

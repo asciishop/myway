@@ -5,8 +5,7 @@ import axios from 'axios';
 import {URL_BACKEND} from "./const";
 import {Card,Tab,Row,Col,Nav} from "react-bootstrap";
 import MicRecorder from 'mic-recorder-to-mp3';
-import {Link} from "react-router-dom";
-import {BsFillCameraFill} from "react-icons/bs";
+import {BsFillRecordCircleFill,BsFillPauseCircleFill} from "react-icons/bs";
 
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
@@ -114,11 +113,21 @@ export default class AddAudioNode extends Component {
         return (
 
             <div className="container-fluid">
-                <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"> <h2>Ingrese un libro</h2>          </div></div>
+                <div className="row d-flex justify-content-center">
+                    <div className="col d-flex align-items-center justify-content-center pt-3"> <h2>Ingrese un libro</h2>          </div></div>
 
-                <button onClick={this.start} disabled={this.state.isRecording}>Record</button>
-                <button onClick={this.stop} disabled={!this.state.isRecording}>Stop</button>
-                <audio src={this.state.blobURL} controls="controls" />
+                <div className="row d-flex justify-content-center">
+                    <div className="col d-flex align-items-center justify-content-center pt-3">
+                        <BsFillRecordCircleFill size={40} onClick={this.start} disabled={this.state.isRecording}></BsFillRecordCircleFill>
+                        &nbsp;&nbsp;<BsFillPauseCircleFill size={40} onClick={this.stop} disabled={!this.state.isRecording}></BsFillPauseCircleFill>
+                    </div>
+                </div>
+
+                <div className="row d-flex justify-content-center">
+                    <div className="col d-flex align-items-center justify-content-center pt-3">
+                        <audio src={this.state.blobURL} controls="controls" />
+                    </div>
+                </div>
 
                 <br/>
 

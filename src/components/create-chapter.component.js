@@ -115,14 +115,15 @@ export default class Createchapter extends Component {
               className="mb-3"
           >
             <Tab eventKey="texto" title={<BsFileEarmarkText />} >
-              <input
-                  type="text"
-                  className="form-control"
-                  id="content"
-                  required
-                  name="content"
-                  onChange={this.handleOnChangeContent}
-              />
+                              <textarea
+                                  className="form-control"
+                                  id="content"
+                                  required
+                                  name="content"
+                                  onChange={this.handleOnChangeContent}
+                                  rows="4" cols="25"
+                              />
+
             </Tab>
             <Tab eventKey="camera" title={<BsFillCameraFill />}>
               <div className="row "><div className="col d-flex  pt-1" onClick={this.handlePicture} >

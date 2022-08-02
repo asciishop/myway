@@ -171,13 +171,15 @@ export default class Createbook extends Component {
               className="mb-3"
           >
             <Tab eventKey="texto" title={<BsFileEarmarkText />}>
-              <input
-                  type="text"
+
+
+              <textarea
                   className="form-control"
                   id="content"
                   required
                   name="content"
                   onChange={this.handleOnChangeContent}
+                  rows="4" cols="25"
               />
             </Tab>
             <Tab eventKey="camera" title={<BsFillCameraFill />}>
