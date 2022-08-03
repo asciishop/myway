@@ -23,14 +23,10 @@ import {  NavDropdown } from "react-bootstrap";
 import { ReactComponent as Logo } from "./logo.svg";
 import axios from "axios";
 import {URL_BACKEND} from "./components/const";
-import UserInfo from "./components/UserInfo";
 import AddImageNode from "./components/AddImageNode";
 import AddAudioNode from "./components/AddAudioNode";
 import {FiFeather, FiLogIn, FiPlusSquare, FiLogOut, FiUser} from "react-icons/fi";
-
-
-
-
+import Profile from "./components/Profile";
 
 
 function getToken () {
@@ -48,6 +44,35 @@ function parseJwt (token) {
   return JSON.parse(jsonPayload);
 };
 
+
+function logoutHandler() {
+
+  let token = localStorage.getItem("token")
+
+  if (!token) {
+    alert("No se encuentra registrado")
+    return
+  }
+
+
+  axios.get(URL_BACKEND +'users/logout', {headers: { Authorization: 'Bearer '+ token }})
+      .then( async (response) => {
+
+        if (response.status === 200) {
+          localStorage.removeItem("token")
+          localStorage.removeItem("user")
+          window.location.href = "https://myways.cl/"
+
+        } else {
+          this.state.error("Error getting user.")
+        }
+
+      }).catch((error) => {
+    console.log(error)
+  })
+
+
+}
 
 
 
@@ -75,22 +100,16 @@ function App() {
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto" >
                   <Nav.Link  href="/create-book/"><FiFeather/> Escribir</Nav.Link>
-                  <Nav.Link  href="/create-book/"><FiUser/> Perfil</Nav.Link>
+                  <Nav.Link  href="/profile/"><FiUser/> Perfil</Nav.Link>
                   <Nav.Link href="/login/"><FiLogIn/> Ingresar</Nav.Link>
                   <Nav.Link href="/register"><FiPlusSquare/> Registro</Nav.Link>
-                  <Nav.Link href="/logout"><FiLogOut/> Salir</Nav.Link>
+                  <Nav.Link  onClick={logoutHandler} href="#"><FiLogOut/> Salir</Nav.Link>
 
                 </Nav>
 
 
               </Navbar.Collapse>
             </Navbar>
-
-
-            {localStorage.getItem("token") &&
-                <UserInfo/>
-
-            }
 
           </header>
 
@@ -153,6 +172,12 @@ function App() {
                         path="/take-audio-book/:id"
                         path="/take-audio-book/:id/:title"
                         component={(props) => <AddAudioNode {...props} />}
+                    />
+
+                    <Route
+                        exact
+                        path="/profile"
+                        component={(props) => <Profile {...props} />}
                     />
 
 

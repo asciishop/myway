@@ -31,6 +31,8 @@ export default class bookTableRow extends Component {
   }
 
   renderSwitch(node) {
+    let fecha = new Date(node.date)
+
     switch(node.type) {
       case "image":
 
@@ -38,31 +40,35 @@ export default class bookTableRow extends Component {
                 <div className="col d-flex align-items-center justify-content-center pt-3">
                   <ImageNode node={node} />
                 </div>
-                <div className="col d-flex align-items-center justify-content-center pt-3">
-
-
-                  {node.user &&
-                      <h6> By {node.user.username}
-                      </h6>
-
-                  }
-
+          <br/>
+              <div className="row d-flex justify-content-center">
+                <div className="col d-flex pt-3">
+                  <b><i>by {node.user.username}</i></b>
                 </div>
-        </div>
+                <div className="col d-flex align-items-center justify-content-center pt-3">
+                  on {fecha.toDateString()}
+                </div>
+
+              </div>
+            </div>
 
         break;
       case "text":
 
 
         return <div className="row d-flex justify-content-center">
-                  <div className="col d-flex align-items-center justify-content-center pt-3">
+                  <div className="row d-flex justify-content-center">
                     <TextNode node={node} />
                   </div>
-                  <div className="col d-flex align-items-center justify-content-center pt-3">
-                    {node.user &&
-                        <h6> By {node.user.username}
-                        </h6>
-                    }
+          <br/>
+                  <div className="row d-flex justify-content-center">
+                    <div className="col d-flex pt-3">
+                      <b><i>by {node.user.username}</i></b>
+                    </div>
+                    <div className="col d-flex align-items-center justify-content-center pt-3">
+                      on {fecha.toDateString()}
+                    </div>
+
                   </div>
                </div>
 
@@ -71,13 +77,35 @@ export default class bookTableRow extends Component {
         break;
       case "video":
 
-        return <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><VideoNode node={node} /></div></div>
+        return <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><VideoNode node={node} /></div>
+                  <br/>
+                  <div className="row d-flex justify-content-center">
+                    <div className="col d-flex pt-3">
+                      <b><i>by {node.user.username}</i></b>
+                    </div>
+                    <div className="col d-flex align-items-center justify-content-center pt-3">
+                      on {fecha.toDateString()}
+                    </div>
+
+                  </div>
+                </div>
 
 
         break;
       case "audio":
 
-        return <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><AudioNode node={node} /></div></div>
+        return <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><AudioNode node={node} /></div>
+                <br/>
+                <div className="row d-flex justify-content-center">
+                  <div className="col d-flex pt-3">
+                    <b><i>by {node.user.username}</i></b>
+                  </div>
+                  <div className="col d-flex align-items-center justify-content-center pt-3">
+                    on {fecha.toDateString()}
+                  </div>
+
+                </div>
+              </div>
 
 
         break;
