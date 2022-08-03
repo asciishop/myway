@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
-import LogoMyWay from "./asset/image/myway-logo.png";
+import LogoMyWay from "./asset/image/myway-logo-small.png";
 
 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
@@ -26,6 +26,11 @@ import {URL_BACKEND} from "./components/const";
 import UserInfo from "./components/UserInfo";
 import AddImageNode from "./components/AddImageNode";
 import AddAudioNode from "./components/AddAudioNode";
+import {FiFeather, FiLogIn, FiPlusSquare, FiLogOut, FiUser} from "react-icons/fi";
+
+
+
+
 
 
 function getToken () {
@@ -57,36 +62,26 @@ function App() {
           <header className="App-header">
 
 
-            <Navbar collapseOnSelect expand="lg" >
+            <Navbar collapseOnSelect expand="lg">
               <Navbar.Brand href="#home">
 
+                <Link to={'/'} className="nav-link">
+                  <img src={LogoMyWay} alt="MyWay :: colaborative storytelling" width="100%" height="100%" />
 
-                <Nav className="justify-content-end">
-                  <Nav>
-
-                    <Link to={'/'} className="nav-link">
-                      <img src={LogoMyWay} alt="MyWay :: colaborative storytelling" width="90%" height="90%" />
-
-                    </Link>
-
-
-                  </Nav>
-
-
-
-                </Nav>
-
+                </Link>
 
               </Navbar.Brand>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="mr-auto">
-                  <Nav.Link href="/create-book/">Escribir</Nav.Link>
-                  <Nav.Link href="/login/">Login</Nav.Link>
-                  <Nav.Link href="/register">Registro</Nav.Link>
-
+                <Nav className="me-auto" >
+                  <Nav.Link  href="/create-book/"><FiFeather/> Escribir</Nav.Link>
+                  <Nav.Link  href="/create-book/"><FiUser/> Perfil</Nav.Link>
+                  <Nav.Link href="/login/"><FiLogIn/> Ingresar</Nav.Link>
+                  <Nav.Link href="/register"><FiPlusSquare/> Registro</Nav.Link>
+                  <Nav.Link href="/logout"><FiLogOut/> Salir</Nav.Link>
 
                 </Nav>
+
 
               </Navbar.Collapse>
             </Navbar>
