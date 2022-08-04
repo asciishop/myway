@@ -5,7 +5,7 @@ import axios from 'axios';
 import {URL_BACKEND} from "./const";
 import {Card,Tab,Row,Col,Nav} from "react-bootstrap";
 import MicRecorder from 'mic-recorder-to-mp3';
-import {BsFillRecordCircleFill,BsFillPauseCircleFill} from "react-icons/bs";
+import {BsFillRecordCircleFill,BsFillPauseCircleFill,BsXCircleFill} from "react-icons/bs";
 
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
@@ -16,6 +16,8 @@ export default class AddAudioNode extends Component {
         super(props)
 
         this.handleClick = this.handleClick.bind(this);
+        this.cancel = this.cancel.bind(this);
+
 
         // Setting up state
         this.state = {
@@ -24,7 +26,8 @@ export default class AddAudioNode extends Component {
             blobURL: '',
             isBlocked: false,
             id: this.props.match.params.id,
-            title: this.props.match.params.title
+            title: this.props.match.params.title,
+            recordColor : 'black'
 
         }
 
@@ -88,6 +91,9 @@ export default class AddAudioNode extends Component {
         if (this.state.isBlocked) {
             console.log('Permission Denied');
         } else {
+            this.setState({ recordColor: 'red' })
+
+
             Mp3Recorder
                 .start()
                 .then(() => {
@@ -97,6 +103,7 @@ export default class AddAudioNode extends Component {
     };
 
     stop = () => {
+        this.setState({ recordColor: 'black' })
         Mp3Recorder
             .stop()
             .getMp3()
@@ -109,6 +116,7 @@ export default class AddAudioNode extends Component {
             }).catch((e) => console.log(e));
     };
 
+
     blobToBase64 = (blob) => {
         const reader = new FileReader();
         reader.readAsDataURL(blob);
@@ -118,6 +126,22 @@ export default class AddAudioNode extends Component {
             };
         });
     };
+
+    cancel(){
+
+        if (this.state.id === "book") {
+
+            this.props.history.push('/create-book')
+        } else {
+
+            this.props.history.push('/show-book/'+ this.state.id)
+
+        }
+
+
+
+    }
+
     render() {
         return (
 
@@ -127,8 +151,9 @@ export default class AddAudioNode extends Component {
 
                 <div className="row d-flex justify-content-center">
                     <div className="col d-flex align-items-center justify-content-center pt-3">
-                        <BsFillRecordCircleFill size={40} onClick={this.start} disabled={this.state.isRecording}></BsFillRecordCircleFill>
+                        <BsFillRecordCircleFill color={this.state.recordColor} size={40} onClick={this.start} disabled={this.state.isRecording}></BsFillRecordCircleFill>
                         &nbsp;&nbsp;<BsFillPauseCircleFill size={40} onClick={this.stop} disabled={!this.state.isRecording}></BsFillPauseCircleFill>
+
                     </div>
                 </div>
 
@@ -140,7 +165,7 @@ export default class AddAudioNode extends Component {
 
                 <br/>
 
-                <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"> <Button variant="success" onClick={this.handleClick}>Enviar</Button>
+                <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><Button variant="danger" onClick={this.cancel}>Cancelar</Button>&nbsp;&nbsp; <Button variant="success" onClick={this.handleClick}>Enviar</Button>
                 </div></div>
 
 

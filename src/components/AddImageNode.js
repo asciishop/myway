@@ -41,7 +41,7 @@ export default class AddImageNode extends Component {
         this.WebcamCapture = this.WebcamCapture.bind(this);
         this.captureShot = this.captureShot.bind(this);
         this.notLike = this.notLike.bind(this);
-
+        this.cancel = this.cancel.bind(this);
 
         // Setting up state
         this.state = {
@@ -143,6 +143,18 @@ export default class AddImageNode extends Component {
 
     }
 
+    cancel(){
+
+        if (this.state.id === "book") {
+
+            this.props.history.push('/create-book')
+        } else {
+
+            this.props.history.push('/show-book/'+ this.state.id)
+
+        }
+
+    }
 
     render() {
 
@@ -196,8 +208,8 @@ export default class AddImageNode extends Component {
                     <br/>
 
 
+                <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><Button variant="danger" onClick={this.cancel}>Cancelar</Button>&nbsp;&nbsp; <Button variant="success" onClick={this.WebcamCapture}>Enviar</Button>
 
-                <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"> <Button variant="success" onClick={this.WebcamCapture}>Enviar</Button>
                 </div></div>
 
 

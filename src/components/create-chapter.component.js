@@ -19,6 +19,7 @@ export default class Createchapter extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleAudio = this.handleAudio.bind(this)
     this.handlePicture = this.handlePicture.bind(this)
+      this.cancel = this.cancel.bind(this)
 
 
     // Setting up state
@@ -65,6 +66,7 @@ export default class Createchapter extends Component {
 
 
 
+
   handleOnChangeContent (e)  {
     const { target: { value, title } } = e;
     this.setState({ content: value })
@@ -97,6 +99,11 @@ export default class Createchapter extends Component {
 
 
   }
+
+    cancel(){
+        this.props.history.push('/show-book/'+ this.state.id)
+
+    }
 
   render() {
     return (
@@ -150,7 +157,8 @@ export default class Createchapter extends Component {
 
           <br/>
 
-          <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"> <Button variant="success" onClick={this.handleClick}>Enviar</Button>
+            <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><Button variant="danger" onClick={this.cancel}>Cancelar</Button>&nbsp;&nbsp; <Button variant="success" onClick={this.handleClick}>Enviar</Button>
+
           </div></div>
 
         </div>

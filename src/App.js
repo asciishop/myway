@@ -7,6 +7,9 @@ import Col from 'react-bootstrap/Col'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 import LogoMyWay from "./asset/image/myway-logo-small.png";
+import LogoMyWaySmall from "./asset/image/myway-logo-very-small.png";
+
+
 
 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
@@ -27,7 +30,7 @@ import AddImageNode from "./components/AddImageNode";
 import AddAudioNode from "./components/AddAudioNode";
 import {FiFeather, FiLogIn, FiPlusSquare, FiLogOut, FiUser} from "react-icons/fi";
 import Profile from "./components/Profile";
-import Demo from "./components/Demo";
+import AcercaDe from "./components/AcercaDe";
 
 
 function getToken () {
@@ -100,11 +103,22 @@ function App() {
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto" >
-                  <Nav.Link  href="/create-book/"><FiFeather/> Escribir</Nav.Link>
-                  <Nav.Link  href="/profile/"><FiUser/> Perfil</Nav.Link>
-                  <Nav.Link href="/login/"><FiLogIn/> Ingresar</Nav.Link>
-                  <Nav.Link href="/register"><FiPlusSquare/> Registro</Nav.Link>
-                  <Nav.Link  onClick={logoutHandler} href="#"><FiLogOut/> Salir</Nav.Link>
+                  <Nav.Link  href="/create-book/"><FiFeather color={"green"} size={30}/>&nbsp; Escribir</Nav.Link>
+                  <Nav.Link  href="/profile/"><FiUser color={"green"} size={30}/>&nbsp; Perfil</Nav.Link>
+                  <Nav.Link href="/login/"><FiLogIn color={"green"} size={30}/>&nbsp; Ingresar</Nav.Link>
+                  <Nav.Link href="/register"><FiPlusSquare color={"green"} size={30}/>&nbsp;Registro</Nav.Link>
+                  <Nav.Link  onClick={logoutHandler} href="#"><FiLogOut color={"green"} size={30}/>&nbsp; Salir</Nav.Link>
+                  <Nav.Link href="/acerca"><img src={LogoMyWaySmall} />Acerca de MyWays</Nav.Link>
+
+                  <hr
+                      style={{
+                        background: 'lime',
+                        color: 'lime',
+                        borderColor: 'lime',
+                        height: '3px',
+                      }}
+                  />
+
 
                 </Nav>
 
@@ -183,8 +197,8 @@ function App() {
 
                     <Route
                         exact
-                        path="/demo"
-                        component={(props) => <Demo {...props} />}
+                        path="/acerca"
+                        component={(props) => <AcercaDe {...props} />}
                     />
 
 
