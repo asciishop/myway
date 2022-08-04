@@ -27,6 +27,7 @@ import AddImageNode from "./components/AddImageNode";
 import AddAudioNode from "./components/AddAudioNode";
 import {FiFeather, FiLogIn, FiPlusSquare, FiLogOut, FiUser} from "react-icons/fi";
 import Profile from "./components/Profile";
+import Demo from "./components/Demo";
 
 
 function getToken () {
@@ -178,6 +179,12 @@ function App() {
                         exact
                         path="/profile"
                         component={(props) => <Profile {...props} />}
+                    />
+
+                    <Route
+                        exact
+                        path="/demo"
+                        component={(props) => <Demo {...props} />}
                     />
 
 

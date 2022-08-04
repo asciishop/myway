@@ -36,9 +36,18 @@ export default class AddAudioNode extends Component {
 
         if (this.state.id === "book"){
 
-            let book = {title:this.state.title,
-                content:this.state.content,
-                file : this.state.file};
+            let user = {username :"Anonymous"}
+            if (localStorage.getItem("user")) {
+                user = JSON.parse(localStorage.getItem("user"));
+            }
+
+
+            let book = {
+                title: this.state.title,
+                content: this.state.content,
+                file: this.state.file,
+                user : user
+            };
 
             axios.post(URL_BACKEND +'books/add-book', book)
                 .then((res) => {

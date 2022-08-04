@@ -7,7 +7,7 @@ import {Card,Tab,Row,Col,Nav} from "react-bootstrap";
 //import Camera from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 import {Link} from "react-router-dom";
-import {BsFillCameraFill} from "react-icons/bs";
+import {BsFillCameraFill, BsFillHandThumbsDownFill} from "react-icons/bs";
 import Webcam from "react-webcam";
 import Camera from "./Camera";
 import BackCamera from "./BackCamera";
@@ -39,6 +39,8 @@ export default class AddImageNode extends Component {
 
         this.handleTakePhoto = this.handleTakePhoto.bind(this);
         this.WebcamCapture = this.WebcamCapture.bind(this);
+        this.captureShot = this.captureShot.bind(this);
+        this.notLike = this.notLike.bind(this);
 
 
         // Setting up state
@@ -49,7 +51,11 @@ export default class AddImageNode extends Component {
             isBlocked: false,
             id: this.props.match.params.id,
             title: this.props.match.params.title,
-            loading : true
+            loading : true,
+            shot:'',
+            showCamera : true,
+            showShot : false,
+
 
 
         }
@@ -71,15 +77,26 @@ export default class AddImageNode extends Component {
 
     WebcamCapture(){
 
-        const imageSrc = this.refs.webcam.getScreenshot();
+        const imageSrc = this.state.shot
 
         this.state.file= imageSrc
 
         if (this.state.id === "book"){
 
-            let book = {title:this.state.title,
-                content:this.state.content,
-                file : this.state.file};
+
+            let user = {username :"Anonymous"}
+            if (localStorage.getItem("user")) {
+                user = JSON.parse(localStorage.getItem("user"));
+            }
+
+
+            let book = {
+                title: this.state.title,
+                content: this.state.content,
+                file: this.state.file,
+                user : user
+            };
+
 
             axios.post(URL_BACKEND +'books/add-book', book)
                 .then((res) => {
@@ -112,6 +129,21 @@ export default class AddImageNode extends Component {
         this.setState({ loading: false });
     }
 
+    captureShot(){
+        const imageSrc = this.refs.webcam.getScreenshot();
+        this.setState({ showCamera: false })
+        this.setState({ shot: imageSrc })
+    }
+
+    notLike(){
+
+        this.setState({ showCamera: true })
+        this.setState({ showShot: false })
+
+
+    }
+
+
     render() {
 
 
@@ -133,17 +165,37 @@ export default class AddImageNode extends Component {
                 <div className="row d-flex justify-content-center">
                     <div className="col d-flex align-items-center justify-content-center pt-3">
                         {this.state.loading && <Spinner />}
-                        <Webcam
-                            audio={false}
-                            ref='webcam'
-                            screenshotFormat="image/jpeg"
-                            videoConstraints={videoConstraints}
-                            onUserMedia={this.handleUserMedia}
-                        />
+
+                        {this.state.showCamera && (
+                            <Webcam
+                                audio={false}
+                                ref='webcam'
+                                screenshotFormat="image/jpeg"
+                                videoConstraints={videoConstraints}
+                                onUserMedia={this.handleUserMedia}
+                            />
+                        )}
+                        {this.state.shot !== '' && (
+                            <img
+                                src={this.state.shot}
+                            />
+                        )}
+
                     </div>
                 </div>
 
+                <div className="row d-flex justify-content-center">
+                    <div className="col d-flex align-items-center justify-content-center pt-3">
+
+                    <BsFillCameraFill size={50} onClick={this.captureShot}/>&nbsp;&nbsp;
+                    <BsFillHandThumbsDownFill size={50} onClick={this.notLike}/>
+                    </div>
+
+                </div>
+
                     <br/>
+
+
 
                 <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"> <Button variant="success" onClick={this.WebcamCapture}>Enviar</Button>
                 </div></div>
