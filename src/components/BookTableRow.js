@@ -9,7 +9,14 @@ import TextNode from "./TextNode";
 import VideoNode from "./VideoNode";
 import AudioNode from "./AudioNode";
 import {TbArrowBigRightLines} from "react-icons/tb";
-import {FacebookIcon, FacebookShareButton, FacebookShareCount, WhatsappIcon, WhatsappShareButton} from "react-share";
+import {
+    FacebookIcon,
+    FacebookShareButton,
+    FacebookShareCount, TwitterIcon,
+    TwitterShareButton,
+    WhatsappIcon,
+    WhatsappShareButton
+} from "react-share";
 
 export default class bookTableRow extends Component {
 
@@ -65,6 +72,14 @@ export default class bookTableRow extends Component {
                       >
                           <WhatsappIcon size={40} round={true} />
                       </WhatsappShareButton>
+                      &nbsp;
+                      <TwitterShareButton
+                          url={urlShare}
+                          quote={title}
+                          hashtag={'#myways'}
+                      >
+                          <TwitterIconIcon size={40} round={true} />
+                      </TwitterShareButton>
 
                 </div>
 
@@ -102,6 +117,15 @@ export default class bookTableRow extends Component {
                         >
                             <WhatsappIcon size={40} round={true} />
                         </WhatsappShareButton>
+
+                        &nbsp;
+                        <TwitterShareButton
+                            url={urlShare}
+                            quote={title}
+                            hashtag={'#myways'}
+                        >
+                            <TwitterIconIcon size={40} round={true} />
+                        </TwitterShareButton>
                     </div>
 
                   </div>
@@ -135,6 +159,14 @@ export default class bookTableRow extends Component {
                         >
                             <WhatsappIcon size={40} round={true} />
                         </WhatsappShareButton>
+                        &nbsp;
+                        <TwitterShareButton
+                            url={urlShare}
+                            quote={title}
+                            hashtag={'#myways'}
+                        >
+                            <TwitterIconIcon size={40} round={true} />
+                        </TwitterShareButton>
                     </div>
 
                   </div>
@@ -167,6 +199,15 @@ export default class bookTableRow extends Component {
                       >
                           <WhatsappIcon size={40} round={true} />
                       </WhatsappShareButton>
+                      &nbsp;
+                      <TwitterShareButton
+                          url={urlShare}
+                          quote={title}
+                          hashtag={'#myways'}
+                      >
+                          <TwitterIconIcon size={40} round={true} />
+                      </TwitterShareButton>
+
                   </div>
 
                 </div>
