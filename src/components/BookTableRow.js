@@ -9,6 +9,7 @@ import TextNode from "./TextNode";
 import VideoNode from "./VideoNode";
 import AudioNode from "./AudioNode";
 import {TbArrowBigRightLines} from "react-icons/tb";
+import {FacebookIcon, FacebookShareButton, FacebookShareCount, WhatsappIcon, WhatsappShareButton} from "react-share";
 
 export default class bookTableRow extends Component {
 
@@ -32,7 +33,8 @@ export default class bookTableRow extends Component {
 
   renderSwitch(node) {
     let fecha = new Date(node.date)
-
+      let urlShare = 'http://myways.cl/show-book/' + this.props.obj._id
+      let title = this.props.obj.title
     switch(node.type) {
       case "image":
 
@@ -45,8 +47,25 @@ export default class bookTableRow extends Component {
                 <div className="col d-flex pt-3">
                   <b><i>by {node.user.username}</i></b>
                 </div>
-                <div className="col d-flex align-items-center justify-content-center pt-3">
-                  on {fecha.toDateString()}
+
+                  <div className="col d-flex align-items-center justify-content-center pt-3">
+                      <FacebookShareButton
+                          url={urlShare}
+                          quote={title}
+                          hashtag={'#myways'}
+                      >
+                          <FacebookIcon size={40} round={true} />
+                      </FacebookShareButton>
+                      &nbsp;
+
+                      <WhatsappShareButton
+                          url={urlShare}
+                          quote={title}
+                          hashtag={'#myways'}
+                      >
+                          <WhatsappIcon size={40} round={true} />
+                      </WhatsappShareButton>
+
                 </div>
 
               </div>
@@ -65,8 +84,24 @@ export default class bookTableRow extends Component {
                     <div className="col d-flex pt-3">
                       <b><i>by {node.user.username}</i></b>
                     </div>
+
                     <div className="col d-flex align-items-center justify-content-center pt-3">
-                      on {fecha.toDateString()}
+                        <FacebookShareButton
+                            url={urlShare}
+                            quote={title}
+                            hashtag={'#myways'}
+                        >
+                            <FacebookIcon size={40} round={true} />
+                        </FacebookShareButton>
+                        &nbsp;
+
+                        <WhatsappShareButton
+                            url={urlShare}
+                            quote={title}
+                            hashtag={'#myways'}
+                        >
+                            <WhatsappIcon size={40} round={true} />
+                        </WhatsappShareButton>
                     </div>
 
                   </div>
@@ -84,7 +119,22 @@ export default class bookTableRow extends Component {
                       <b><i>by {node.user.username}</i></b>
                     </div>
                     <div className="col d-flex align-items-center justify-content-center pt-3">
-                      on {fecha.toDateString()}
+                        <FacebookShareButton
+                            url={urlShare}
+                            quote={title}
+                            hashtag={'#myways'}
+                        >
+                            <FacebookIcon size={40} round={true} />
+                        </FacebookShareButton>
+                        &nbsp;
+
+                        <WhatsappShareButton
+                            url={urlShare}
+                            quote={title}
+                            hashtag={'#myways'}
+                        >
+                            <WhatsappIcon size={40} round={true} />
+                        </WhatsappShareButton>
                     </div>
 
                   </div>
@@ -101,7 +151,22 @@ export default class bookTableRow extends Component {
                     <b><i>by {node.user.username}</i></b>
                   </div>
                   <div className="col d-flex align-items-center justify-content-center pt-3">
-                    on {fecha.toDateString()}
+                      <FacebookShareButton
+                          url={urlShare}
+                          quote={title}
+                          hashtag={'#myways'}
+                      >
+                          <FacebookIcon size={40} round={true} />
+                      </FacebookShareButton>
+                      &nbsp;
+
+                      <WhatsappShareButton
+                          url={urlShare}
+                          quote={title}
+                          hashtag={'#myways'}
+                      >
+                          <WhatsappIcon size={40} round={true} />
+                      </WhatsappShareButton>
                   </div>
 
                 </div>
@@ -122,7 +187,9 @@ export default class bookTableRow extends Component {
           <Card>
             <Card.Body>
               <h5 className="card-title">{this.props.obj.title}</h5>
-              <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3"> <Link to={'/show-book/' + this.props.obj._id} className="btn-floating btn-large red">
+              <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3">
+
+                  <Link to={'/show-book/' + this.props.obj._id} className="btn-floating btn-large red">
                 <i className="material-icons btn btn-lg ml-auto"><h1><TbArrowBigRightLines /></h1></i>
               </Link></div></div>
 

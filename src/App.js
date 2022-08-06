@@ -9,9 +9,6 @@ import './App.css'
 import LogoMyWay from "./asset/image/myway-logo-small.png";
 import LogoMyWaySmall from "./asset/image/myway-logo-very-small.png";
 
-
-
-
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 import Createbook from './components/create-book.component'
@@ -100,11 +97,14 @@ function App() {
                 </Link>
 
               </Navbar.Brand>
+
+              &nbsp;&nbsp;&nbsp;&nbsp;
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="me-auto" >
-                  <Nav.Link  href="/create-book/"><FiFeather color={"green"} size={30}/>&nbsp; Escribir</Nav.Link>
-                  <Nav.Link  href="/profile/"><FiUser color={"green"} size={30}/>&nbsp; Perfil</Nav.Link>
+              <Navbar.Collapse className="justify-content-end" id="responsive-navbar-nav">
+                <Nav >
+
+                  <Nav.Link className="justify-content-end"  href="/create-book/"><FiFeather color={"green"} size={30}/>&nbsp; Escribir</Nav.Link>
+                  <Nav.Link className="justify-content-end"  href="/profile/"><FiUser color={"green"} size={30}/>&nbsp; Perfil</Nav.Link>
                   <Nav.Link href="/login/"><FiLogIn color={"green"} size={30}/>&nbsp; Ingresar</Nav.Link>
                   <Nav.Link href="/register"><FiPlusSquare color={"green"} size={30}/>&nbsp;Registro</Nav.Link>
                   <Nav.Link  onClick={logoutHandler} href="#"><FiLogOut color={"green"} size={30}/>&nbsp; Salir</Nav.Link>
