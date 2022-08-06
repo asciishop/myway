@@ -78,7 +78,7 @@ export default class bookTableRow extends Component {
                           quote={title}
                           hashtag={'#myways'}
                       >
-                          <TwitterIconIcon size={40} round={true} />
+                          <TwitterIcon size={40} round={true} />
                       </TwitterShareButton>
 
                 </div>
@@ -124,7 +124,7 @@ export default class bookTableRow extends Component {
                             quote={title}
                             hashtag={'#myways'}
                         >
-                            <TwitterIconIcon size={40} round={true} />
+                            <TwitterIcon size={40} round={true} />
                         </TwitterShareButton>
                     </div>
 
@@ -165,7 +165,7 @@ export default class bookTableRow extends Component {
                             quote={title}
                             hashtag={'#myways'}
                         >
-                            <TwitterIconIcon size={40} round={true} />
+                            <TwitterIcon size={40} round={true} />
                         </TwitterShareButton>
                     </div>
 
@@ -205,7 +205,7 @@ export default class bookTableRow extends Component {
                           quote={title}
                           hashtag={'#myways'}
                       >
-                          <TwitterIconIcon size={40} round={true} />
+                          <TwitterIcon size={40} round={true} />
                       </TwitterShareButton>
 
                   </div>
