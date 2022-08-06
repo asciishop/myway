@@ -33,7 +33,7 @@ export default class bookTableRow extends Component {
 
   renderSwitch(node) {
     let fecha = new Date(node.date)
-      let urlShare = 'http://myways.cl/show-book/' + this.props.obj._id
+      let urlShare = 'https://myways.cl/show-book/' + this.props.obj._id
       let title = this.props.obj.title
     switch(node.type) {
       case "image":
