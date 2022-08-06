@@ -8,6 +8,14 @@ import {Link} from "react-router-dom";
 import Edge from "./Edge";
 import { BsFillNodePlusFill } from "react-icons/bs";
 import {URL_BACKEND} from "./const";
+import {
+    FacebookIcon,
+    FacebookShareButton,
+    TwitterIcon,
+    TwitterShareButton,
+    WhatsappIcon,
+    WhatsappShareButton
+} from "react-share";
 
 
 export default class Showbook extends Component {
@@ -18,7 +26,8 @@ export default class Showbook extends Component {
         // State
         this.state = {
             title: '',
-            chapters:[]
+            chapters:[],
+            urlSocial : ''
         }
 
         this.listSize = this.state.chapters.length -1
@@ -27,6 +36,10 @@ export default class Showbook extends Component {
 
 
     componentDidMount() {
+        let urlShare = 'https://myways.cl/show-book/' + this.props.match.params.id
+        this.setState({ urlSocial: urlShare })
+
+
         axios.get(URL_BACKEND +'books/edit-book/' + this.props.match.params.id)
             .then(res => {
                 this.setState({
@@ -48,7 +61,42 @@ export default class Showbook extends Component {
         return (
             <div className="container-fluid">
 
+                <div className="row">
+                <div className="col d-flex align-items-center justify-content-center pt-3">
+                    <FacebookShareButton
+                        url={this.state.urlSocial}
+                        quote={this.state.title}
+                        hashtag={'#myways'}
+                    >
+                        <FacebookIcon size={40} round={true} />
+                    </FacebookShareButton>
+                    &nbsp;
 
+                    <WhatsappShareButton
+                        url={this.state.urlSocial}
+                        quote={this.state.title}
+                        hashtag={'#myways'}
+                    >
+                        <WhatsappIcon size={40} round={true} />
+                    </WhatsappShareButton>
+                    &nbsp;
+                    <TwitterShareButton
+                        url={this.state.urlSocial}
+                        quote={this.state.title}
+                        hashtag={'#myways'}
+                    >
+                        <TwitterIcon size={40} round={true} />
+                    </TwitterShareButton>
+
+                </div>
+                </div>
+
+                <div className="row">
+                    <div className="col d-flex align-items-center justify-content-center pt-3">
+
+                        <h5 className="card-title">Título : {this.state.title}</h5>
+                    </div>
+                </div>
 
                 <div className="container-fluid">
                     {this.state.chapters.map(function(node, index){

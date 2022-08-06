@@ -56,30 +56,7 @@ export default class bookTableRow extends Component {
                 </div>
 
                   <div className="col d-flex align-items-center justify-content-center pt-3">
-                      <FacebookShareButton
-                          url={urlShare}
-                          quote={title}
-                          hashtag={'#myways'}
-                      >
-                          <FacebookIcon size={40} round={true} />
-                      </FacebookShareButton>
-                      &nbsp;
-
-                      <WhatsappShareButton
-                          url={urlShare}
-                          quote={title}
-                          hashtag={'#myways'}
-                      >
-                          <WhatsappIcon size={40} round={true} />
-                      </WhatsappShareButton>
-                      &nbsp;
-                      <TwitterShareButton
-                          url={urlShare}
-                          quote={title}
-                          hashtag={'#myways'}
-                      >
-                          <TwitterIcon size={40} round={true} />
-                      </TwitterShareButton>
+                      on {fecha.toDateString()}
 
                 </div>
 
@@ -101,31 +78,7 @@ export default class bookTableRow extends Component {
                     </div>
 
                     <div className="col d-flex align-items-center justify-content-center pt-3">
-                        <FacebookShareButton
-                            url={urlShare}
-                            quote={title}
-                            hashtag={'#myways'}
-                        >
-                            <FacebookIcon size={40} round={true} />
-                        </FacebookShareButton>
-                        &nbsp;
-
-                        <WhatsappShareButton
-                            url={urlShare}
-                            quote={title}
-                            hashtag={'#myways'}
-                        >
-                            <WhatsappIcon size={40} round={true} />
-                        </WhatsappShareButton>
-
-                        &nbsp;
-                        <TwitterShareButton
-                            url={urlShare}
-                            quote={title}
-                            hashtag={'#myways'}
-                        >
-                            <TwitterIcon size={40} round={true} />
-                        </TwitterShareButton>
+                        on {fecha.toDateString()}
                     </div>
 
                   </div>
@@ -143,30 +96,7 @@ export default class bookTableRow extends Component {
                       <b><i>by {node.user.username}</i></b>
                     </div>
                     <div className="col d-flex align-items-center justify-content-center pt-3">
-                        <FacebookShareButton
-                            url={urlShare}
-                            quote={title}
-                            hashtag={'#myways'}
-                        >
-                            <FacebookIcon size={40} round={true} />
-                        </FacebookShareButton>
-                        &nbsp;
-
-                        <WhatsappShareButton
-                            url={urlShare}
-                            quote={title}
-                            hashtag={'#myways'}
-                        >
-                            <WhatsappIcon size={40} round={true} />
-                        </WhatsappShareButton>
-                        &nbsp;
-                        <TwitterShareButton
-                            url={urlShare}
-                            quote={title}
-                            hashtag={'#myways'}
-                        >
-                            <TwitterIcon size={40} round={true} />
-                        </TwitterShareButton>
+                        on {fecha.toDateString()}
                     </div>
 
                   </div>
@@ -183,30 +113,7 @@ export default class bookTableRow extends Component {
                     <b><i>by {node.user.username}</i></b>
                   </div>
                   <div className="col d-flex align-items-center justify-content-center pt-3">
-                      <FacebookShareButton
-                          url={urlShare}
-                          quote={title}
-                          hashtag={'#myways'}
-                      >
-                          <FacebookIcon size={40} round={true} />
-                      </FacebookShareButton>
-                      &nbsp;
-
-                      <WhatsappShareButton
-                          url={urlShare}
-                          quote={title}
-                          hashtag={'#myways'}
-                      >
-                          <WhatsappIcon size={40} round={true} />
-                      </WhatsappShareButton>
-                      &nbsp;
-                      <TwitterShareButton
-                          url={urlShare}
-                          quote={title}
-                          hashtag={'#myways'}
-                      >
-                          <TwitterIcon size={40} round={true} />
-                      </TwitterShareButton>
+                      on {fecha.toDateString()}
 
                   </div>
 

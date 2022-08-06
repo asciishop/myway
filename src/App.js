@@ -88,7 +88,7 @@ function App() {
           <header className="App-header">
 
 
-            <Navbar collapseOnSelect expand="lg">
+            <Navbar style={{backgroundColor: "white"}} className="fixed-top" collapseOnSelect expand="lg">
               <Navbar.Brand href="#home">
 
                 <Link to={'/'} className="nav-link">
@@ -100,15 +100,16 @@ function App() {
 
               &nbsp;&nbsp;&nbsp;&nbsp;
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              <Navbar.Collapse className="justify-content-end" id="responsive-navbar-nav">
-                <Nav >
+              <Navbar.Collapse style={{backgroundColor: "white"}} className="justify-content-end" id="responsive-navbar-nav">
+                <Nav className="justify-content-end">
 
-                  <Nav.Link className="justify-content-end"  href="/create-book/"><FiFeather color={"green"} size={30}/>&nbsp; Escribir</Nav.Link>
-                  <Nav.Link className="justify-content-end"  href="/profile/"><FiUser color={"green"} size={30}/>&nbsp; Perfil</Nav.Link>
-                  <Nav.Link href="/login/"><FiLogIn color={"green"} size={30}/>&nbsp; Ingresar</Nav.Link>
-                  <Nav.Link href="/register"><FiPlusSquare color={"green"} size={30}/>&nbsp;Registro</Nav.Link>
-                  <Nav.Link  onClick={logoutHandler} href="#"><FiLogOut color={"green"} size={30}/>&nbsp; Salir</Nav.Link>
-                  <Nav.Link href="/acerca"><img src={LogoMyWaySmall} />Acerca de MyWays</Nav.Link>
+
+                  <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/create-book/">Escribir&nbsp;<FiFeather color={"green"} size={30}/></Nav.Link>
+                  <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/profile/">Perfil&nbsp; <FiUser color={"green"} size={30}/></Nav.Link>
+                  <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/login/">Ingresar&nbsp;<FiLogIn color={"green"} size={30}/></Nav.Link>
+                  <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/register">Registro&nbsp;<FiPlusSquare color={"green"} size={30}/></Nav.Link>
+                  <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} onClick={logoutHandler} href="#">Salir&nbsp;<FiLogOut color={"green"} size={30}/></Nav.Link>
+                  <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/acerca">Acerca de MyWays&nbsp;<img src={LogoMyWaySmall} /></Nav.Link>
 
                   <hr
                       style={{
@@ -129,6 +130,7 @@ function App() {
           </header>
 
           <Container>
+<br/><br/>
             <Row>
               <Col md={12}>
                 <div className="wrapper">
