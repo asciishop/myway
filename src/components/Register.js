@@ -11,6 +11,8 @@ export default class Register extends Component {
         super();
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
+
         this.handleOnChangeEmail = this.handleOnChangeEmail.bind(this);
         this.handleOnChangePassword = this.handleOnChangePassword.bind(this);
         this.handleOnChangeFirstname = this.handleOnChangeFirstname.bind(this);
@@ -47,6 +49,10 @@ export default class Register extends Component {
         })
 
 
+    }
+
+    handleCancel() {
+        this.props.history.push('/')
     }
 
     handleSubmit() {
@@ -126,54 +132,95 @@ export default class Register extends Component {
             <>
                 <br/>
                 <br/>
-                <label htmlFor="email">Email</label>
+
+                <div className="row d-flex justify-content-center">
+                    <div className="col d-flex align-items-center justify-content-center pt-1">
+                        <label htmlFor="email">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="email"
+                            required
+                            name="email"
+                            onChange={this.handleOnChangeEmail}
+                        />
+                    </div>
+                    <div className="col d-flex align-items-center justify-content-center pt-1">
+
+                    </div>
+                </div>
+
+
+                <div className="row d-flex justify-content-center">
+                    <div className="col d-flex align-items-center justify-content-center pt-1">
+                        <label htmlFor="fn">Nombre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="firstname"
+                            required
+                            name="firstname"
+                            onChange={this.handleOnChangeFirstname}
+                        />
+                    </div>
+                    <div className="col d-flex align-items-center justify-content-center pt-1">
+
+                    </div>
+                </div>
 
 
 
-                <input
-                    type="text"
-                    className="form-control"
-                    id="email"
-                    required
-                    name="email"
-                    onChange={this.handleOnChangeEmail}
-                />
 
-                <label htmlFor="fn">Nombre</label>
+                <div className="row d-flex justify-content-center">
+                    <div className="col d-flex align-items-center justify-content-center pt-1">
+                        <label htmlFor="ln">Apellido&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="lastname"
+                            required
+                            name="lastname"
+                            onChange={this.handleOnChangeLastname}
+                        />
+                    </div>
+                    <div className="col d-flex align-items-center justify-content-center pt-1">
+
+                    </div>
+                </div>
 
 
-                <input
-                    type="text"
-                    className="form-control"
-                    id="firstname"
-                    required
-                    name="firstname"
-                    onChange={this.handleOnChangeFirstname}
-                />
+                <div className="row d-flex justify-content-center">
+                    <div className="col d-flex align-items-center justify-content-center pt-1">
+                        <label htmlFor="pwd">Password&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="password"
+                            required
+                            name="password"
+                            onChange={this.handleOnChangePassword}
+                        />
+                    </div>
+                    <div className="col d-flex align-items-center justify-content-center pt-1">
 
-                <label htmlFor="ln">Apellido</label>
+                    </div>
+                </div>
 
-                <input
-                    type="text"
-                    className="form-control"
-                    id="lastname"
-                    required
-                    name="lastname"
-                    onChange={this.handleOnChangeLastname}
-                />
+<br/><br/>
+                <div className="row d-flex justify-content-center">
+                    <div className="col d-flex align-items-center justify-content-center pt-1">
+                        <Button variant="danger" onClick={this.handleCancel}>Cancelar</Button>&nbsp;&nbsp;&nbsp;
+                        <Button variant="success" onClick={this.handleSubmit}>Enviar</Button>
 
-                <label htmlFor="pwd">Password</label>
 
-                <input
-                    type="text"
-                    className="form-control"
-                    id="password"
-                    required
-                    name="password"
-                    onChange={this.handleOnChangePassword}
-                />
+                    </div>
+                    <div className="col d-flex align-items-center justify-content-center pt-1">
 
-                <Button variant="success" onClick={this.handleSubmit}>Enviar</Button>
+
+                    </div>
+                </div>
+
+
             </>
         );
     }
