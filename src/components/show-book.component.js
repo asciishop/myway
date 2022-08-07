@@ -16,6 +16,7 @@ import {
     WhatsappIcon,
     WhatsappShareButton
 } from "react-share";
+import {Navbar} from "react-bootstrap";
 
 
 export default class Showbook extends Component {
@@ -62,36 +63,6 @@ export default class Showbook extends Component {
             <div className="container-fluid">
 
                 <div className="row">
-                <div className="col d-flex align-items-center justify-content-center pt-3">
-                    <FacebookShareButton
-                        url={this.state.urlSocial}
-                        quote={this.state.title}
-                        hashtag={'#myways'}
-                    >
-                        <FacebookIcon size={40} round={true} />
-                    </FacebookShareButton>
-                    &nbsp;
-
-                    <WhatsappShareButton
-                        url={this.state.urlSocial}
-                        quote={this.state.title}
-                        hashtag={'#myways'}
-                    >
-                        <WhatsappIcon size={40} round={true} />
-                    </WhatsappShareButton>
-                    &nbsp;
-                    <TwitterShareButton
-                        url={this.state.urlSocial}
-                        quote={this.state.title}
-                        hashtag={'#myways'}
-                    >
-                        <TwitterIcon size={40} round={true} />
-                    </TwitterShareButton>
-
-                </div>
-                </div>
-
-                <div className="row">
                     <div className="col d-flex align-items-center justify-content-center pt-3">
 
                         <h5 className="card-title">Título : {this.state.title}</h5>
@@ -130,14 +101,44 @@ export default class Showbook extends Component {
                     })}
                 </div>
 
-                <div className="fixed-action-btn">
+                    <div className="d-flex justify-content-center fixed-bottom">
+                        <div id="bottom" className="col-7 submit-form">
 
+                            <div id="editor">
+                                <FacebookShareButton
+                                    url={this.state.urlSocial}
+                                    quote={this.state.title}
+                                    hashtag={'#myways'}
+                                >
+                                    <FacebookIcon size={40} round={true} />
+                                </FacebookShareButton>
+                                &nbsp;
 
+                                <WhatsappShareButton
+                                    url={this.state.urlSocial}
+                                    quote={this.state.title}
+                                    hashtag={'#myways'}
+                                >
+                                    <WhatsappIcon size={40} round={true} />
+                                </WhatsappShareButton>
+                                &nbsp;
+                                <TwitterShareButton
+                                    url={this.state.urlSocial}
+                                    quote={this.state.title}
+                                    hashtag={'#myways'}
+                                >
+                                    <TwitterIcon size={40} round={true} />
+                                </TwitterShareButton>
 
-                    <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3"> <Link to={`/create-chapter/${this.props.match.params.id}`} className="btn-floating btn-large red">
-                        <i className="material-icons btn btn-success btn-lg ml-auto"><h1><BsFillNodePlusFill /></h1></i>
-                    </Link></div></div>
-                </div>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <Link to={`/create-chapter/${this.props.match.params.id}`} className="btn-floating btn-large red">
+                                    <i className="material-icons btn btn-success btn-lg ml-auto"><h1><BsFillNodePlusFill alt={"Nuevo Capitulo"} /></h1></i>
+                                </Link>
+                            </div>
+
+                        </div>
+                    </div>
+
 
             </div>
 

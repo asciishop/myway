@@ -100,31 +100,61 @@ function App() {
 
               &nbsp;&nbsp;&nbsp;&nbsp;
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              <Navbar.Collapse style={{backgroundColor: "white"}} className="justify-content-end" id="responsive-navbar-nav">
-                <Nav className="justify-content-end">
+
+                  {!localStorage.getItem("user") &&
+                      <Navbar.Collapse style={{backgroundColor: "white"}} className="justify-content-end" id="responsive-navbar-nav">
+                        <Nav className="justify-content-end">
+                      <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/create-book/">Escribir&nbsp;<FiFeather color={"green"} size={30}/></Nav.Link>
+                    <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/login/">Ingresar&nbsp;<FiLogIn color={"green"} size={30}/></Nav.Link>
+                    <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/register">Registro&nbsp;<FiPlusSquare color={"green"} size={30}/></Nav.Link>
+                    <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/acerca">Acerca de MyWays&nbsp;<img src={LogoMyWaySmall} /></Nav.Link>
+                            <hr
+                                style={{
+                                    background: 'lime',
+                                    color: 'lime',
+                                    borderColor: 'lime',
+                                    height: '3px',
+                                }}
+                            />
+                        </Nav>
 
 
-                  <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/create-book/">Escribir&nbsp;<FiFeather color={"green"} size={30}/></Nav.Link>
-                  <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/profile/">Perfil&nbsp; <FiUser color={"green"} size={30}/></Nav.Link>
-                  <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/login/">Ingresar&nbsp;<FiLogIn color={"green"} size={30}/></Nav.Link>
-                  <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/register">Registro&nbsp;<FiPlusSquare color={"green"} size={30}/></Nav.Link>
-                  <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} onClick={logoutHandler} href="#">Salir&nbsp;<FiLogOut color={"green"} size={30}/></Nav.Link>
-                  <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/acerca">Acerca de MyWays&nbsp;<img src={LogoMyWaySmall} /></Nav.Link>
+                      </Navbar.Collapse>
 
-                  <hr
-                      style={{
-                        background: 'lime',
-                        color: 'lime',
-                        borderColor: 'lime',
-                        height: '3px',
-                      }}
-                  />
+                  }
+
+              {localStorage.getItem("user") &&
+                  <Navbar.Collapse style={{backgroundColor: "white"}} className="justify-content-end" id="responsive-navbar-nav">
+                    <Nav className="justify-content-end">
+                      <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="#"><b>Hola {JSON.parse(localStorage.getItem("user")).username}</b> </Nav.Link>
+
+                      <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/create-book/">Escribir&nbsp;<FiFeather color={"green"} size={30}/></Nav.Link>
+                      <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/profile/">Perfil&nbsp; <FiUser color={"green"} size={30}/></Nav.Link>
+                      <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} onClick={logoutHandler} href="#">Salir&nbsp;<FiLogOut color={"green"} size={30}/></Nav.Link>
+                      <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/acerca">Acerca de MyWays&nbsp;<img src={LogoMyWaySmall} /></Nav.Link>
+
+                        <hr
+                            style={{
+                                background: 'green',
+                                color: 'green',
+                                borderColor: 'green',
+                                height: '3px',
+                            }}
+                        />
+                    </Nav>
 
 
-                </Nav>
+
+                  </Navbar.Collapse>
 
 
-              </Navbar.Collapse>
+
+              }
+
+
+
+
+
             </Navbar>
 
           </header>

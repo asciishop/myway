@@ -27,7 +27,9 @@ export default class AddAudioNode extends Component {
             isBlocked: false,
             id: this.props.match.params.id,
             title: this.props.match.params.title,
-            recordColor : 'black'
+            recordColor : 'red',
+            stopColor: 'black'
+
 
         }
 
@@ -91,7 +93,9 @@ export default class AddAudioNode extends Component {
         if (this.state.isBlocked) {
             console.log('Permission Denied');
         } else {
-            this.setState({ recordColor: 'red' })
+            this.setState({ recordColor: 'black' })
+            this.setState({ stopColor: 'red' })
+
 
 
             Mp3Recorder
@@ -103,7 +107,9 @@ export default class AddAudioNode extends Component {
     };
 
     stop = () => {
-        this.setState({ recordColor: 'black' })
+        this.setState({ recordColor: 'red' })
+        this.setState({ stopColor: 'black' })
+
         Mp3Recorder
             .stop()
             .getMp3()
@@ -152,7 +158,7 @@ export default class AddAudioNode extends Component {
                 <div className="row d-flex justify-content-center">
                     <div className="col d-flex align-items-center justify-content-center pt-3">
                         <BsFillRecordCircleFill color={this.state.recordColor} size={40} onClick={this.start} disabled={this.state.isRecording}></BsFillRecordCircleFill>
-                        &nbsp;&nbsp;<BsFillPauseCircleFill size={40} onClick={this.stop} disabled={!this.state.isRecording}></BsFillPauseCircleFill>
+                        &nbsp;&nbsp;<BsFillPauseCircleFill color={this.state.stopColor} size={40} onClick={this.stop} disabled={!this.state.isRecording}></BsFillPauseCircleFill>
 
                     </div>
                 </div>
