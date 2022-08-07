@@ -59,7 +59,7 @@ export default class Register extends Component {
 
 
         if (this.state.email === '' && this.state.password === '' && this.state.firstname === ''){
-            alert("Debe ingresar Nombre, mail y password")
+            alert("Debe ingresar Nombre, correo y password")
             return
         }
 
@@ -107,11 +107,7 @@ export default class Register extends Component {
 
     }
 
-    handleOnChangeLastname (e)  {
-        const { target: { value, lastname } } = e;
-        this.setState({ lastname: value })
 
-    }
 
     parseJwt (token) {
         var base64Url = token.split('.')[1];
@@ -169,24 +165,6 @@ export default class Register extends Component {
                 </div>
 
 
-
-
-                <div className="row d-flex justify-content-center">
-                    <div className="col d-flex align-items-center justify-content-center pt-1">
-                        <label htmlFor="ln">Apellido&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="lastname"
-                            required
-                            name="lastname"
-                            onChange={this.handleOnChangeLastname}
-                        />
-                    </div>
-                    <div className="col d-flex align-items-center justify-content-center pt-1">
-
-                    </div>
-                </div>
 
 
                 <div className="row d-flex justify-content-center">
