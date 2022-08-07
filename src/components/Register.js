@@ -58,7 +58,7 @@ export default class Register extends Component {
 
 
         if (this.state.email === '' && this.state.password === '' && this.state.firstname === ''){
-            alert("Debe ingresar Nombre, correo y password")
+            alert("Debe ingresar usuario, nombre y password")
             return
         }
 
@@ -130,7 +130,7 @@ export default class Register extends Component {
 
                 <div className="row d-flex justify-content-center">
                     <div className="col d-flex align-items-center justify-content-center pt-1">
-                        <label htmlFor="email">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <label htmlFor="email">Nickname&nbsp;&nbsp;&nbsp;</label>
                         <input
                             type="text"
                             className="form-control"
@@ -168,7 +168,7 @@ export default class Register extends Component {
 
                 <div className="row d-flex justify-content-center">
                     <div className="col d-flex align-items-center justify-content-center pt-1">
-                        <label htmlFor="pwd">Password&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <label htmlFor="pwd">Password&nbsp;&nbsp;&nbsp;</label>
                         <input
                             type="text"
                             className="form-control"

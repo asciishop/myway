@@ -123,7 +123,7 @@ constructor() {
 
                 <div className="row d-flex justify-content-center">
                     <div className="col d-flex align-items-center justify-content-center pt-1">
-                        <label htmlFor="title">Usuario&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <label htmlFor="email">Nickname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                         <input
                             type="text"
                             className="form-control"
@@ -140,7 +140,7 @@ constructor() {
                 <div className="row d-flex justify-content-center">
 
                 <div className="col d-flex align-items-center justify-content-center pt-1">
-                        <label htmlFor="title">Password&nbsp;</label>
+                        <label htmlFor="title">Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <input
                         type="text"
                         className="form-control"
