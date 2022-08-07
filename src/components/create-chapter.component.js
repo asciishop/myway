@@ -121,7 +121,7 @@ export default class Createchapter extends Component {
               id="uncontrolled-tab-example"
               className="mb-3"
           >
-            <Tab eventKey="texto" title={<BsFileEarmarkText />} >
+            <Tab eventKey="texto" title={<BsFileEarmarkText size={40} />} >
                               <textarea
                                   className="form-control"
                                   id="content"
@@ -129,17 +129,18 @@ export default class Createchapter extends Component {
                                   name="content"
                                   onChange={this.handleOnChangeContent}
                                   rows="4" cols="25"
+                                  maxlength="125"
                               />
 
             </Tab>
-            <Tab eventKey="camera" title={<BsFillCameraFill />}>
-              <div className="row "><div className="col d-flex  pt-1" onClick={this.handlePicture} >
+            <Tab eventKey="camera" title={<BsFillCameraFill size={40} />}>
+                <div className="row "><div className="col d-flex align-items-center justify-content-center pt-3" onClick={this.handlePicture} >
                 <i className="material-icons btn btn-primary btn-xs ml-auto"><h1>Tomar Foto</h1></i>
               </div></div>
             </Tab>
-            <Tab eventKey="audio" title={<BsFillVolumeUpFill />} >
+            <Tab eventKey="audio" title={<BsFillVolumeUpFill size={40} />} >
 
-              <div className="row"><div className="col d-flex  pt-1" onClick={this.handleAudio}>
+                <div className="row "><div className="col d-flex align-items-center justify-content-center pt-3" onClick={this.handleAudio}>
                 <i className="material-icons btn btn-primary btn-xs ml-auto"><h1>Grabar Audio</h1></i>
               </div></div>
 
@@ -156,6 +157,7 @@ export default class Createchapter extends Component {
 
 
           <br/>
+            <br/>
 
             <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><Button variant="danger" onClick={this.cancel}>Cancelar</Button>&nbsp;&nbsp; <Button variant="success" onClick={this.handleClick}>Enviar</Button>
 

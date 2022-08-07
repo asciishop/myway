@@ -165,6 +165,7 @@ export default class Createbook extends Component {
                 required
                 name="title"
                 onChange={this.handleOnChangeTitle}
+                maxlength="80"
             /><br/>
           </div>
 
@@ -174,7 +175,7 @@ export default class Createbook extends Component {
               id="uncontrolled-tab-example"
               className="mb-3"
           >
-            <Tab eventKey="texto" title={<BsFileEarmarkText />}>
+            <Tab eventKey="texto" title={<BsFileEarmarkText size={40} />}>
 
 
               <textarea
@@ -184,17 +185,18 @@ export default class Createbook extends Component {
                   name="content"
                   onChange={this.handleOnChangeContent}
                   rows="4" cols="25"
+                  maxlength="125"
               />
             </Tab>
-            <Tab eventKey="camera" title={<BsFillCameraFill />}>
-              <div className="row "><div className="col d-flex  pt-1" onClick={this.handlePicture} >
-                <i className="material-icons btn btn-primary btn-xs ml-auto"><h1>Tomar Foto</h1></i>
+            <Tab eventKey="camera" title={<BsFillCameraFill size={40} />}>
+              <div className="row "><div className="col d-flex align-items-center justify-content-center pt-3" onClick={this.handlePicture} >
+                <i className="material-icons btn btn-primary btn-xs ml-auto"><h2>Tomar Foto</h2></i>
               </div></div>
             </Tab>
-            <Tab eventKey="audio" title={<BsFillVolumeUpFill />} >
+            <Tab eventKey="audio" title={<BsFillVolumeUpFill size={40} />} >
 
-              <div className="row"><div className="col d-flex  pt-1" onClick={this.handleAudio}>
-                <i className="material-icons btn btn-primary btn-xs ml-auto"><h1>Grabar Audio</h1></i>
+              <div className="row "><div className="col d-flex align-items-center justify-content-center pt-3" onClick={this.handleAudio}>
+                <i className="material-icons btn btn-primary btn-xs ml-auto"><h2>Grabar Audio</h2></i>
               </div></div>
 
             </Tab>
@@ -208,6 +210,7 @@ export default class Createbook extends Component {
           </Tabs>
 
 <br/>
+          <br/>
           <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><Button variant="danger" onClick={this.cancel}>Cancelar</Button>&nbsp;&nbsp; <Button variant="success" onClick={this.handleClick}>Enviar</Button>
 
           </div></div>
