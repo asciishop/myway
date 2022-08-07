@@ -124,6 +124,8 @@ export default class Register extends Component {
         return (
 
             <>
+                <br/>
+                <br/>
                 <label htmlFor="email">Email</label>
 
 
