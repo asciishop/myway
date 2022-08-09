@@ -97,7 +97,7 @@ function App() {
                 </Link>
 
               </Navbar.Brand>
-              <Nav.Link className="pl-1 .d-lg-none .d-xxl-block" style={{"margin-left": "-50px"}} href="/create-book/"><FiFeather color={"green"} size={30}/>&nbsp;<b>Escribir</b></Nav.Link>
+              <Nav.Link className="pl-1 .d-lg-none .d-xxl-block" style={{"margin-left": "-53px","color":"darkseagreen"}} href="/create-book/"><b>Escribir</b>&nbsp;<FiFeather color={"green"} size={30}/>&nbsp;</Nav.Link>
 
               &nbsp;&nbsp;
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
