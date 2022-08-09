@@ -109,7 +109,7 @@ export default class Createchapter extends Component {
     return (
 
         <div className="container-fluid">
-          <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"> <h2>Ingrese un capítulo</h2>          </div></div>
+          <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"> <h2>Escribir un capítulo</h2>          </div></div>
 
 
           <br/>

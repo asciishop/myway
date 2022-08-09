@@ -8,6 +8,8 @@ import {Link} from "react-router-dom";
 import Edge from "./Edge";
 import { BsFillNodePlusFill } from "react-icons/bs";
 import {URL_BACKEND} from "./const";
+import { Fab, Action } from 'react-tiny-fab';
+import {mainButtonStyles,} from 'react-tiny-fab/dist/styles.css';
 import {
     FacebookIcon,
     FacebookShareButton,
@@ -17,21 +19,29 @@ import {
     WhatsappShareButton
 } from "react-share";
 import {Navbar} from "react-bootstrap";
+import {MdAdd} from "react-icons/all";
 
 
 export default class Showbook extends Component {
     constructor(props) {
         super(props)
 
+        this.someFunctionForTheMainButton = this.someFunctionForTheMainButton.bind(this);
+
+
 
         // State
         this.state = {
             title: '',
             chapters:[],
-            urlSocial : ''
+            urlSocial : '',
+            idBook : ''
         }
 
         this.listSize = this.state.chapters.length -1
+
+
+
     }
 
 
@@ -57,10 +67,52 @@ export default class Showbook extends Component {
         this.setState({ name: e.target.value })
     }
 
+    someFunctionForTheMainButton() {
+
+
+        this.props.history.push('/create-chapter/'+ this.props.match.params.id)
+
+    }
+
 
     render() {
+        function handleEmailOnClick() {
+
+        }
+
+        function handleHelpOnClick() {
+
+        }
+
+
+
         return (
             <div className="container-fluid">
+
+                <Fab
+                    mainButtonStyles={{backgroundColor: "green" }}
+
+                    style={{ bottom: 320, right: 1 }}
+                    icon={<MdAdd />}
+                    alwaysShowTitle={true}
+                    onClick={this.someFunctionForTheMainButton}
+                >
+                    // The Action components are the "buttons" that appear when the Fab is open. You can use the out-of-the-box Action
+                    // component or you can use a custom component of any type and style it any way that you'd like. The "text" prop
+                    // is the popup label that appears when the Action component is hovered.
+                    <Action
+                        text="Email"
+                        onClick={handleEmailOnClick}
+                    />
+                    <Action
+                        text="Help"
+                        onClick={handleHelpOnClick}
+                    >
+                        <i className="fa fa-help" />
+                    </Action>
+                    // Using a custom component for this one. See another example in "example/src/index.js"
+
+                </Fab>
 
                 <div className="row">
                     <div className="col d-flex align-items-center justify-content-center pt-3">
@@ -129,10 +181,7 @@ export default class Showbook extends Component {
                                     <TwitterIcon size={40} round={true} />
                                 </TwitterShareButton>
 
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nuevo capítulo&nbsp;&nbsp;
-                                <Link to={`/create-chapter/${this.props.match.params.id}`} className="btn-floating btn-large red">
-                                    <i className="material-icons btn btn-success btn-sm ml-auto"><h1><BsFillNodePlusFill alt={"Nuevo Capitulo"} /></h1></i>
-                                </Link>
+
 
                     </div>
                     </div>

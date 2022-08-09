@@ -153,7 +153,7 @@ export default class Createbook extends Component {
     return (
 
         <div className="container-fluid">
-          <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"> <h2>Ingrese un libro</h2>          </div></div>
+          <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"> <h2>Escribir un libro</h2>          </div></div>
 
           <br/>
           <div className="form-group">

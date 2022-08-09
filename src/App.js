@@ -92,12 +92,12 @@ function App() {
               <Navbar.Brand href="#home">
 
                 <Link to={'/'} className="nav-link">
-                  <img src={LogoMyWay} alt="MyWay :: colaborative storytelling" width="90%" height="90%" />
+                  <img src={LogoMyWay} alt="MyWay :: colaborative storytelling" width="85%" height="85%" />
 
                 </Link>
 
               </Navbar.Brand>
-              <Nav.Link className="pl-1 .d-lg-none .d-xxl-block" style={{"margin-left": "-53px","color":"darkseagreen"}} href="/create-book/"><b>Escribir</b>&nbsp;<FiFeather color={"green"} size={30}/>&nbsp;</Nav.Link>
+              <Nav.Link className="pl-1" style={{"margin-left": "-78px","color":"darkseagreen"}} href="/create-book/"><b>Escribir</b>&nbsp;<FiFeather color={"green"} size={30}/>&nbsp;</Nav.Link>
 
               &nbsp;&nbsp;
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
