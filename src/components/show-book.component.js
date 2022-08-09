@@ -86,9 +86,6 @@ export default class Showbook extends Component {
                                 break;
                             case "video":
 
-                                    return <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><VideoNode node={node} /></div></div>
-
-
                                 break;
                             case "audio":
 
@@ -101,8 +98,10 @@ export default class Showbook extends Component {
                     })}
                 </div>
 
-                    <div className="d-flex justify-content-center fixed-bottom">
-                        <div id="bottom" className="col-7 submit-form">
+                <div className="container-fluid">
+
+                    <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3 fixed-bottom">
+
 
                             <div id="editor">
                                 <FacebookShareButton
@@ -130,14 +129,17 @@ export default class Showbook extends Component {
                                     <TwitterIcon size={40} round={true} />
                                 </TwitterShareButton>
 
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nuevo capítulo&nbsp;&nbsp;
                                 <Link to={`/create-chapter/${this.props.match.params.id}`} className="btn-floating btn-large red">
-                                    <i className="material-icons btn btn-success btn-lg ml-auto"><h1><BsFillNodePlusFill alt={"Nuevo Capitulo"} /></h1></i>
+                                    <i className="material-icons btn btn-success btn-sm ml-auto"><h1><BsFillNodePlusFill alt={"Nuevo Capitulo"} /></h1></i>
                                 </Link>
-                            </div>
 
-                        </div>
                     </div>
+                    </div>
+                    </div>
+
+
+            </div>
 
 
             </div>
