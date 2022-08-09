@@ -92,12 +92,12 @@ function App() {
               <Navbar.Brand href="#home">
 
                 <Link to={'/'} className="nav-link">
-                  <img src={LogoMyWay} alt="MyWay :: colaborative storytelling" width="100%" height="100%" />
+                  <img src={LogoMyWay} alt="MyWay :: colaborative storytelling" width="90%" height="90%" />
 
                 </Link>
 
               </Navbar.Brand>
-              <Nav.Link className="pl-1 .d-lg-none .d-xl-block" style={{"margin-left": "-41px"}} href="/create-book/"><b>Escribir</b>&nbsp;<FiFeather color={"green"} size={30}/></Nav.Link>
+              <Nav.Link className="pl-1 .d-lg-none .d-xxl-block" style={{"margin-left": "-50px"}} href="/create-book/"><FiFeather color={"green"} size={30}/>&nbsp;<b>Escribir</b></Nav.Link>
 
               &nbsp;&nbsp;
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -105,7 +105,6 @@ function App() {
                   {!localStorage.getItem("user") &&
                       <Navbar.Collapse style={{backgroundColor: "white"}} className="justify-content-end" id="responsive-navbar-nav">
                         <Nav className="justify-content-end">
-                          <Nav.Link className="border-left pl-2 d-lg-none d-xl-block" style={{"margin-left": "auto"}} href="/create-book/"><b>Escribir</b>&nbsp;<FiFeather color={"green"} size={30}/></Nav.Link>
 
                           <Nav.Link className="border-left pl-2 d-none d-lg-block d-xl-none" style={{"margin-left": "auto"}} href="/login/">Ingresar&nbsp;<FiLogIn color={"green"} size={30}/></Nav.Link>
                     <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/register">Registro&nbsp;<FiPlusSquare color={"green"} size={30}/></Nav.Link>
