@@ -133,18 +133,9 @@ export default class Createchapter extends Component {
                               />
 
             </Tab>
-            <Tab eventKey="camera" title={<BsFillCameraFill size={40} />}>
-                <div className="row "><div className="col d-flex align-items-center justify-content-center pt-3" onClick={this.handlePicture} >
-                <i className="material-icons btn btn-primary btn-xs ml-auto"><h1>Tomar Foto</h1></i>
-              </div></div>
-            </Tab>
-            <Tab eventKey="audio" title={<BsFillVolumeUpFill size={40} />} >
+              <Tab eventKey="camera" title={<BsFillCameraFill size={40} onClick={this.handlePicture} />}  />
 
-                <div className="row "><div className="col d-flex align-items-center justify-content-center pt-3" onClick={this.handleAudio}>
-                <i className="material-icons btn btn-primary btn-xs ml-auto"><h1>Grabar Audio</h1></i>
-              </div></div>
-
-            </Tab>
+              <Tab eventKey="audio" title={<BsFillVolumeUpFill size={40} onClick={this.handleAudio} />}  />
             {/* <Tab eventKey="archivo" title="Archivo" disabled>
               <input type="file"
                      className="form-control"

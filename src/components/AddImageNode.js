@@ -176,11 +176,9 @@ export default class AddImageNode extends Component {
 
                 <div className="row d-flex justify-content-center">
 
-                    <div className="col d-flex align-items-center justify-content-center pt-1">
-                        {this.state.loading && <Spinner />}
-                    </div>
-                    <div className="col d-flex align-items-center justify-content-center pt-3">
 
+                    <div className="col d-flex align-items-center justify-content-center pt-3">
+                        {this.state.loading && <Spinner />}
                         {this.state.showCamera && (
                             <Webcam
                                 audio={false}

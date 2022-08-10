@@ -107,7 +107,7 @@ function App() {
                         <Nav className="justify-content-end">
                           <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/login/">Ingresar&nbsp;<FiLogIn color={"green"} size={30}/></Nav.Link>
                           <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/register">Registro&nbsp;<FiPlusSquare color={"green"} size={30}/></Nav.Link>
-                          <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/acerca">Acerca de MyWays&nbsp;<img src={LogoMyWaySmall} /></Nav.Link>
+                          <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/acerca">Acerca de&nbsp;<img src={LogoMyWaySmall} /></Nav.Link>
                             <hr
                                 style={{
                                     background: 'lime',
@@ -130,7 +130,7 @@ function App() {
 
                       <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/profile/">Perfil&nbsp; <FiUser color={"green"} size={30}/></Nav.Link>
                       <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} onClick={logoutHandler} href="#">Salir&nbsp;<FiLogOut color={"green"} size={30}/></Nav.Link>
-                      <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/acerca">Acerca de MyWays&nbsp;<img src={LogoMyWaySmall} /></Nav.Link>
+                      <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/acerca">Acerca de&nbsp;<img src={LogoMyWaySmall} /></Nav.Link>
 
                         <hr
                             style={{

@@ -188,18 +188,11 @@ export default class Createbook extends Component {
                   maxlength="125"
               />
             </Tab>
-            <Tab eventKey="camera" title={<BsFillCameraFill size={40} />}>
-              <div className="row "><div className="col d-flex align-items-center justify-content-center pt-3" onClick={this.handlePicture} >
-                <i className="material-icons btn btn-primary btn-xs ml-auto"><h2>Tomar Foto</h2></i>
-              </div></div>
-            </Tab>
-            <Tab eventKey="audio" title={<BsFillVolumeUpFill size={40} />} >
+            <Tab eventKey="camera" title={<BsFillCameraFill size={40} onClick={this.handlePicture} />}  />
 
-              <div className="row "><div className="col d-flex align-items-center justify-content-center pt-3" onClick={this.handleAudio}>
-                <i className="material-icons btn btn-primary btn-xs ml-auto"><h2>Grabar Audio</h2></i>
-              </div></div>
+            <Tab eventKey="audio" title={<BsFillVolumeUpFill size={40} onClick={this.handleAudio} />}  />
 
-            </Tab>
+
            {/* <Tab eventKey="archivo" title="Archivo" disabled>
               <input type="file"
                      className="form-control"
