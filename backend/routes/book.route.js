@@ -132,6 +132,17 @@ router.route('/').get((req, res) => {
   }).sort({$natural:-1})
 })
 
+// READ books by user
+router.route('/book-by-user/:id').get((req, res) => {
+  bookSchema.find({"user._id": req.params.id},(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  }).sort({$natural:-1})
+})
+
 // Get Single book
 router.route('/edit-book/:id').get((req, res) => {
   bookSchema.findById(req.params.id, (error, data) => {
