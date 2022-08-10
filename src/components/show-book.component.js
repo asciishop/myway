@@ -90,9 +90,9 @@ export default class Showbook extends Component {
             <div className="container-fluid">
 
                 <Fab
-                    mainButtonStyles={{backgroundColor: "green" }}
+                    mainButtonStyles={{backgroundColor: "darkseagreen" }}
 
-                    style={{ bottom: 320, right: 1 }}
+                    style={{ bottom: 270, right: -20 }}
                     icon={<MdAdd />}
                     alwaysShowTitle={true}
                     onClick={this.someFunctionForTheMainButton}
@@ -152,10 +152,10 @@ export default class Showbook extends Component {
 
                 <div className="container-fluid">
 
-                    <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3 fixed-bottom">
+                    <div className="row d-flex justify-content-center"  ><div className="col d-flex align-items-center justify-content-center pt-3 fixed-bottom" style={{backgroundColor:"darkseagreen", paddingBottom :"10px"}}>
 
 
-                            <div id="editor">
+                            <div id="editor" >
                                 <FacebookShareButton
                                     url={this.state.urlSocial}
                                     quote={this.state.title}

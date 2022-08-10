@@ -105,10 +105,9 @@ function App() {
                   {!localStorage.getItem("user") &&
                       <Navbar.Collapse style={{backgroundColor: "white"}} className="justify-content-end" id="responsive-navbar-nav">
                         <Nav className="justify-content-end">
-
-                          <Nav.Link className="border-left pl-2 d-none d-lg-block d-xl-none" style={{"margin-left": "auto"}} href="/login/">Ingresar&nbsp;<FiLogIn color={"green"} size={30}/></Nav.Link>
-                    <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/register">Registro&nbsp;<FiPlusSquare color={"green"} size={30}/></Nav.Link>
-                    <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/acerca">Acerca de MyWays&nbsp;<img src={LogoMyWaySmall} /></Nav.Link>
+                          <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/login/">Ingresar&nbsp;<FiLogIn color={"green"} size={30}/></Nav.Link>
+                          <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/register">Registro&nbsp;<FiPlusSquare color={"green"} size={30}/></Nav.Link>
+                          <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/acerca">Acerca de MyWays&nbsp;<img src={LogoMyWaySmall} /></Nav.Link>
                             <hr
                                 style={{
                                     background: 'lime',

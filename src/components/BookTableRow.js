@@ -18,6 +18,24 @@ import {
     WhatsappShareButton
 } from "react-share";
 
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear(),
+        hour = d.getHours(),
+        minutes  =d.getMinutes();
+
+    year = year +" "+ hour + ":"+ minutes
+
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+
+    return [day, month, year].join('-');
+}
+
 export default class bookTableRow extends Component {
 
   constructor(props) {
@@ -51,12 +69,9 @@ export default class bookTableRow extends Component {
                 </div>
           <br/>
               <div className="row d-flex justify-content-center">
-                <div className="col d-flex pt-3">
-                  <b><i>by {node.user.username}</i></b>
-                </div>
 
                   <div className="col d-flex align-items-center justify-content-center pt-3">
-                      on {fecha.toDateString()}
+                      <b>by&nbsp;<i> {node.user.username}</i></b>
 
                 </div>
 
@@ -73,12 +88,11 @@ export default class bookTableRow extends Component {
                   </div>
           <br/>
                   <div className="row d-flex justify-content-center">
-                    <div className="col d-flex pt-3">
-                      <b><i>by {node.user.username}</i></b>
-                    </div>
+
 
                     <div className="col d-flex align-items-center justify-content-center pt-3">
-                        on {fecha.toDateString()}
+                        <b>by&nbsp;<i> {node.user.username}</i></b>
+
                     </div>
 
                   </div>
@@ -92,11 +106,10 @@ export default class bookTableRow extends Component {
         return <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><VideoNode node={node} /></div>
                   <br/>
                   <div className="row d-flex justify-content-center">
-                    <div className="col d-flex pt-3">
-                      <b><i>by {node.user.username}</i></b>
-                    </div>
+
                     <div className="col d-flex align-items-center justify-content-center pt-3">
-                        on {fecha.toDateString()}
+                        <b>by&nbsp;<i> {node.user.username}</i></b>
+
                     </div>
 
                   </div>
@@ -109,11 +122,9 @@ export default class bookTableRow extends Component {
         return <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><AudioNode node={node} /></div>
                 <br/>
                 <div className="row d-flex justify-content-center">
-                  <div className="col d-flex pt-3">
-                    <b><i>by {node.user.username}</i></b>
-                  </div>
+
                   <div className="col d-flex align-items-center justify-content-center pt-3">
-                      on {fecha.toDateString()}
+                      <b>by&nbsp;<i> {node.user.username}</i></b>
 
                   </div>
 
@@ -135,6 +146,8 @@ export default class bookTableRow extends Component {
           <Card>
             <Card.Body>
               <h5 className="card-title">{this.props.obj.title}</h5>
+                <i>{formatDate(this.props.obj.dateCreation)}</i>
+                <br/>
               <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3">
 
                   <Link to={'/show-book/' + this.props.obj._id} className="btn-floating btn-large red">
