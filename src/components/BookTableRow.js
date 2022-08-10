@@ -17,6 +17,9 @@ import {
     WhatsappIcon,
     WhatsappShareButton
 } from "react-share";
+import LikeButton from "./LikeButton";
+import ShareButton from "./ShareButton";
+import {FiFeather} from "react-icons/fi";
 
 function formatDate(date) {
     var d = new Date(date),
@@ -71,9 +74,10 @@ export default class bookTableRow extends Component {
               <div className="row d-flex justify-content-center">
 
                   <div className="col d-flex align-items-center justify-content-center pt-3">
-                      <b>by&nbsp;<i> {node.user.username}</i></b>
+                      <LikeButton />
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={node.title} title={node.title} />
 
-                </div>
+                  </div>
 
               </div>
             </div>
@@ -90,10 +94,11 @@ export default class bookTableRow extends Component {
                   <div className="row d-flex justify-content-center">
 
 
-                    <div className="col d-flex align-items-center justify-content-center pt-3">
-                        <b>by&nbsp;<i> {node.user.username}</i></b>
+                      <div className="col d-flex align-items-center justify-content-center pt-3">
+                          <LikeButton />
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={node.title} title={node.title} />
 
-                    </div>
+                      </div>
 
                   </div>
                </div>
@@ -107,10 +112,11 @@ export default class bookTableRow extends Component {
                   <br/>
                   <div className="row d-flex justify-content-center">
 
-                    <div className="col d-flex align-items-center justify-content-center pt-3">
-                        <b>by&nbsp;<i> {node.user.username}</i></b>
+                      <div className="col d-flex align-items-center justify-content-center pt-3">
+                          <LikeButton />
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={node.title} title={node.title} />
 
-                    </div>
+                      </div>
 
                   </div>
                 </div>
@@ -124,7 +130,8 @@ export default class bookTableRow extends Component {
                 <div className="row d-flex justify-content-center">
 
                   <div className="col d-flex align-items-center justify-content-center pt-3">
-                      <b>by&nbsp;<i> {node.user.username}</i></b>
+                      <LikeButton />
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={node.title} title={node.title} />
 
                   </div>
 
@@ -146,12 +153,14 @@ export default class bookTableRow extends Component {
           <Card>
             <Card.Body>
               <h5 className="card-title">{this.props.obj.title}</h5>
-                <i>{formatDate(this.props.obj.dateCreation)}</i>
+
+                <b>by&nbsp;<i> {this.props.obj.user.username}</i></b><br/><i>{formatDate(this.props.obj.dateCreation)}</i>
+
                 <br/>
               <div className="row d-flex float-end"><div className="col d-flex align-items-center justify-content-center pt-3">
 
                   <Link to={'/show-book/' + this.props.obj._id} className="btn-floating btn-large red">
-                <i className="material-icons btn btn-lg ml-auto"><h1><TbArrowBigRightLines /></h1></i>
+                <i className="material-icons btn btn-lg ml-auto"><h1><FiFeather color={"green"} size={30}/></h1></i>
               </Link></div></div>
 
                   {this.renderSwitch(this.props.obj.chapters[0])}
