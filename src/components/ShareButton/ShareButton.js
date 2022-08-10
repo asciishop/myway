@@ -39,7 +39,7 @@ import Table from "react-bootstrap/Table";
             quote={this.state.title}
             hashtag={'#myways'}
         >
-          <FacebookIcon size={40} round={true} />
+          <FacebookIcon size={30} round={true} />
         </FacebookShareButton>
         &nbsp;
 
@@ -48,7 +48,7 @@ import Table from "react-bootstrap/Table";
             quote={this.state.title}
             hashtag={'#myways'}
         >
-          <WhatsappIcon size={40} round={true} />
+          <WhatsappIcon size={30} round={true} />
         </WhatsappShareButton>
         &nbsp;
         <TwitterShareButton
@@ -56,7 +56,7 @@ import Table from "react-bootstrap/Table";
             quote={this.state.title}
             hashtag={'#myways'}
         >
-          <TwitterIcon size={40} round={true} />
+          <TwitterIcon size={30} round={true} />
         </TwitterShareButton>
 
 
