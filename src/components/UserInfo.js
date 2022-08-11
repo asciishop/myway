@@ -39,8 +39,7 @@ export default class UserInfo extends Component {
 
         return this.state.books.map((res, i) => {
             return <div>
-                <h4><b>Mis Libros </b></h4>
-                <BookTableRowProfile obj={res} key={i} />;
+                <BookTableRowProfile obj={res} key={i} />
             </div>
         });
 
@@ -63,6 +62,8 @@ export default class UserInfo extends Component {
                 <h6>Puntos {this.state.user.points}</h6>
 
                 <br/>
+                <h4><b>Mis Libros </b></h4>
+
                 {this.DataTable()}
                 </tbody>
             </Table>
