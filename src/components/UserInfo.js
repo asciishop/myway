@@ -30,7 +30,7 @@ export default class UserInfo extends Component {
 
         const user = JSON.parse(localStorage.getItem("user"))
 
-        axios.get(URL_BACKEND +"book-by-user/"+user._id)
+        axios.get(URL_BACKEND +"books/book-by-user/"+user._id)
             .then(res => {
                 this.setState({
                     books: res.data
