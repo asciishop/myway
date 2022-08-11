@@ -17,18 +17,10 @@ export default class UserInfo extends Component {
 
     componentDidMount() {
 
-        axios.get(URL_BACKEND +"users/me",{headers: { Authorization: 'Bearer '+ localStorage.getItem("token") }})
-            .then(res => {
-                this.setState({
-                    user: res.data
-                });
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-
-
         const user = JSON.parse(localStorage.getItem("user"))
+        this.setState({
+            user: user
+        });
 
         axios.get(URL_BACKEND +"books/book-by-user/"+user._id)
             .then(res => {
@@ -46,7 +38,10 @@ export default class UserInfo extends Component {
     DataTable() {
 
         return this.state.books.map((res, i) => {
-            return <BookTableRowProfile obj={res} key={i} />;
+            return <div>
+                <h4><b>Mis Libros </b></h4>
+                <BookTableRowProfile obj={res} key={i} />;
+            </div>
         });
 
     }
@@ -62,7 +57,11 @@ export default class UserInfo extends Component {
                 </tr>
                 </thead>
                 <tbody>
-                <h2>Hola {this.state.user.username}</h2>;
+                <h2><b>Hola {this.state.user.username}</b></h2>
+                <br/>
+                <h6>Nombre {this.state.user.firstName}</h6>
+                <h6>Puntos {this.state.user.points}</h6>
+
                 <br/>
                 {this.DataTable()}
                 </tbody>

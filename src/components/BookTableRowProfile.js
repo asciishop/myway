@@ -163,7 +163,9 @@ export default class bookTableRowProfile extends Component {
                 <i className="material-icons btn btn-lg ml-auto"><h1><FiFeather color={"green"} size={30}/></h1></i>
               </Link></div></div>
 
-                  {this.renderSwitch(this.props.obj.chapters[0])}
+
+
+                {this.renderSwitch(this.props.obj.chapters[0])}
             </Card.Body>
           </Card>
 

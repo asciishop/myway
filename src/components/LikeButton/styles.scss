@@ -2,7 +2,7 @@ $dark: #222f3e;
 $darkLower: #22303f8c;
 $grey: #8395a7;
 $white: #fff;
-$primary: #008000;
+$primary: #198754;
 
 .like-button-wrapper {
   position: relative;
@@ -10,7 +10,7 @@ $primary: #008000;
   place-items: center;
   border: none;
   cursor: pointer;
-  padding: 7px 9px;
+  padding: 12px 12px;
   color: $white;
   font-size: 16px;
   font-weight: 600;
@@ -28,7 +28,7 @@ $primary: #008000;
     transition: background-color 0.3s, transform 0.3s;
     background-color: $dark;
     box-shadow: 0 0 10px $darkLower;
-    border-radius: 8px;
+    border-radius: 3px;
   }
 
   &:hover:not(.liked) {

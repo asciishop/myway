@@ -46,7 +46,11 @@ export default class bookTableRow extends Component {
     this.deletebook = this.deletebook.bind(this)
   }
 
-  deletebook() {
+  componentDidMount() {
+      window.scrollTo(0,0)
+  }
+
+    deletebook() {
     axios
       .delete(
           URL_BACKEND+'books/delete-book/' + this.props.obj._id,
@@ -63,7 +67,9 @@ export default class bookTableRow extends Component {
     let fecha = new Date(node.date)
       let urlShare = 'https://myways.cl/show-book/' + this.props.obj._id
       let title = this.props.obj.title
-    switch(node.type) {
+      let idBook = this.props.obj._id
+
+      switch(node.type) {
       case "image":
 
         return <div className="row d-flex justify-content-center">
@@ -75,7 +81,7 @@ export default class bookTableRow extends Component {
 
                   <div className="col d-flex align-items-center justify-content-center pt-3">
                       <LikeButton />
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={node.title} title={node.title} />
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={idBook}  />
 
                   </div>
 
@@ -96,7 +102,7 @@ export default class bookTableRow extends Component {
 
                       <div className="col d-flex align-items-center justify-content-center pt-3">
                           <LikeButton />
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={node.title} title={node.title} />
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={idBook}  />
 
                       </div>
 
@@ -114,7 +120,7 @@ export default class bookTableRow extends Component {
 
                       <div className="col d-flex align-items-center justify-content-center pt-3">
                           <LikeButton />
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={node.title} title={node.title} />
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={idBook}  />
 
                       </div>
 
@@ -131,7 +137,7 @@ export default class bookTableRow extends Component {
 
                   <div className="col d-flex align-items-center justify-content-center pt-3">
                       <LikeButton />
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={node.title} title={node.title} />
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={idBook} title={title}  />
 
                   </div>
 
@@ -168,7 +174,6 @@ export default class bookTableRow extends Component {
           </Card>
 
           </td>
-
       </tr>
     )
   }
