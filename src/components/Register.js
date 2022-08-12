@@ -138,6 +138,7 @@ export default class Register extends Component {
                             required
                             name="email"
                             onChange={this.handleOnChangeEmail}
+                            style={{'width': '200px'}}
                         />
                     </div>
                     <div className="col d-flex align-items-center justify-content-center pt-1">
@@ -156,6 +157,7 @@ export default class Register extends Component {
                             required
                             name="firstname"
                             onChange={this.handleOnChangeFirstname}
+                            style={{'width': '200px'}}
                         />
                     </div>
                     <div className="col d-flex align-items-center justify-content-center pt-1">
@@ -176,6 +178,7 @@ export default class Register extends Component {
                             required
                             name="password"
                             onChange={this.handleOnChangePassword}
+                            style={{'width': '200px'}}
                         />
                     </div>
                     <div className="col d-flex align-items-center justify-content-center pt-1">
@@ -191,10 +194,7 @@ export default class Register extends Component {
 
 
                     </div>
-                    <div className="col d-flex align-items-center justify-content-center pt-1">
 
-
-                    </div>
                 </div>
 
 

@@ -13,6 +13,7 @@ import Camera from "./Camera";
 import BackCamera from "./BackCamera";
 import Spinner from "./Spinner";
 import "./styles.css";
+import WebcamCapture2 from "./WebcamCapture2";
 
 const FACING_MODE_USER = "user";
 const FACING_MODE_ENVIRONMENT = "environment";
@@ -178,40 +179,15 @@ export default class AddImageNode extends Component {
 
 
                     <div className="col d-flex align-items-center justify-content-center pt-3">
-                        {this.state.loading && <Spinner />}
-                        {this.state.showCamera && (
-                            <Webcam
-                                audio={false}
-                                ref='webcam'
-                                screenshotFormat="image/jpeg"
-                                videoConstraints={videoConstraints}
-                                onUserMedia={this.handleUserMedia}
-                            />
-                        )}
-                        {this.state.shot !== '' && (
-                            <img
-                                src={this.state.shot}
-                            />
-                        )}
+                        <WebcamCapture2 title={this.state.title} idBook={this.state.id} />
+
 
                     </div>
                 </div>
 
-                <div className="row d-flex justify-content-center">
-                    <div className="col d-flex align-items-center justify-content-center pt-3">
-
-                    <BsFillCameraFill size={50} onClick={this.captureShot}/>&nbsp;&nbsp;
-                    <BsFillHandThumbsDownFill size={50} onClick={this.notLike}/>
-                    </div>
-
-                </div>
-
-                    <br/>
 
 
-                <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><Button variant="danger" onClick={this.cancel}>Cancelar</Button>&nbsp;&nbsp; <Button variant="success" onClick={this.WebcamCapture}>Enviar</Button>
 
-                </div></div>
 
 
             </div>

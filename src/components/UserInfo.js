@@ -61,6 +61,7 @@ export default class UserInfo extends Component {
                 <h6>Nombre {this.state.user.firstName}</h6>
                 <h6>Puntos {this.state.user.points}</h6>
 
+
                 <br/>
                 <h4><b>Mis Libros </b></h4>
 

@@ -69,7 +69,7 @@ import Button from "react-bootstrap/Button";
                       style={{
                           position: 'absolute',
                           backgroundColor: 'white',
-                          padding: '2px 10px',
+                          padding: '15px 10px',
                           color: 'white',
                           borderRadius: 3,
                           ...props.style,

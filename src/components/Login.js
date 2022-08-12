@@ -131,6 +131,7 @@ constructor() {
                             required
                             name="email"
                             onChange={this.handleOnChangeEmail}
+                            style={{'width': '200px'}}
                         />
                     </div>
                     <div className="col d-flex align-items-center justify-content-center pt-1">
@@ -148,6 +149,7 @@ constructor() {
                         required
                         name="password"
                         onChange={this.handleOnChangePassword}
+                        style={{'width': '200px'}}
                     />
                     </div>
                     <div className="col d-flex align-items-center justify-content-center pt-2">
@@ -165,9 +167,7 @@ constructor() {
                         <Button variant="success" onClick={this.handleSubmit}>Enviar</Button>
 
                     </div>
-                    <div className="col d-flex align-items-center justify-content-center pt-2">
 
-                    </div>
 
                 </div>
 
