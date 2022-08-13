@@ -6,6 +6,7 @@ const createError = require('http-errors');
 const cookieParser = require("cookie-parser")
 const passport = require("passport")
 let session = require('express-session')
+const FacebookStrategy = require('passport-facebook').Strategy;
 
 
 
