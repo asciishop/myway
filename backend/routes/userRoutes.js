@@ -180,7 +180,14 @@ router.get(
     },
         function(req, res) {
             console.log("Llamando al redirect")
-            res.redirect('/account/fb');
+            var sn = req.params.sn
+
+            var id = req.user.id
+            console.log(sn)
+            console.log(id)
+
+
+            //res.redirect('/account/fb');
         })
 );
 
