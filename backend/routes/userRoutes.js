@@ -144,11 +144,38 @@ router.get("/logout", verifyUser, (req, res, next) => {
     )
 })
 
+router.get('/account/:sn', function(req, res) {
+    var sn = req.params.sn
+
+    var id = req.user.id
+
+    console.log("EL SN :" + sn)
+
+    if (sn == "fb") {
+        id = id + "fb"
+    } else if (sn == "tw") {
+        id = id + "tw"
+    } else if (sn == "go") {
+        id = id + "go"
+    }
+
+
+    console.log("EL ID :" + id)
+
+
+
+
+});
+
 router.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
         successRedirect: 'https://myways.cl',
         failureRedirect: 'https://myways.cl/login'
-    }));
+    }),
+    function(req, res) {
+        console.log("Llamando al redirect")
+        res.redirect('/account/fb');
+    });
 
 router.get('/auth/facebook', passport.authenticate('facebook', {
     scope: ['public_profile', 'email']
