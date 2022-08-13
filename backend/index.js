@@ -85,8 +85,6 @@ passport.use(new FacebookStrategy({
     }, function (accessToken, refreshToken, profile, done) {
     console.log("El perfil")
     console.log(JSON.stringify(profile))
-
-    console.log(JSON.parse(profile))
     return done(null, profile);
     }
 ));
