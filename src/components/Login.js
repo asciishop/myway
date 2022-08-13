@@ -118,7 +118,9 @@ constructor() {
 
             <>
                 <br/><br/>
-
+                <a href="https://myways.cl:4000/users/auth/facebook" className="waves-effect waves-light btn social facebook">
+                    <i className="fa fa-facebook"></i> Sign in with facebook
+                </a>
 
 
                 <div className="row d-flex justify-content-center">

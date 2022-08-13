@@ -144,6 +144,14 @@ router.get("/logout", verifyUser, (req, res, next) => {
     )
 })
 
+router.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+        successRedirect: 'https://myways.cl',
+        failureRedirect: 'https://myways.cl/login'
+    }));
 
+router.get('/auth/facebook', passport.authenticate('facebook', {
+    scope: ['public_profile', 'email']
+}));
 
 module.exports = router

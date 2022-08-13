@@ -77,6 +77,15 @@ app.use(session({ secret: process.env.SESSION_SECRET })); // session secret
 
 app.use(passport.initialize())
 
+passport.use(new FacebookStrategy({
+        clientID: "2924868007817583",
+        clientSecret: "9efc334a53a7916a97826ab86edbd5b2",
+        callbackURL: "https://myways.cl:4000/users/auth/facebook/callback"
+    }, function (accessToken, refreshToken, profile, done) {
+        return done(null, profile);
+    }
+));
+
 app.use("/users", userRoute)
 app.use('/books', bookRoute)
 
