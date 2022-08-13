@@ -168,7 +168,9 @@ router.get('/account/:sn', function(req, res) {
 });
 
 
-router.get("/auth/facebook", passport.authenticate("facebook", { scope: ["profile"] }));
+router.get('/auth/facebook', passport.authenticate('facebook', {
+    scope: ['public_profile', 'email']
+}));
 
 router.get(
     "/auth/facebook/callback",
