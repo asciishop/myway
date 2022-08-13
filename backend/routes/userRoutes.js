@@ -171,11 +171,7 @@ router.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
         successRedirect: 'https://myways.cl',
         failureRedirect: 'https://myways.cl/login'
-    }),
-    function(req, res) {
-        console.log("Llamando al redirect")
-        res.redirect('/account/fb');
-    });
+    }));
 
 router.get('/auth/facebook', passport.authenticate('facebook', {
     scope: ['public_profile', 'email']
