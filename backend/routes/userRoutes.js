@@ -177,18 +177,7 @@ router.get(
     passport.authenticate("facebook", {
         successRedirect: 'https://myways.cl',
         failureRedirect: 'https://myways.cl/login'
-    },
-        function(req, res) {
-            console.log("Llamando al redirect")
-            var sn = req.params.sn
-
-            var id = req.user.id
-            console.log(sn)
-            console.log(id)
-
-
-            //res.redirect('/account/fb');
-        })
+    })
 );
 
 

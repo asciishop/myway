@@ -83,7 +83,11 @@ passport.use(new FacebookStrategy({
         clientSecret: "9efc334a53a7916a97826ab86edbd5b2",
         callbackURL: "https://myways.cl:4000/users/auth/facebook/callback"
     }, function (accessToken, refreshToken, profile, done) {
-        return done(null, profile);
+    console.log("El perfil")
+    console.log(JSON.stringify(profile))
+
+    console.log(JSON.parse(profile))
+    return done(null, profile);
     }
 ));
 passport.serializeUser((user, done) => {
