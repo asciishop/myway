@@ -30,6 +30,10 @@ const User = new Schema({
     refreshToken: {
         type: [Session],
     },
+    idSocial: {
+        type: String,
+        default: "",
+    }
 })
 
 //Remove refreshToken from the response

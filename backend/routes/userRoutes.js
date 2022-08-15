@@ -3,6 +3,7 @@ const router = express.Router()
 const User = require("../models/user")
 const passport = require("passport")
 const { getToken, COOKIE_OPTIONS, getRefreshToken, verifyUser } = require("../authenticate")
+const bookSchema = require("../models/book");
 
 router.route('/signup').post((req, res, next) => {
     // Verify that first name is not empty
@@ -42,8 +43,7 @@ router.route('/signup').post((req, res, next) => {
 })
 
 router.post("/login", passport.authenticate("local"), (req, res, next) => {
-    console.log("ID ")
-    console.log(req.user._id)
+
     const token = getToken({ _id: req.user._id })
     const refreshToken = getRefreshToken({ _id: req.user._id })
     User.findById(req.user._id).then(
@@ -146,49 +146,58 @@ router.get("/logout", verifyUser, (req, res, next) => {
     )
 })
 
-router.get('/account/:sn', function(req, res) {
-    var sn = req.params.sn
-
-    var id = req.user.id
-
-    console.log("EL SN :" + sn)
-
-    if (sn == "fb") {
-        id = id + "fb"
-    } else if (sn == "tw") {
-        id = id + "tw"
-    } else if (sn == "go") {
-        id = id + "go"
-    }
-
-
-    console.log("EL ID :" + id)
-
-
-
-
-});
-
 
 router.get('/auth/facebook', passport.authenticate('facebook', {
     scope: ['public_profile', 'email']
 }));
-/*
-router.get(
-    "/auth/facebook/callback",
-    passport.authenticate("facebook", {
-        successRedirect: 'https://myways.cl',
-        failureRedirect: 'https://myways.cl/login'
-    })
-);*/
 
 
 router.get('/auth/facebook/callback',
     passport.authenticate('facebook', { assignProperty: 'federatedUser', failureRedirect: 'https://myways.cl/login',successRedirect: 'https://myways.cl' }),
     function(req, res, next) {
 
+        User.find({"idSocial": req.federatedUser.id},(error, data) => {
+            if (error) {
+                return next(error)
+            } else if (data) {
+                res.json(data)
+            } else {
+                User.register(
+                    new User({ username: req.federatedUser.displayName}),
+                    "Social Login passwd",
+                    (err, user) => {
+                        if (err) {
+                            res.statusCode = 500
+                            res.send(err)
+                        } else {
+                            user.firstName = req.federatedUser.displayName
+                            user.lastName = req.federatedUser.displayName
+                            user.idSocial = req.federatedUser.id
+                            user.authStrategy = "facebook"
+                            const token = getToken({ _id: user._id })
+                            const refreshToken = getRefreshToken({ _id: user._id, nickName : user.lastName})
+                            user.refreshToken.push({ refreshToken })
+                            user.save((err, user) => {
+                                if (err) {
+                                    res.statusCode = 500
+                                    res.send(err)
+                                } else {
+                                    res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS)
+                                    res.send({ success: true, token })
+                                }
+                            })
+                        }
+                    }
+                )
+            }
+
+        }).sort({$natural:-1})
+
         res.redirect('/');
 
     });
+
+
+
 
 module.exports = router
