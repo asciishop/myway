@@ -162,7 +162,9 @@ router.get('/auth/facebook/callback',
             } else if (data.length > 0) {
                 console.log("DATA")
                 console.log(JSON.stringify(data))
-                res.json(data)
+                const token = getToken({ _id: data._id })
+                res.redirect("https://myways.cl?token="+ token)
+
             } else {
                 User.register(
                     new User({ username: req.federatedUser.displayName}),
