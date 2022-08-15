@@ -184,8 +184,8 @@ router.get('/auth/facebook/callback',
                                     res.statusCode = 500
                                     res.send(err)
                                 } else {
-                                    res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS)
-                                    res.send({ success: true, token })
+                                    //res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS)
+                                    //res.send({ success: true, token })
                                     res.redirect("https://myways.cl?token="+ token)
                                 }
                             })
