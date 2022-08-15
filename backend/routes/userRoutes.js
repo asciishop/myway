@@ -159,7 +159,7 @@ router.get('/auth/facebook/callback',
         User.find({"idSocial": req.federatedUser.id},(error, data) => {
             if (error) {
                 return next(error)
-            } else if (data !== []) {
+            } else if (data.length > 0) {
                 console.log("DATA")
                 console.log(JSON.stringify(data))
                 res.json(data)
