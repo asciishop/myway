@@ -33,6 +33,10 @@ const User = new Schema({
     idSocial: {
         type: String,
         default: "",
+    },
+    username: {
+        type: String,
+        default: "",
     }
 })
 

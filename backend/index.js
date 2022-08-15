@@ -39,11 +39,11 @@ const app = express();
 const https = require('https');
 var fs = require('fs');
 
-/*
+
 const httpsOptions = {
     cert: fs.readFileSync('./cert.crt'),
     key: fs.readFileSync('./cert.key')
-}*/
+}
 
 app.use(express.static('public'));
 app.use('/images', express.static('images'));
@@ -84,14 +84,14 @@ passport.use(new FacebookStrategy({
         clientSecret: "9efc334a53a7916a97826ab86edbd5b2",
         callbackURL: "https://myways.cl:4000/users/auth/facebook/callback"
     }, function (accessToken, refreshToken, profile, done) {
-    const { email, first_name, last_name } = profile._json;
-    const userData = {
-        email,
-        firstName: first_name,
-        lastName: last_name
-    };
-    //new userModel(userData).save();
-    done(null, profile);
+        const { email, first_name, last_name } = profile._json;
+        const userData = {
+            email,
+            firstName: first_name,
+            lastName: last_name
+        };
+        //new userModel(userData).save();
+        done(null, profile);
     }
 ));
 
@@ -99,12 +99,12 @@ passport.use(new GoogleStrategy({
         clientID: "997226468547-qrfhdurjq9kgcn1felabkmdunouusgno.apps.googleusercontent.com",
         clientSecret: "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",
         callbackURL: "https://myways.cl:4000/users/auth/google/callback"
-    }, function (accessToken, refreshToken, profile, done) {
-        const { email, first_name, last_name } = profile._json;
+    }, function (issuer, profile, done) {
+        console.log(profile)
         const userData = {
-            email,
-            firstName: first_name,
-            lastName: last_name
+            email : profile.emails[0].value ,
+            firstName: profile.displayName,
+            lastName: ''
         };
         //new userModel(userData).save();
         done(null, profile);
@@ -127,14 +127,15 @@ app.use('/books', bookRoute)
 // PORT
 const port = process.env.PORT || 4000;
 
+/*
 const server = app.listen(port, () => {
     console.log('Connected to port ' + port)
-})
-/*
+})*/
+
 var server = https.createServer(httpsOptions, app);
 server.listen(port, () => {
     console.log("server starting on port : " + port)
-});*/
+});
 
 // 404 Error
 app.use((req, res, next) => {

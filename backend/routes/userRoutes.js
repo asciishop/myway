@@ -167,7 +167,7 @@ router.get('/auth/facebook/callback',
 
             } else {
                 User.register(
-                    new User({ username: req.federatedUser.displayName}),
+                    new User({username: req.federatedUser.displayName +"_Fe"}),
                     "Social Login passwd",
                     (err, user) => {
                         if (err) {
@@ -202,7 +202,7 @@ router.get('/auth/facebook/callback',
     });
 
 router.get('/auth/google', passport.authenticate('google', {
-    scope: ['profile']
+    scope: ['email', 'profile']
 }));
 
 
@@ -210,7 +210,10 @@ router.get('/auth/google/callback',
     passport.authenticate('google', { assignProperty: 'federatedUser', failureRedirect: 'https://myways.cl/login',successRedirect: 'https://myways.cl' }),
     function(req, res, next) {
 
-        User.find({"idSocial": req.federatedUser.id},(error, data) => {
+        console.log("CALLBACK")
+        console.log(JSON.stringify(req.federatedUser))
+
+        User.find({idSocial: req.federatedUser.id},(error, data) => {
             if (error) {
                 return next(error)
             } else if (data.length > 0) {
@@ -221,7 +224,7 @@ router.get('/auth/google/callback',
 
             } else {
                 User.register(
-                    new User({ username: req.federatedUser.displayName}),
+                    new User({username: req.federatedUser.displayName +"_Go"}),
                     "Social Login passwd",
                     (err, user) => {
                         if (err) {
@@ -229,9 +232,11 @@ router.get('/auth/google/callback',
                             res.send(err)
                         } else {
                             user.firstName = req.federatedUser.displayName
-                            user.lastName = req.federatedUser.displayName
+                            user.lastName = ""
                             user.idSocial = req.federatedUser.id
-                            user.authStrategy = "facebook"
+                            user.username = req.federatedUser.displayName
+
+                            user.authStrategy = "google"
                             const token = getToken({ _id: user._id })
                             const refreshToken = getRefreshToken({ _id: user._id, nickName : user.lastName})
                             user.refreshToken.push({ refreshToken })
@@ -249,7 +254,6 @@ router.get('/auth/google/callback',
                     }
                 )
             }
-
         }).sort({$natural:-1})
 
 
