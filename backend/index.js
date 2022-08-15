@@ -76,6 +76,17 @@ app.use(session({ secret: process.env.SESSION_SECRET })); // session secret
 
 app.use(passport.initialize())
 
+passport.use(new FacebookStrategy({
+        clientID: "2924868007817583",
+        clientSecret: "9efc334a53a7916a97826ab86edbd5b2",
+        callbackURL: "https://myways.cl:4000/users/auth/facebook/callback"
+    }, function (accessToken, refreshToken, profile, done) {
+    console.log("El perfil")
+    console.log(JSON.stringify(profile))
+    let user = {"firstName":"Andrés Vásquez","lastName":"","authStrategy":"facebook"}
+    return done(null, user);
+    }
+));
 passport.serializeUser((user, done) => {
     done(null, user);
 });
@@ -83,22 +94,6 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
     done(null, user);
 });
-
-passport.use(new FacebookStrategy({
-        clientID: "2924868007817583",
-        clientSecret: "9efc334a53a7916a97826ab86edbd5b2",
-        callbackURL: "https://myways.cl:4000/users/auth/facebook/callback"
-    }, function (accessToken, refreshToken, profile, done) {
-    const { email, first_name, last_name } = profile._json;
-    const userData = {
-        email,
-        firstName: first_name,
-        lastName: last_name
-    };
-    //new userModel(userData).save();
-    done(null, profile);
-    }
-));
 
 
 app.use("/users", userRoute)
