@@ -202,7 +202,7 @@ router.get('/auth/facebook/callback',
     });
 
 router.get('/auth/google', passport.authenticate('google', {
-    scope: ['email', 'profile']
+    scope: ['profile']
 }));
 
 
