@@ -76,13 +76,6 @@ app.use(session({ secret: process.env.SESSION_SECRET })); // session secret
 
 app.use(passport.initialize())
 
-passport.serializeUser((user, done) => {
-    done(null, user);
-});
-
-passport.deserializeUser((user, done) => {
-    done(null, user);
-});
 
 passport.use(new FacebookStrategy({
         clientID: "2924868007817583",
@@ -100,6 +93,13 @@ passport.use(new FacebookStrategy({
     }
 ));
 
+passport.serializeUser((user, done) => {
+    done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+    done(null, user);
+});
 
 
 app.use("/users", userRoute)
