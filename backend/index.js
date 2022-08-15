@@ -7,6 +7,8 @@ const cookieParser = require("cookie-parser")
 const passport = require("passport")
 let session = require('express-session')
 const FacebookStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require('passport-google-oidc').Strategy;
+
 
 require("dotenv").config()
 
@@ -90,6 +92,22 @@ passport.use(new FacebookStrategy({
     };
     //new userModel(userData).save();
     done(null, profile);
+    }
+));
+
+passport.use(new GoogleStrategy({
+        clientID: "997226468547-qrfhdurjq9kgcn1felabkmdunouusgno.apps.googleusercontent.com",
+        clientSecret: "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",
+        callbackURL: "https://myways.cl:4000/users/auth/google/callback"
+    }, function (accessToken, refreshToken, profile, done) {
+        const { email, first_name, last_name } = profile._json;
+        const userData = {
+            email,
+            firstName: first_name,
+            lastName: last_name
+        };
+        //new userModel(userData).save();
+        done(null, profile);
     }
 ));
 

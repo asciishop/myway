@@ -201,6 +201,60 @@ router.get('/auth/facebook/callback',
 
     });
 
+router.get('/auth/google', passport.authenticate('google', {
+    scope: ['email', 'profile']
+}));
+
+
+router.get('/auth/google/callback',
+    passport.authenticate('google', { assignProperty: 'federatedUser', failureRedirect: 'https://myways.cl/login',successRedirect: 'https://myways.cl' }),
+    function(req, res, next) {
+
+        User.find({"idSocial": req.federatedUser.id},(error, data) => {
+            if (error) {
+                return next(error)
+            } else if (data.length > 0) {
+                console.log("DATA")
+                console.log(JSON.stringify(data))
+                const token = getToken({ _id: data._id })
+                res.redirect("https://myways.cl?token="+ token)
+
+            } else {
+                User.register(
+                    new User({ username: req.federatedUser.displayName}),
+                    "Social Login passwd",
+                    (err, user) => {
+                        if (err) {
+                            res.statusCode = 500
+                            res.send(err)
+                        } else {
+                            user.firstName = req.federatedUser.displayName
+                            user.lastName = req.federatedUser.displayName
+                            user.idSocial = req.federatedUser.id
+                            user.authStrategy = "facebook"
+                            const token = getToken({ _id: user._id })
+                            const refreshToken = getRefreshToken({ _id: user._id, nickName : user.lastName})
+                            user.refreshToken.push({ refreshToken })
+                            user.save((err, user) => {
+                                if (err) {
+                                    res.statusCode = 500
+                                    res.send(err)
+                                } else {
+                                    //res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS)
+                                    //res.send({ success: true, token })
+                                    res.redirect("https://myways.cl?token="+ token)
+                                }
+                            })
+                        }
+                    }
+                )
+            }
+
+        }).sort({$natural:-1})
+
+
+    });
+
 
 
 

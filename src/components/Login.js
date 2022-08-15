@@ -3,6 +3,8 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import {URL_BACKEND} from "./const";
+import {FacebookIcon} from "react-share";
+import {BsGoogle} from "react-icons/all";
 
 
 export default class Login extends Component {
@@ -118,12 +120,34 @@ constructor() {
 
             <>
                 <br/><br/>
-                <a href="https://myways.cl:4000/users/auth/facebook" className="waves-effect waves-light btn social facebook">
-                    <i className="fa fa-facebook"></i> Sign in with facebook
-                </a>
-
 
                 <div className="row d-flex justify-content-center">
+                    <div className="col d-flex align-items-center justify-content-center pt-1">
+
+                    <b>Login Social</b> :
+                        <div className="col d-flex align-items-center justify-content-center pt-2">
+                            <a href="https://myways.cl:4000/users/auth/facebook" className="waves-effect waves-light btn social facebook">
+                                <FacebookIcon size={40} round={true}>Sign in with facebook</FacebookIcon>
+                            </a>&nbsp;
+                            <a href="https://myways.cl:4000/users/auth/google" className="waves-effect waves-light btn social facebook">
+                                <BsGoogle color={"red"} size={35} round={true}>Sign in with facebook</BsGoogle>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <br/>
+                <div className="row d-flex">
+                    <div className="col d-flex pt-1">
+                        <b>Login Manual</b> :
+                    </div>
+                </div>
+                <br/>
+                <div className="row d-flex justify-content-center">
+
+
+
                     <div className="col d-flex align-items-center justify-content-center pt-1">
                         <label htmlFor="email">Nickname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                         <input
