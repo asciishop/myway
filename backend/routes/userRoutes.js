@@ -160,6 +160,8 @@ router.get('/auth/facebook/callback',
             if (error) {
                 return next(error)
             } else if (data) {
+                console.log("DATA")
+                console.log(JSON.parse(data))
                 res.json(data)
             } else {
                 User.register(
@@ -193,7 +195,6 @@ router.get('/auth/facebook/callback',
 
         }).sort({$natural:-1})
 
-        res.redirect('/');
 
     });
 
