@@ -8,8 +8,6 @@ const passport = require("passport")
 let session = require('express-session')
 const FacebookStrategy = require('passport-facebook').Strategy;
 
-
-
 require("dotenv").config()
 
 // Express Route
@@ -85,7 +83,8 @@ passport.use(new FacebookStrategy({
     }, function (accessToken, refreshToken, profile, done) {
     console.log("El perfil")
     console.log(JSON.stringify(profile))
-    return done(null, profile);
+    let user = {"firstName":"Andrés Vásquez","lastName":"","authStrategy":"facebook"}
+    return done(null, user);
     }
 ));
 passport.serializeUser((user, done) => {
