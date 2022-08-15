@@ -161,6 +161,7 @@ function App() {
           <Container>
 <br/><br/>
             <Row>
+
               <Col md={12}>
                 <div className="wrapper">
                   <Switch>

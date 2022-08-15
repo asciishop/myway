@@ -12,6 +12,38 @@ export default class bookList extends Component {
     this.state = {
       books: []
     };
+
+    var urlParams = new URLSearchParams(props.location.search);
+
+
+
+    if(urlParams.has('token')) {
+      console.log("QUERY :" + props.location.search)
+      let token = urlParams.get('token')
+      localStorage.setItem("token", token)
+      this.setUser(token)
+    }
+
+  }
+
+
+  setUser(token) {
+
+    axios.get(URL_BACKEND +'users/me', {headers: { Authorization: 'Bearer '+ token }})
+        .then( async (response) => {
+
+          if (response.status === 200) {
+            localStorage.setItem("user", JSON.stringify(response.data))
+
+          } else {
+            this.state.error("Error getting user.")
+          }
+
+        }).catch((error) => {
+      console.log(error)
+    })
+
+
   }
 
   componentDidMount() {
@@ -24,6 +56,8 @@ export default class bookList extends Component {
       .catch((error) => {
         console.log(error);
       })
+
+
   }
 
   DataTable() {
