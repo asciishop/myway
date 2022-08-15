@@ -161,7 +161,7 @@ router.get('/auth/facebook/callback',
                 return next(error)
             } else if (data) {
                 console.log("DATA")
-                console.log(JSON.parse(data))
+                console.log(JSON.stringify(data))
                 res.json(data)
             } else {
                 User.register(
