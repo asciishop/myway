@@ -53,6 +53,8 @@ export default class Header extends Component {
 
      logoutHandler() {
         localStorage.removeItem("token")
+         localStorage.removeItem("user")
+
          window.location.href = "https://myways.cl/"
      }
 
