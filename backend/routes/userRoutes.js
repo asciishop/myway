@@ -178,19 +178,22 @@ router.get('/auth/facebook/callback',
                             user.lastName = req.federatedUser.displayName
                             user.idSocial = req.federatedUser.id
                             user.username = req.federatedUser.displayName +"_Fe"
-
                             user.authStrategy = "facebook"
 
-                            const token = getToken({ _id: user._id })
-                            const refreshToken = getRefreshToken({ _id: user._id, nickName : user.lastName})
-                            user.refreshToken.push({ refreshToken })
                             user.save((err, user) => {
                                 if (err) {
                                     res.statusCode = 500
                                     res.send(err)
                                 } else {
-                                    //res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS)
-                                    //res.send({ success: true, token })
+
+                                    const token = getToken({ _id: user._id })
+
+                                    console.log("Token y User FB")
+                                    console.log(user._id)
+                                    console.log(token)
+
+                                    const refreshToken = getRefreshToken({ _id: user._id, nickName : user.lastName})
+                                    user.refreshToken.push({ refreshToken })
                                     res.redirect("https://myways.cl?token="+ token)
                                 }
                             })
@@ -242,13 +245,6 @@ router.get('/auth/google/callback',
                             user.username = req.federatedUser.displayName +"_Go"
 
                             user.authStrategy = "google"
-                            const token = getToken({ _id: user._id })
-                            const refreshToken = getRefreshToken({ _id: user._id, nickName : user.lastName})
-                            user.refreshToken.push({ refreshToken })
-
-                            console.log("displayName")
-                            console.log(req.federatedUser.displayName)
-
 
                             user.save((err, user) => {
                                 if (err) {
@@ -260,6 +256,15 @@ router.get('/auth/google/callback',
                                     //res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS)
                                     //res.send({ success: true, token })
                                     console.log("SUCC")
+
+                                    const token = getToken({ _id: user._id })
+
+                                    console.log("Token y User GO")
+                                    console.log(user._id)
+                                    console.log(token)
+
+                                    const refreshToken = getRefreshToken({ _id: user._id, nickName : user.lastName})
+                                    user.refreshToken.push({ refreshToken })
 
                                     res.redirect("https://myways.cl?token="+ token)
                                 }

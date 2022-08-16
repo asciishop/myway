@@ -13,38 +13,12 @@ export default class bookList extends Component {
       books: []
     };
 
-    var urlParams = new URLSearchParams(props.location.search);
-
-
-
-    if(urlParams.has('token')) {
-      console.log("QUERY :" + props.location.search)
-      let token = urlParams.get('token')
-      localStorage.setItem("token", token)
-      this.setUser(token)
-    }
-
-  }
-
-
-  setUser(token) {
-
-    axios.get(URL_BACKEND +'users/me', {headers: { Authorization: 'Bearer '+ token }})
-        .then( async (response) => {
-
-          if (response.status === 200) {
-            localStorage.setItem("user", JSON.stringify(response.data))
-
-          } else {
-            this.state.error("Error getting user.")
-          }
-
-        }).catch((error) => {
-      console.log(error)
-    })
 
 
   }
+
+
+
 
   componentDidMount() {
     axios.get(URL_BACKEND +"books/")
@@ -56,6 +30,34 @@ export default class bookList extends Component {
       .catch((error) => {
         console.log(error);
       })
+
+    var urlParams = new URLSearchParams(this.props.location.search);
+
+    if(urlParams.has('token')) {
+      console.log("QUERY :" + this.props.location.search)
+      let token = urlParams.get('token')
+      localStorage.setItem("token", token)
+      this.setUser(token)
+    }
+
+  }
+
+  setUser(token) {
+
+    axios.get(URL_BACKEND +'users/me', {headers: { Authorization: 'Bearer '+ token }})
+        .then( async (response) => {
+
+          if (response.status === 200) {
+            localStorage.setItem("user", JSON.stringify(response.data))
+            window.location.href = "https://myways.cl/"
+
+          } else {
+            this.state.error("Error getting user.")
+          }
+
+        }).catch((error) => {
+      console.log(error)
+    })
 
 
   }

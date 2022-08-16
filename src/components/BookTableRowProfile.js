@@ -46,6 +46,10 @@ export default class bookTableRowProfile extends Component {
     this.deletebook = this.deletebook.bind(this)
   }
 
+    componentDidMount() {
+        window.scrollTo(0,0)
+    }
+
   deletebook() {
     axios
       .delete(
