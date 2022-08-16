@@ -8,7 +8,6 @@ const passport = require("passport")
 let session = require('express-session')
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oidc').Strategy;
-const socketIo = require("socket.io");
 
 
 
@@ -139,6 +138,7 @@ server.listen(port, () => {
     console.log("server starting on port : " + port)
 });
 
+const socketIo = require("socket.io")(server, {cors: {origin: "*"}});
 const io = socketIo(server);
 
 let interval;

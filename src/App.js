@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
@@ -29,7 +29,6 @@ import {FiFeather, FiLogIn, FiPlusSquare, FiLogOut, FiUser} from "react-icons/fi
 import Profile from "./components/Profile";
 import AcercaDe from "./components/AcercaDe";
 import Header from "./components/Header";
-import React, { useState, useEffect } from "react";
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "https://myways.cl:4000";
 
