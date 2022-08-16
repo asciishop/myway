@@ -3,6 +3,8 @@ import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import BookTableRow from './BookTableRow';
 import {URL_BACKEND} from "./const";
+import Button from "react-bootstrap/Button";
+import {BsFillCameraFill, BsSearch} from "react-icons/bs";
 
 
 export default class bookList extends Component {
@@ -10,8 +12,12 @@ export default class bookList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      books: []
+      books: [],
+      searchBar : ''
     };
+
+    this.handleOnChangeSearch = this.handleOnChangeSearch.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
 
 
 
@@ -62,6 +68,29 @@ export default class bookList extends Component {
 
   }
 
+  handleSearch(){
+
+
+    let search = {searchBar:this.state.searchBar};
+
+    axios.post(URL_BACKEND +'books/search', search)
+        .then(res => {
+          this.setState({
+            books: res.data
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+
+  }
+
+  handleOnChangeSearch (e)  {
+    const { target: { value, title } } = e;
+    this.setState({ searchBar: value })
+
+  }
+
   DataTable() {
     return this.state.books.map((res, i) => {
       return <BookTableRow obj={res} key={i} />;
@@ -79,6 +108,23 @@ export default class bookList extends Component {
           </tr>
         </thead>
         <tbody>
+
+        <div className="row d-flex justify-content-center">
+          <div className="col d-flex align-items-center justify-content-center pt-3">
+
+        <input
+            type="search"
+            placeholder="Buscar"
+            value={this.state.searchBar}
+            onChange={this.handleOnChangeSearch}
+            style={{'width': '150px'}}
+        />
+            &nbsp;&nbsp;
+
+            <BsSearch size={40} onClick={this.handleSearch} />
+
+          </div></div>
+
           {this.DataTable()}
         </tbody>
       </Table>

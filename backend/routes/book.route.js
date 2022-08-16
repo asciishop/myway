@@ -132,6 +132,32 @@ router.route('/').get((req, res) => {
   }).sort({$natural:-1})
 })
 
+// READ books by search
+router.route('/search').post((req, res) => {
+
+  var txt = ".*" + req.body.searchBar.toLowerCase() + "*";
+  console.log("txt")
+  console.log(txt)
+  bookSchema.find({
+    $or: [{
+      "title": {
+        $regex: txt
+      }
+    }, {
+      "user.username": {
+        $regex: txt
+      }
+    }]
+  }
+,(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  }).sort({$natural:-1})
+})
+
 // READ books by user
 router.route('/book-by-user/:id').get((req, res) => {
   bookSchema.find({"user._id": req.params.id},(error, data) => {
