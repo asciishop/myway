@@ -29,6 +29,9 @@ import {FiFeather, FiLogIn, FiPlusSquare, FiLogOut, FiUser} from "react-icons/fi
 import Profile from "./components/Profile";
 import AcercaDe from "./components/AcercaDe";
 import Header from "./components/Header";
+import React, { useState, useEffect } from "react";
+import socketIOClient from "socket.io-client";
+const ENDPOINT = "https://myways.cl:4000";
 
 
 function getToken () {
@@ -80,14 +83,22 @@ function logoutHandler() {
 
 function App() {
 
-
+  const [response, setResponse] = useState("");
+  useEffect(() => {
+    const socket = socketIOClient(ENDPOINT);
+    socket.on("FromAPI", data => {
+      setResponse(data);
+    });
+  }, []);
 
 
   return (
       <div className="App">
         <Router>
            <Header />
-
+          <p>
+            It's <time dateTime={response}>{response}</time>
+          </p>
           <Container>
 <br/><br/>
             <Row>
