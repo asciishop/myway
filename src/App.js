@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useRef, useCallback} from "react";
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
@@ -29,8 +29,8 @@ import {FiFeather, FiLogIn, FiPlusSquare, FiLogOut, FiUser} from "react-icons/fi
 import Profile from "./components/Profile";
 import AcercaDe from "./components/AcercaDe";
 import Header from "./components/Header";
-import socketIOClient from "socket.io-client";
-const ENDPOINT = "https://myways.cl:4000";
+import NotificationContainer from "./components/NotificationContainer";
+import useBookSearch from "./components/useBookSearch";
 
 
 function getToken () {
@@ -81,23 +81,46 @@ function logoutHandler() {
 
 
 function App() {
+  const [query, setQuery] = useState('')
+  const [pageNumber, setPageNumber] = useState(1)
 
-  const [response, setResponse] = useState("");
-  useEffect(() => {
-    const socket = socketIOClient(ENDPOINT);
-    socket.on("FromAPI", data => {
-      setResponse(data);
-    });
-  }, []);
+  const {
+    books,
+    hasMore,
+    loading,
+    error
+  } = useBookSearch(query, pageNumber)
+  const observer = useRef()
+  const lastBookElementRef = useCallback(node => {
+    if (loading) return
+    if (observer.current) observer.current.disconnect()
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore) {
+        setPageNumber(prevPageNumber => prevPageNumber + 1)
+      }
+    })
+    if (node) observer.current.observe(node)
+  }, [loading, hasMore])
 
+  function handleSearch(e) {
+    setQuery(e.target.value)
+    setPageNumber(1)
+  }
 
   return (
       <div className="App">
+        <input type="text" value={query} onChange={handleSearch}></input>
+        {books.map((book, index) => {
+          if (books.length === index + 1) {
+            return <div ref={lastBookElementRef} key={book}>{book}</div>
+          } else {
+            return <div key={book}>{book}</div>
+          }
+        })}
+
         <Router>
            <Header />
-          <p>
-            It's <time dateTime={response}>{response}</time>
-          </p>
+          {localStorage.getItem("token") && <NotificationContainer/>}
           <Container>
 <br/><br/>
             <Row>

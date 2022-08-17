@@ -39,6 +39,7 @@ mongoose.connect(
 const app = express();
 const https = require('https');
 var fs = require('fs');
+const jwt = require("jsonwebtoken");
 
 
 const httpsOptions = {
@@ -120,6 +121,8 @@ passport.deserializeUser((user, done) => {
     done(null, user);
 });
 
+var connections = {};
+app.set('connections', connections);
 
 app.use("/users", userRoute)
 app.use('/books', bookRoute)
@@ -138,6 +141,7 @@ server.listen(port, () => {
     console.log("server starting on port : " + port)
 });
 
+
 const socketIo = require("socket.io")(server, {cors: {origin: "*"}});
 const io = socketIo(server);
 
@@ -153,6 +157,15 @@ io.on("connection", (socket) => {
         console.log("Client disconnected");
         clearInterval(interval);
     });
+
+    socket.on('authenticate', function(data){
+
+        var user = jwt.decode(data.token, "the-secret");
+        app.get('connections')[user._id] = socket;
+        socket.auth = true;
+
+    });
+
 });
 
 const getApiAndEmit = socket => {

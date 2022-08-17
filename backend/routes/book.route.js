@@ -1,4 +1,7 @@
 let bookSchema = require('../models/book')
+let chapterSchema = require('../models/chapter')
+let messageSchema = require('../models/message')
+
 let fs = require("fs");
 
 let mongoose = require('mongoose'),
@@ -113,11 +116,44 @@ router.route('/add-chapter').post((req, res, next) => {
               return next(error)
               console.log(error)
             } else {
+
+              let author = data.user._id;
+              let socket = req.app.get('connections')[author]
+              if(socket) {
+                //Send to
+                socket.emit('message',{data: "Han agregado un capítulo a tu historia"});
+
+                chapterSchema.create(chapter, (error, data) => {
+                  if (error) {
+                    return next(error)
+                  } else {
+                    console.log("Chapter created")
+
+                  }
+                })
+
+                let message = {"idUser": author, "message": "Han agregado un capítulo a tu historia", "read": false , "date" : new Date()}
+                messageSchema.create(message, (error, data) => {
+                  if (error) {
+                    return next(error)
+                  } else {
+                    console.log("Inbox message created")
+                  }
+                })
+
+              }
+
               res.json(data)
               console.log('Chapter updated successfully !')
             }
           },
       )
+
+
+
+
+
+
 
 });
 
@@ -130,6 +166,23 @@ router.route('/').get((req, res) => {
       res.json(data)
     }
   }).sort({$natural:-1})
+})
+
+// READ books by page
+router.route('/page').post((req, res) => {
+
+  const { pageNumber } = req.body;
+
+  let limitSize = (parseInt(pageNumber) || 1) === 1 ? 0 : (pageNumber -1) * 5
+  bookSchema.find({},(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  }).sort({$natural:-1})
+      .skip(parseInt(limitSize) || 0)
+      .limit(5)
 })
 
 // READ books by search
