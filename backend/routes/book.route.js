@@ -206,7 +206,7 @@ router.route('/search').post((req, res) => {
   console.log(txt)
   chapterSchema.find({
     $or: [{
-      "title": {
+      "bookTitle": {
         $regex: txt
       }
     }, {
