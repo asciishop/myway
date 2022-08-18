@@ -4,7 +4,8 @@ import Table from 'react-bootstrap/Table';
 import BookTableRow from './BookTableRow';
 import {URL_BACKEND} from "./const";
 import Button from "react-bootstrap/Button";
-import {BsFillCameraFill, BsSearch} from "react-icons/bs";
+import {BsFillCameraFill, BsPlus, BsSearch} from "react-icons/bs";
+import {FiPlus} from "react-icons/fi";
 
 
 export default class bookList extends Component {
@@ -13,12 +14,14 @@ export default class bookList extends Component {
     super(props)
     this.state = {
       books: [],
-      searchBar : ''
+      searchBar : '',
+      pageNumber : 1
     };
 
     this.handleOnChangeSearch = this.handleOnChangeSearch.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
-
+    this.handlePage = this.handlePage.bind(this)
+    this.getBooks = this.getBooks.bind(this)
 
 
   }
@@ -27,15 +30,16 @@ export default class bookList extends Component {
 
 
   componentDidMount() {
-    axios.get(URL_BACKEND +"books/")
-      .then(res => {
-        this.setState({
-          books: res.data
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+
+    let payload = {'pageNumber' : this.state.pageNumber}
+    axios.post(URL_BACKEND + 'books/page', payload)
+        .then((res) => {
+          this.setState({
+            books: res.data
+          });
+        }).catch((error) => {
+      console.log(error)
+    })
 
     var urlParams = new URLSearchParams(this.props.location.search);
 
@@ -91,7 +95,27 @@ export default class bookList extends Component {
 
   }
 
-  DataTable() {
+  handlePage(){
+    this.setState({ pageNumber: this.state.pageNumber + 1 })
+    let payload = {'pageNumber' : this.state.pageNumber}
+    axios.post(URL_BACKEND + 'books/page', payload)
+        .then((res) => {
+          let newBookList = [...this.state.books, ...res.data]
+          this.setState({
+            books: newBookList
+          });
+        }).catch((error) => {
+      console.log(error)
+    })
+
+  }
+
+  getBooks(){
+
+
+  }
+
+    DataTable() {
     return this.state.books.map((res, i) => {
       return <BookTableRow obj={res} key={i} />;
     });
@@ -126,6 +150,11 @@ export default class bookList extends Component {
           </div></div>
 
           {this.DataTable()}
+        <div className="row d-flex justify-content-center">
+          <div className="col d-flex align-items-center justify-content-center pt-3">
+
+              <FiPlus size={40} color={"green"} onClick={this.handlePage} />&nbsp;Libros
+          </div></div>
         </tbody>
       </Table>
     </div>);
