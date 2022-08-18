@@ -87,7 +87,7 @@ function App() {
 
         <Router>
            <Header />
-          {/*localStorage.getItem("token") && <NotificationContainer/>*/}
+          {localStorage.getItem("token") && <NotificationContainer/>}
           <Container>
 <br/><br/>
             <Row>
