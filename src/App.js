@@ -29,6 +29,9 @@ import {FiFeather, FiLogIn, FiPlusSquare, FiLogOut, FiUser} from "react-icons/fi
 import Profile from "./components/Profile";
 import AcercaDe from "./components/AcercaDe";
 import Header from "./components/Header";
+import Inbox from "./components/Inbox";
+
+
 import NotificationContainer from "./components/NotificationContainer";
 
 
@@ -163,6 +166,11 @@ function App() {
                         component={(props) => <AcercaDe {...props} />}
                     />
 
+                    <Route
+                        exact
+                        path="/inbox/:id"
+                        component={(props) => <Inbox {...props} />}
+                    />
 
                   </Switch>
                 </div>

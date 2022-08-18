@@ -14,6 +14,13 @@ let chapterSchema = new Schema({
   type: {
     type: String
   },
+    idBook: {
+  type: String
+},
+  bookTitle: {
+    type: String
+  }
+,
   link: {
     type: String
   }

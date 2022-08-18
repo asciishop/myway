@@ -32,7 +32,6 @@ function NotificationContainer() {
     return (
 
                 <p>
-                    <FiBell/> <Badge variant="info">{messages.length +1}</Badge>
                     It's Message <h2>{messages}</h2>
                 </p>
 

@@ -102,9 +102,9 @@ router.route('/add-chapter').post((req, res, next) => {
       type = "video"
     }
 
-    chapter = {'text': '', 'type': type, 'link':link, 'user' : user, 'date': new Date()};
+    chapter = {'text': '', 'type': type, 'link':link, 'user' : user, 'date': new Date() , 'idBook' : id, 'bookTitle': ''};
   } else {
-    chapter = {'text': content, 'type': 'text', 'link': '', 'user' : user, 'date': new Date()};
+    chapter = {'text': content, 'type': 'text', 'link': '', 'user' : user, 'date': new Date(), 'idBook' : id, 'bookTitle': ''};
   }
 
 
@@ -117,13 +117,16 @@ router.route('/add-chapter').post((req, res, next) => {
               console.log(error)
             } else {
 
-              let author = data.user._id;
+              /*let author = data.user._id;
               let socket = req.app.get('connections')[author]
               if(socket) {
-                //Send to
-                socket.emit('message',{data: "Han agregado un capítulo a tu historia"});
+                socket.emit('message', {data: "Han agregado un capítulo a tu historia"});
+              }*/
 
-                chapterSchema.create(chapter, (error, data) => {
+
+                //Send to
+              chapter.bookTitle = data.title
+              chapterSchema.create(chapter, (error, data) => {
                   if (error) {
                     return next(error)
                   } else {
@@ -132,7 +135,8 @@ router.route('/add-chapter').post((req, res, next) => {
                   }
                 })
 
-                let message = {"idUser": author, "message": "Han agregado un capítulo a tu historia", "read": false , "date" : new Date()}
+                let author = data.user._id;
+                let message = {"idBook": id,"idUser": author, "message": "Novedades en tu historia : "+ data.title, "read": false , "date" : new Date()}
                 messageSchema.create(message, (error, data) => {
                   if (error) {
                     return next(error)
@@ -140,8 +144,6 @@ router.route('/add-chapter').post((req, res, next) => {
                     console.log("Inbox message created")
                   }
                 })
-
-              }
 
               res.json(data)
               console.log('Chapter updated successfully !')
@@ -156,6 +158,17 @@ router.route('/add-chapter').post((req, res, next) => {
 
 
 });
+
+// READ messages by user
+router.route('/inbox/:id').get((req, res) => {
+  messageSchema.find({"idUser": req.params.id},(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  }).sort({$natural:-1})
+})
 
 // READ books
 router.route('/').get((req, res) => {
@@ -191,7 +204,7 @@ router.route('/search').post((req, res) => {
   var txt = ".*" + req.body.searchBar.toLowerCase() + "*";
   console.log("txt")
   console.log(txt)
-  bookSchema.find({
+  chapterSchema.find({
     $or: [{
       "title": {
         $regex: txt
@@ -199,8 +212,14 @@ router.route('/search').post((req, res) => {
     }, {
       "user.username": {
         $regex: txt
-      }
-    }]
+      },
+
+    }, {
+        "text": {
+          $regex: txt
+        },
+
+      }]
   }
 ,(error, data) => {
     if (error) {

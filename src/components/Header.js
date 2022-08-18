@@ -8,7 +8,7 @@ import Navbar from "react-bootstrap/Navbar";
 import {Link} from "react-router-dom";
 import LogoMyWay from "../asset/image/myway-logo-small.png";
 import Nav from "react-bootstrap/Nav";
-import {FiFeather, FiLogIn, FiLogOut, FiPlusSquare, FiUser, FiBell} from "react-icons/fi";
+import {FiFeather, FiLogIn, FiLogOut, FiPlusSquare, FiUser, FiBell, FiMessageSquare} from "react-icons/fi";
 import LogoMyWaySmall from "../asset/image/myway-logo-very-small.png";
 import {Badge} from "react-bootstrap";
 
@@ -107,7 +107,8 @@ export default class Header extends Component {
                         <Navbar.Collapse style={{backgroundColor: "white"}} className="justify-content-end" id="responsive-navbar-nav">
                             <Nav className="justify-content-end">
                                 <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="#"><b>Hola {JSON.parse(localStorage.getItem("user")).username}</b> </Nav.Link>
-                                <FiBell/> <Badge variant="info">3</Badge>
+                                <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href={"/inbox/"+JSON.parse(localStorage.getItem("user"))._id}>Mensajes&nbsp;   <FiMessageSquare color={"green"} size={30}/></Nav.Link>
+
                                 <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/profile/">Perfil&nbsp; <FiUser color={"green"} size={30}/></Nav.Link>
                                 <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} onClick={this.logoutHandler} href="#">Salir&nbsp;<FiLogOut color={"green"} size={30}/></Nav.Link>
                                 <Nav.Link className="border-left pl-2" style={{"margin-left": "auto"}} href="/acerca">Acerca de&nbsp;<img src={LogoMyWaySmall} /></Nav.Link>

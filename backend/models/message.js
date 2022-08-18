@@ -5,6 +5,9 @@ let messageSchema = new Schema({
   date: {
     type: Date
   },
+  idBook: {
+    type: String
+  },
   idUser: {
     type: String
   },
