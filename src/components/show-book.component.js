@@ -97,19 +97,8 @@ export default class Showbook extends Component {
                     alwaysShowTitle={true}
                     onClick={this.someFunctionForTheMainButton}
                 >
-                    // The Action components are the "buttons" that appear when the Fab is open. You can use the out-of-the-box Action
-                    // component or you can use a custom component of any type and style it any way that you'd like. The "text" prop
-                    // is the popup label that appears when the Action component is hovered.
-                    <Action
-                        text="Email"
-                        onClick={handleEmailOnClick}
-                    />
-                    <Action
-                        text="Help"
-                        onClick={handleHelpOnClick}
-                    >
-                        <i className="fa fa-help" />
-                    </Action>
+
+
                     // Using a custom component for this one. See another example in "example/src/index.js"
 
                 </Fab>
