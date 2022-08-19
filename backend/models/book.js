@@ -13,6 +13,9 @@ let bookSchema = new Schema({
   },
   chapters: {
     type: []
+  },
+  likes: {
+    type: []
   }
 }, {
     collection: 'books'

@@ -80,6 +80,7 @@ export default class bookTableRow extends Component {
               <div className="row d-flex justify-content-center">
 
                   <div className="col d-flex align-items-center justify-content-center pt-3">
+                      {localStorage.getItem("user") &&<LikeButton />}
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={idBook}  />
 
                   </div>
@@ -101,6 +102,7 @@ export default class bookTableRow extends Component {
 
                       <div className="col d-flex align-items-center justify-content-center pt-3">
 
+                          {localStorage.getItem("user") &&<LikeButton />}
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={idBook}  />
 
                       </div>
@@ -118,6 +120,7 @@ export default class bookTableRow extends Component {
                   <div className="row d-flex justify-content-center">
 
                       <div className="col d-flex align-items-center justify-content-center pt-3">
+                          {localStorage.getItem("user") &&<LikeButton />}
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={idBook}  />
 
                       </div>
@@ -134,6 +137,7 @@ export default class bookTableRow extends Component {
                 <div className="row d-flex justify-content-center">
 
                   <div className="col d-flex align-items-center justify-content-center pt-3">
+                      {localStorage.getItem("user") &&<LikeButton />}
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={idBook} title={title}  />
 
                   </div>

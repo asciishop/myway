@@ -28,6 +28,57 @@ router.route('/create-book').post((req, res, next) => {
   })
 })
 
+
+router.route('/like').post((req, res, next) => {
+
+  const {idBook, idUser, userName, bookTitle} = req.body;
+
+  bookSchema.findByIdAndUpdate(
+      idBook,
+      { $addToSet: { likes: idUser }},
+      (error, data) => {
+        if (error) {
+          return next(error)
+          console.log(error)
+        } else {
+
+          let author = data.user._id;
+          let message = {"idBook": id,"idUser": author, "message": "Al usuario"+ userName +" le gusta tu historia : "+ bookTitle, "read": false , "date" : new Date()}
+          messageSchema.create(message, (error, data) => {
+            if (error) {
+              return next(error)
+            } else {
+              console.log("Inbox message created")
+            }
+          })
+
+          res.json(data)
+          console.log('Book updated successfully !')
+        }
+      },
+  )
+})
+
+router.route('/unlike').post((req, res, next) => {
+
+  const {idBook, idUser, userName, bookTitle} = req.body;
+
+  bookSchema.findByIdAndUpdate(
+      idBook,
+      { $pull: { likes: idUser }},
+      (error, data) => {
+        if (error) {
+          return next(error)
+          console.log(error)
+        } else {
+
+          res.json(data)
+          console.log('Book updated successfully !')
+        }
+      },
+  )
+})
+
 router.route('/add-book').post((req, res, next) => {
   const { title, content, file, user } = req.body;
   let chapter = [{'text': '', 'type': '', 'link':''}];
