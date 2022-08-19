@@ -3,16 +3,41 @@ import cn from "classnames";
 import { ReactComponent as Hand } from "./hand.svg";
 
 import "./styles.scss";
+import axios from "axios";
+import {URL_BACKEND} from "../const";
 
 const particleList = Array.from(Array(10));
 
-const LikeButton = () => {
-  const [liked, setLiked] = useState(null);
-  const [clicked, setClicked] = useState(false);
+const LikeButton = (props) => {
+  const [liked, setLiked] = useState(prop.like);
+  const [clicked, setClicked] = useState(prop.like);
 
   return (
     <button
       onClick={() => {
+
+          let likeObj = {
+              idBook: props.idBook,
+              idUser: JSON.parse(localStorage.getItem("user"))._id,
+              userName: JSON.parse(localStorage.getItem("user")).username,
+              bookTitle : props.title
+          };
+
+        let apiSufix = "like"
+        if(!liked) {
+            apiSufix = "unlike"
+        }
+
+          axios.post(URL_BACKEND +'books/'+ apiSufix, likeObj)
+              .then((res) => {
+                  console.log(res.data)
+                  console.log('Like successfully created')
+
+              }).catch((error) => {
+              console.log(error)
+          })
+
+
         setLiked(!liked);
         setClicked(true);
       }}
@@ -42,6 +67,7 @@ const LikeButton = () => {
         <Hand />
         <span className={cn("suffix", { liked })}></span>
       </div>
+        {props.count}
     </button>
   );
 };

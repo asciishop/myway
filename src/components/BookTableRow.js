@@ -80,7 +80,7 @@ export default class bookTableRow extends Component {
               <div className="row d-flex justify-content-center">
 
                   <div className="col d-flex align-items-center justify-content-center pt-3">
-                      {localStorage.getItem("user") &&<LikeButton />}
+                      {localStorage.getItem("user") &&<LikeButton like={node.like} count={node.likes.length} idBook={node._id} title={node.title} />}
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={idBook}  />
 
                   </div>

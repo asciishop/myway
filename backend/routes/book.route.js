@@ -7,6 +7,7 @@ let fs = require("fs");
 let mongoose = require('mongoose'),
   express = require('express'),
   router = express.Router();
+const {verifyUser} = require("../authenticate");
 
 require("dotenv").config()
 
@@ -232,6 +233,8 @@ router.route('/').get((req, res) => {
   }).sort({$natural:-1})
 })
 
+
+
 // READ books by page
 router.route('/page').post((req, res) => {
 
@@ -247,6 +250,29 @@ router.route('/page').post((req, res) => {
   }).sort({$natural:-1})
       .skip(parseInt(limitSize) || 0)
       .limit(5)
+})
+
+//Book List
+router.post("/bookListAuth", verifyUser, (req, res) => {
+
+  const { userId,pageNumber } = req.body;
+
+  let limitSize = (parseInt(pageNumber) || 1) === 1 ? 0 : (pageNumber -1) * 5
+  bookSchema.find({},(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      if (data.likes.find(userId))
+        data.like = true
+      else
+        data.like = false
+
+      res.json(data)
+    }
+  }).sort({$natural:-1})
+      .skip(parseInt(limitSize) || 0)
+      .limit(5)
+
 })
 
 // READ books by search

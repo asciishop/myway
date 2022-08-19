@@ -16,6 +16,9 @@ let bookSchema = new Schema({
   },
   likes: {
     type: []
+  },
+  like: {
+    type: Boolean
   }
 }, {
     collection: 'books'
