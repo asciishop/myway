@@ -69,6 +69,8 @@ export default class bookList extends Component {
       this.setUser(token)
     }
 
+    this.setState({ pageNumber: this.state.pageNumber + 1 })
+
   }
 
   setUser(token) {
@@ -93,18 +95,8 @@ export default class bookList extends Component {
 
   handleSearch(){
 
+    this.props.history.push('/search/'+ this.state.searchBar)
 
-    let search = {searchBar:this.state.searchBar};
-
-    axios.post(URL_BACKEND +'books/search', search)
-        .then(res => {
-          this.setState({
-            books: res.data
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-        })
 
   }
 
@@ -116,13 +108,26 @@ export default class bookList extends Component {
 
   handlePage(){
     this.setState({ pageNumber: this.state.pageNumber + 1 })
-    let payload = {'pageNumber' : this.state.pageNumber}
-    axios.post(URL_BACKEND + 'books/page', payload)
+
+    let payload = {'pageNumber' : this.state.pageNumber, 'userId': ''}
+    let urlSufix = 'page';
+    let token = '';
+    if(localStorage.getItem("token")){
+      const user = parseJwt(localStorage.getItem("token"));
+      token = localStorage.getItem("token")
+      payload.userId = user._id;
+      urlSufix = 'bookListAuth';
+    }
+
+
+    axios.post(URL_BACKEND + 'books/'+ urlSufix, payload)
         .then((res) => {
           let newBookList = [...this.state.books, ...res.data]
           this.setState({
             books: newBookList
           });
+          window.scrollTo(0, document.body.scrollHeight);
+
         }).catch((error) => {
       console.log(error)
     })

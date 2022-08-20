@@ -237,8 +237,11 @@ router.route('/').get((req, res) => {
 router.route('/page').post((req, res) => {
 
   const { pageNumber } = req.body;
+  let limitSize = pageNumber === 1 ? 0 : (pageNumber -1) * 5
 
-  let limitSize = (parseInt(pageNumber) || 1) === 1 ? 0 : (pageNumber -1) * 5
+  console.log("limitSize")
+  console.log(limitSize)
+
   bookSchema.find({},(error, data) => {
     if (error) {
       return next(error)
@@ -255,7 +258,11 @@ router.post("/bookListAuth", (req, res) => {
 
   const { userId,pageNumber } = req.body;
 
-  let limitSize = (parseInt(pageNumber) || 1) === 1 ? 0 : (pageNumber -1) * 5
+  let limitSize = pageNumber === 1 ? 0 : (pageNumber -1) * 5
+
+  console.log("limitSize")
+  console.log(limitSize)
+
   bookSchema.find({},(error, data) => {
     if (error) {
       return next(error)
@@ -285,7 +292,7 @@ router.post("/bookListAuth", (req, res) => {
 // READ books by search
 router.route('/search').post((req, res) => {
 
-  var txt = ".*" + req.body.searchBar.toLowerCase() + "*";
+  var txt = ".*" + req.body.searchBar + "*";
   console.log("txt")
   console.log(txt)
   chapterSchema.find({

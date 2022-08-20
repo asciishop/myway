@@ -33,6 +33,7 @@ import Inbox from "./components/Inbox";
 
 
 import NotificationContainer from "./components/NotificationContainer";
+import Search from "./components/Search";
 
 
 function getToken () {
@@ -170,6 +171,12 @@ function App() {
                         exact
                         path="/inbox/:id"
                         component={(props) => <Inbox {...props} />}
+                    />
+
+                    <Route
+                        exact
+                        path="/search/:query"
+                        component={(props) => <Search {...props} />}
                     />
 
                   </Switch>
