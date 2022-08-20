@@ -33,10 +33,10 @@ router.route('/create-book').post((req, res, next) => {
 router.route('/like').post((req, res, next) => {
 
   const {idBook, idUser, userName, bookTitle} = req.body;
-
+  let obj = {"idUser": idUser}
   bookSchema.findByIdAndUpdate(
       idBook,
-      { $addToSet: { likes: idUser }},
+      { $addToSet: { likes: obj }},
       (error, data) => {
         if (error) {
           return next(error)
@@ -44,7 +44,7 @@ router.route('/like').post((req, res, next) => {
         } else {
 
           let author = data.user._id;
-          let message = {"idBook": id,"idUser": author, "message": "Al usuario"+ userName +" le gusta tu historia : "+ bookTitle, "read": false , "date" : new Date()}
+          let message = {"idBook": idBook,"idUser": idUser, "message": "Al usuario"+ userName +" le gusta tu historia : "+ bookTitle, "read": false , "date" : new Date()}
           messageSchema.create(message, (error, data) => {
             if (error) {
               return next(error)
@@ -64,9 +64,11 @@ router.route('/unlike').post((req, res, next) => {
 
   const {idBook, idUser, userName, bookTitle} = req.body;
 
+  let obj = {"idUser": idUser}
+
   bookSchema.findByIdAndUpdate(
       idBook,
-      { $pull: { likes: idUser }},
+      { $pull: { likes: obj }},
       (error, data) => {
         if (error) {
           return next(error)
@@ -114,7 +116,9 @@ router.route('/add-book').post((req, res, next) => {
     user,
     dateCreation : new Date(),
     title,
-    chapters: chapter
+    chapters: chapter,
+    likes : [],
+    like : false
   };
 
   bookSchema.create(book_main, (error, data) => {
@@ -203,12 +207,6 @@ router.route('/add-chapter').post((req, res, next) => {
           },
       )
 
-
-
-
-
-
-
 });
 
 // READ messages by user
@@ -253,7 +251,7 @@ router.route('/page').post((req, res) => {
 })
 
 //Book List
-router.post("/bookListAuth", verifyUser, (req, res) => {
+router.post("/bookListAuth", (req, res) => {
 
   const { userId,pageNumber } = req.body;
 
@@ -262,10 +260,19 @@ router.post("/bookListAuth", verifyUser, (req, res) => {
     if (error) {
       return next(error)
     } else {
-      if (data.likes.find(userId))
-        data.like = true
-      else
-        data.like = false
+
+      if (data.length > 0){
+        data.forEach(function(book) {
+
+          if (book.likes.length > 0) {
+            let index = book.likes.find((lk) => lk.idUser === userId);
+            if (index != -1)
+              book.like = true
+          } else {
+            book.like = false
+          }
+        });
+      }
 
       res.json(data)
     }

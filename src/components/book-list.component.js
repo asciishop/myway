@@ -7,6 +7,15 @@ import Button from "react-bootstrap/Button";
 import {BsFillCameraFill, BsPlus, BsSearch} from "react-icons/bs";
 import {FiPlus} from "react-icons/fi";
 
+function parseJwt (token) {
+  var base64Url = token.split('.')[1];
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+
+  return JSON.parse(jsonPayload);
+};
 
 export default class bookList extends Component {
 
@@ -31,8 +40,18 @@ export default class bookList extends Component {
 
   componentDidMount() {
 
-    let payload = {'pageNumber' : this.state.pageNumber}
-    axios.post(URL_BACKEND + 'books/page', payload)
+    let payload = {'pageNumber' : this.state.pageNumber, 'userId': ''}
+    let urlSufix = 'page';
+    let token = '';
+    if(localStorage.getItem("token")){
+      const user = parseJwt(localStorage.getItem("token"));
+      token = localStorage.getItem("token")
+      payload.userId = user._id;
+      urlSufix = 'bookListAuth';
+    }
+
+    axios.post(URL_BACKEND + 'books/'+ urlSufix,payload, {headers: { Authorization: 'Bearer '+ token }})
+
         .then((res) => {
           this.setState({
             books: res.data

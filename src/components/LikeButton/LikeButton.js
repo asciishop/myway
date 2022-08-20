@@ -9,8 +9,9 @@ import {URL_BACKEND} from "../const";
 const particleList = Array.from(Array(10));
 
 const LikeButton = (props) => {
-  const [liked, setLiked] = useState(prop.like);
-  const [clicked, setClicked] = useState(prop.like);
+  const [liked, setLiked] = useState(props.like);
+  const [clicked, setClicked] = useState(props.like);
+  const [count, setCount] = useState(props.count);
 
   return (
     <button
@@ -24,8 +25,11 @@ const LikeButton = (props) => {
           };
 
         let apiSufix = "like"
-        if(!liked) {
+        if(liked) {
+            setCount(count - 1);
             apiSufix = "unlike"
+        } else {
+            setCount(count + 1);
         }
 
           axios.post(URL_BACKEND +'books/'+ apiSufix, likeObj)
@@ -66,8 +70,9 @@ const LikeButton = (props) => {
       <div className="like-button">
         <Hand />
         <span className={cn("suffix", { liked })}></span>
+          {count}
       </div>
-        {props.count}
+
     </button>
   );
 };

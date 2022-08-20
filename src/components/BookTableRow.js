@@ -63,7 +63,7 @@ export default class bookTableRow extends Component {
       })
   }
 
-  renderSwitch(node) {
+  renderSwitch(node,book) {
     let fecha = new Date(node.date)
       let urlShare = 'https://myways.cl/show-book/' + this.props.obj._id
       let title = this.props.obj.title
@@ -80,7 +80,7 @@ export default class bookTableRow extends Component {
               <div className="row d-flex justify-content-center">
 
                   <div className="col d-flex align-items-center justify-content-center pt-3">
-                      {localStorage.getItem("user") &&<LikeButton like={node.like} count={node.likes.length} idBook={node._id} title={node.title} />}
+                      {localStorage.getItem("user") &&<LikeButton like={book.like} count={book.likes.length} idBook={book._id} title={book.title} />}
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={idBook}  />
 
                   </div>
@@ -102,7 +102,7 @@ export default class bookTableRow extends Component {
 
                       <div className="col d-flex align-items-center justify-content-center pt-3">
 
-                          {localStorage.getItem("user") &&<LikeButton />}
+                          {localStorage.getItem("user") &&<LikeButton like={book.like} count={book.likes.length} idBook={book._id} title={book.title} />}
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={idBook}  />
 
                       </div>
@@ -120,7 +120,7 @@ export default class bookTableRow extends Component {
                   <div className="row d-flex justify-content-center">
 
                       <div className="col d-flex align-items-center justify-content-center pt-3">
-                          {localStorage.getItem("user") &&<LikeButton />}
+                          {localStorage.getItem("user") &&<LikeButton like={book.like} count={book.likes.length} idBook={book._id} title={book.title} />}
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={idBook}  />
 
                       </div>
@@ -137,7 +137,7 @@ export default class bookTableRow extends Component {
                 <div className="row d-flex justify-content-center">
 
                   <div className="col d-flex align-items-center justify-content-center pt-3">
-                      {localStorage.getItem("user") &&<LikeButton />}
+                      {localStorage.getItem("user") &&<LikeButton like={book.like} count={book.likes.length} idBook={book._id} title={book.title} />}
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={idBook} title={title}  />
 
                   </div>
@@ -170,7 +170,7 @@ export default class bookTableRow extends Component {
                 <i className="material-icons btn btn-lg ml-auto"><h1><FiFeather color={"green"} size={30}/></h1></i>
               </Link></div></div>
 
-                  {this.renderSwitch(this.props.obj.chapters[0])}
+                  {this.renderSwitch(this.props.obj.chapters[0],this.props.obj)}
             </Card.Body>
           </Card>
 

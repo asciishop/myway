@@ -41,11 +41,11 @@ const https = require('https');
 var fs = require('fs');
 const jwt = require("jsonwebtoken");
 
-
+/*
 const httpsOptions = {
     cert: fs.readFileSync('./cert.crt'),
     key: fs.readFileSync('./cert.key')
-}
+}*/
 
 app.use(express.static('public'));
 app.use('/images', express.static('images'));
@@ -131,15 +131,16 @@ app.use('/books', bookRoute)
 // PORT
 const port = process.env.PORT || 4000;
 
-/*
+
 const server = app.listen(port, () => {
     console.log('Connected to port ' + port)
-})*/
+})
 
+/*
 var server = https.createServer(httpsOptions, app);
 server.listen(port, () => {
     console.log("server starting on port : " + port)
-});
+});*/
 
 
 const io = require("socket.io")(server, {cors: {origin: "*"}});
