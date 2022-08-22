@@ -292,25 +292,28 @@ router.post("/bookListAuth", (req, res) => {
 // READ books by search
 router.route('/search').post((req, res) => {
 
-  var txt = ".*" + req.body.searchBar + "*";
-  console.log("txt")
-  console.log(txt)
+  var txt = "/" + req.body.searchBar + "/i";
+
+
+  //{text: {$regex : /life/i}
   chapterSchema.find({
     $or: [{
       "bookTitle": {
-        $regex: txt
+        $regex: new RegExp('^' +req.body.searchBar + '$', 'i')
       }
-    }, {
-      "user.username": {
-        $regex: txt
-      },
-
-    }, {
+    },{
         "text": {
-          $regex: txt
+          $regex: new RegExp('^' +req.body.searchBar + '$', 'i')
         },
 
-      }]
+      },{
+      "user.username": {
+        $regex: new RegExp('^' +req.body.searchBar + '$', 'i')
+      },
+
+    }
+
+      ]
   }
 ,(error, data) => {
     if (error) {

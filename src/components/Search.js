@@ -57,6 +57,8 @@ export default class Search extends Component {
 
     DataTable() {
 
+
+
         return this.state.chapters.map((res, i) => {
             return <div>
 
@@ -86,6 +88,8 @@ export default class Search extends Component {
 
     render() {
         return (<div className="table-wrapper">
+            <h4><b>Resultados</b></h4>
+
             <Table striped bordered hover>
                 <thead>
                 <tr>
@@ -94,8 +98,17 @@ export default class Search extends Component {
                 </tr>
                 </thead>
                 <tbody>
-
-                <h4><b>Resultados</b></h4>
+                <div className="row d-flex justify-content-center">
+                    <div className="col d-flex align-items-center justify-content-center pt-1">
+                        <b>Usuario</b>
+                    </div>
+                    <div className="col d-flex align-items-center justify-content-center pt-1">
+                        <b>Libro</b>
+                    </div>
+                    <div className="col d-flex align-items-center justify-content-center pt-1">
+                        <b>Capítulo</b>
+                    </div>
+                </div>
 
                 {this.DataTable()}
                 </tbody>

@@ -140,7 +140,7 @@ const server = app.listen(port, () => {
 var server = https.createServer(httpsOptions, app);
 server.listen(port, () => {
     console.log("server starting on port : " + port)
-});*/
+});
 
 
 const io = require("socket.io")(server, {cors: {origin: "*"}});
@@ -173,6 +173,8 @@ const getApiAndEmit = socket => {
     // Emitting a new message. Will be consumed by the client
     socket.emit("FromAPI", response);
 };
+*/
+
 
 // 404 Error
 app.use((req, res, next) => {
