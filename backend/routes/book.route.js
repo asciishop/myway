@@ -273,10 +273,12 @@ router.post("/bookListAuth", (req, res) => {
 
           if (book.likes.length > 0) {
             let index = book.likes.find((lk) => lk.idUser === userId);
-            if (index != -1)
+
+            if (index === undefined || index === -1) {
+              book.like = false
+            } else {
               book.like = true
-          } else {
-            book.like = false
+            }
           }
         });
       }
