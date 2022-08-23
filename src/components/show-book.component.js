@@ -20,6 +20,8 @@ import {
 } from "react-share";
 import {Navbar} from "react-bootstrap";
 import {MdAdd} from "react-icons/all";
+import LikeButton from "./LikeButton";
+import ShareButton from "./ShareButton";
 
 
 export default class Showbook extends Component {
@@ -35,11 +37,18 @@ export default class Showbook extends Component {
             title: '',
             chapters:[],
             urlSocial : '',
-            idBook : ''
+            idBook : '',
+            isLoading : false,
+            like :false,
+            likesCounts :0
+
         }
 
         this.listSize = this.state.chapters.length -1
 
+        let urlShare = 'https://myways.cl/show-book/' + this.props.match.params.id
+        this.setState({ urlSocial: urlShare })
+        this.setState({ idBook: this.props.match.params.id })
 
 
     }
@@ -47,23 +56,47 @@ export default class Showbook extends Component {
 
 
     componentDidMount() {
-        let urlShare = 'https://myways.cl/show-book/' + this.props.match.params.id
-        this.setState({ urlSocial: urlShare })
 
 
-        axios.get(URL_BACKEND +'books/edit-book/' + this.props.match.params.id)
-            .then(res => {
-                this.setState({
-                    title: res.data.title,
-                    chapters : res.data.chapters
-                });
+        axios.get(URL_BACKEND + 'books/edit-book/' + this.props.match.params.id).then(res => {
+
+            this.setState({
+                title: res.data.title,
+                chapters: res.data.chapters,
             })
+
+            if (localStorage.getItem("user")) {
+                let userId = JSON.parse(localStorage.getItem("user"))._id;
+                let index = res.data.likes.find((lk) => lk.idUser === userId);
+                let option = false
+                if (index === undefined || index === -1) {
+                    option = false
+                } else {
+                    option = true
+                }
+
+                this.setState({
+                    like: option,
+                    likesCounts: res.data.likes.length
+                });
+
+                this.setState({
+                    isLoading: true
+                });
+            }
+
+
+
+        })
             .catch((error) => {
                 console.log(error);
             })
+
     }
 
-    onChangebookTitle(e) {
+
+
+onChangebookTitle(e) {
         this.setState({ name: e.target.value })
     }
 
@@ -97,8 +130,19 @@ export default class Showbook extends Component {
                     alwaysShowTitle={true}
                     onClick={this.someFunctionForTheMainButton}
                 >
-
-
+                    // The Action components are the "buttons" that appear when the Fab is open. You can use the out-of-the-box Action
+                    // component or you can use a custom component of any type and style it any way that you'd like. The "text" prop
+                    // is the popup label that appears when the Action component is hovered.
+                    <Action
+                        text="Email"
+                        onClick={handleEmailOnClick}
+                    />
+                    <Action
+                        text="Help"
+                        onClick={handleHelpOnClick}
+                    >
+                        <i className="fa fa-help" />
+                    </Action>
                     // Using a custom component for this one. See another example in "example/src/index.js"
 
                 </Fab>
@@ -115,13 +159,13 @@ export default class Showbook extends Component {
                         switch(node.type) {
                             case "image":
 
-                                    return <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><ImageNode node={node} /></div></div>
+                                return <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><ImageNode node={node} /></div></div>
 
                                 break;
                             case "text":
 
 
-                                    return <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><TextNode node={node} /></div></div>
+                                return <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><TextNode node={node} /></div></div>
 
 
                                 break;
@@ -130,7 +174,7 @@ export default class Showbook extends Component {
                                 break;
                             case "audio":
 
-                                    return <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><AudioNode node={node} /></div></div>
+                                return <div className="row d-flex justify-content-center"><div className="col d-flex align-items-center justify-content-center pt-3"><AudioNode node={node} /></div></div>
 
 
                                 break;
@@ -144,40 +188,45 @@ export default class Showbook extends Component {
                     <div className="row d-flex justify-content-center"  ><div className="col d-flex align-items-center justify-content-center pt-3 fixed-bottom" style={{backgroundColor:"darkseagreen", paddingBottom :"10px"}}>
 
 
-                            <div id="editor" >
-                                <FacebookShareButton
-                                    url={this.state.urlSocial}
-                                    quote={this.state.title}
-                                    hashtag={'#myways'}
-                                >
-                                    <FacebookIcon size={40} round={true} />
-                                </FacebookShareButton>
-                                &nbsp;
+                        <div id="editor" >
+                            <FacebookShareButton
+                                url={this.state.urlSocial}
+                                quote={this.state.title}
+                                hashtag={'#myways'}
+                            >
+                                <FacebookIcon size={40} round={true} />
+                            </FacebookShareButton>
+                            &nbsp;
 
-                                <WhatsappShareButton
-                                    url={this.state.urlSocial}
-                                    quote={this.state.title}
-                                    hashtag={'#myways'}
-                                >
-                                    <WhatsappIcon size={40} round={true} />
-                                </WhatsappShareButton>
-                                &nbsp;
-                                <TwitterShareButton
-                                    url={this.state.urlSocial}
-                                    quote={this.state.title}
-                                    hashtag={'#myways'}
-                                >
-                                    <TwitterIcon size={40} round={true} />
-                                </TwitterShareButton>
+                            <WhatsappShareButton
+                                url={this.state.urlSocial}
+                                quote={this.state.title}
+                                hashtag={'#myways'}
+                            >
+                                <WhatsappIcon size={40} round={true} />
+                            </WhatsappShareButton>
+                            &nbsp;
+                            <TwitterShareButton
+                                url={this.state.urlSocial}
+                                quote={this.state.title}
+                                hashtag={'#myways'}
+                            >
+                                <TwitterIcon size={40} round={true} />
+                            </TwitterShareButton>
 
 
+
+
+
+
+                        </div>
+                        &nbsp;&nbsp;&nbsp;{this.state.isLoading && <LikeButton like={this.state.like} count={this.state.likesCounts} idBook={this.state.idBook}  title={this.state.title}/> }
 
                     </div>
                     </div>
-                    </div>
 
 
-            </div>
+                </div>
 
 
             </div>
