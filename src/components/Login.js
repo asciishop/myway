@@ -169,7 +169,7 @@ constructor() {
                 <div className="col d-flex align-items-center justify-content-center pt-1">
                         <label htmlFor="title">Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <input
-                        type="text"
+                        type="password"
                         className="form-control"
                         id="password"
                         required

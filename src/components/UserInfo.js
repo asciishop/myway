@@ -38,9 +38,9 @@ export default class UserInfo extends Component {
     DataTable() {
 
         return this.state.books.map((res, i) => {
-            return <div>
+            return <>
                 <BookTableRowProfile obj={res} key={i} />
-            </div>
+            </>
         });
 
     }

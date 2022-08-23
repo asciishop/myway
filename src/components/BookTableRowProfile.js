@@ -78,8 +78,7 @@ export default class bookTableRowProfile extends Component {
               <div className="row d-flex justify-content-center">
 
                   <div className="col d-flex align-items-center justify-content-center pt-3">
-                      <LikeButton />
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={node.title} title={node.title} />
+                      <ShareButton id={node.title} title={node.title} />
 
                   </div>
 
@@ -99,8 +98,7 @@ export default class bookTableRowProfile extends Component {
 
 
                       <div className="col d-flex align-items-center justify-content-center pt-3">
-                          <LikeButton />
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={node.title} title={node.title} />
+                          <ShareButton id={node.title} title={node.title} />
 
                       </div>
 
@@ -117,8 +115,7 @@ export default class bookTableRowProfile extends Component {
                   <div className="row d-flex justify-content-center">
 
                       <div className="col d-flex align-items-center justify-content-center pt-3">
-                          <LikeButton />
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={node.title} title={node.title} />
+                          <ShareButton id={node.title} title={node.title} />
 
                       </div>
 
@@ -134,8 +131,7 @@ export default class bookTableRowProfile extends Component {
                 <div className="row d-flex justify-content-center">
 
                   <div className="col d-flex align-items-center justify-content-center pt-3">
-                      <LikeButton />
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ShareButton id={node.title} title={node.title} />
+                      <ShareButton id={node.title} title={node.title} />
 
                   </div>
 
