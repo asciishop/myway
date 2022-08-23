@@ -49,6 +49,7 @@ export default class Showbook extends Component {
         let urlShare = 'https://myways.cl/show-book/' + this.props.match.params.id
         this.setState({ urlSocial: urlShare })
         this.setState({ idBook: this.props.match.params.id })
+        this.state.idBook = this.props.match.params.id
 
 
     }
