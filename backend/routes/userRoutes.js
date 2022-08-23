@@ -156,13 +156,18 @@ router.get('/auth/facebook/callback',
     passport.authenticate('facebook', { assignProperty: 'federatedUser', failureRedirect: 'https://myways.cl/login',successRedirect: 'https://myways.cl' }),
     function(req, res, next) {
 
+
+        console.log("CALLBACK FE")
+        console.log(JSON.stringify(req.federatedUser))
+
         User.find({"idSocial": req.federatedUser.id},(error, data) => {
             if (error) {
                 return next(error)
             } else if (data.length > 0) {
                 console.log("DATA")
                 console.log(JSON.stringify(data))
-                const token = getToken({ _id: data._id })
+                const token = getToken({ _id: data[0]._id })
+
                 res.redirect("https://myways.cl?token="+ token)
 
             } else {
@@ -216,17 +221,17 @@ router.get('/auth/google/callback',
     passport.authenticate('google', { assignProperty: 'federatedUser', failureRedirect: 'https://myways.cl/login',successRedirect: 'https://myways.cl' }),
     function(req, res, next) {
 
-        console.log("CALLBACK")
-
+        console.log("CALLBACK GO")
         console.log(JSON.stringify(req.federatedUser))
 
         User.find({idSocial: req.federatedUser.id},(error, data) => {
             if (error) {
                 return next(error)
             } else if (data.length > 0) {
-                console.log("DATA")
-                console.log(JSON.stringify(data))
-                const token = getToken({ _id: data._id })
+
+                const token = getToken({ _id: data[0]._id })
+
+
                 res.redirect("https://myways.cl?token="+ token)
 
             } else {
@@ -258,6 +263,9 @@ router.get('/auth/google/callback',
                                     console.log("SUCC")
 
                                     const token = getToken({ _id: user._id })
+                                    console.log("ID del token Nuevo")
+                                    console.log(user._id)
+
 
                                     console.log("Token y User GO")
                                     console.log(user._id)
