@@ -5,8 +5,8 @@ let messageSchema = require('../models/message')
 let fs = require("fs");
 
 let mongoose = require('mongoose'),
-  express = require('express'),
-  router = express.Router();
+    express = require('express'),
+    router = express.Router();
 const {verifyUser} = require("../authenticate");
 
 require("dotenv").config()
@@ -164,48 +164,48 @@ router.route('/add-chapter').post((req, res, next) => {
   }
 
 
-      bookSchema.findByIdAndUpdate(
-          id,
-          { $addToSet: { chapters: chapter }},
-          (error, data) => {
+  bookSchema.findByIdAndUpdate(
+      id,
+      { $addToSet: { chapters: chapter }},
+      (error, data) => {
+        if (error) {
+          return next(error)
+          console.log(error)
+        } else {
+
+          /*let author = data.user._id;
+          let socket = req.app.get('connections')[author]
+          if(socket) {
+            socket.emit('message', {data: "Han agregado un capítulo a tu historia"});
+          }*/
+
+
+          //Send to
+          chapter.bookTitle = data.title
+          chapterSchema.create(chapter, (error, data) => {
             if (error) {
               return next(error)
-              console.log(error)
             } else {
+              console.log("Chapter created")
 
-              /*let author = data.user._id;
-              let socket = req.app.get('connections')[author]
-              if(socket) {
-                socket.emit('message', {data: "Han agregado un capítulo a tu historia"});
-              }*/
-
-
-                //Send to
-              chapter.bookTitle = data.title
-              chapterSchema.create(chapter, (error, data) => {
-                  if (error) {
-                    return next(error)
-                  } else {
-                    console.log("Chapter created")
-
-                  }
-                })
-
-                let author = data.user._id;
-                let message = {"idBook": id,"idUser": author, "message": "Novedades en tu historia : "+ data.title, "read": false , "date" : new Date()}
-                messageSchema.create(message, (error, data) => {
-                  if (error) {
-                    return next(error)
-                  } else {
-                    console.log("Inbox message created")
-                  }
-                })
-
-              res.json(data)
-              console.log('Chapter updated successfully !')
             }
-          },
-      )
+          })
+
+          let author = data.user._id;
+          let message = {"idBook": id,"idUser": author, "message": "Novedades en tu historia : "+ data.title, "read": false , "date" : new Date()}
+          messageSchema.create(message, (error, data) => {
+            if (error) {
+              return next(error)
+            } else {
+              console.log("Inbox message created")
+            }
+          })
+
+          res.json(data)
+          console.log('Chapter updated successfully !')
+        }
+      },
+  )
 
 });
 
@@ -297,31 +297,31 @@ router.route('/search').post((req, res) => {
 
   //{text: {$regex : /life/i}
   chapterSchema.find({
-    $or: [{
-      "bookTitle": {
-        $regex: new RegExp('^' +req.body.searchBar + '$', 'i')
+        $or: [{
+          "bookTitle": {
+            $regex: new RegExp('.*' +req.body.searchBar + '*', 'i')
+          }
+        },{
+          "text": {
+            $regex: new RegExp('.*' +req.body.searchBar + '*', 'i')
+          },
+
+        },{
+          "user.username": {
+            $regex: new RegExp('.*' +req.body.searchBar + '*', 'i')
+          },
+
+        }
+
+        ]
       }
-    },{
-        "text": {
-          $regex: new RegExp('^' +req.body.searchBar + '$', 'i')
-        },
-
-      },{
-      "user.username": {
-        $regex: new RegExp('^' +req.body.searchBar + '$', 'i')
-      },
-
-    }
-
-      ]
-  }
-,(error, data) => {
-    if (error) {
-      return next(error)
-    } else {
-      res.json(data)
-    }
-  }).sort({$natural:-1})
+      ,(error, data) => {
+        if (error) {
+          return next(error)
+        } else {
+          res.json(data)
+        }
+      }).sort({$natural:-1})
 })
 
 // READ books by user
@@ -349,19 +349,19 @@ router.route('/edit-book/:id').get((req, res) => {
 // Update book
 router.route('/update-book/:id').put((req, res, next) => {
   bookSchema.findByIdAndUpdate(
-    req.params.id,
-    {
-      $set: req.body,
-    },
-    (error, data) => {
-      if (error) {
-        return next(error)
-        console.log(error)
-      } else {
-        res.json(data)
-        console.log('book updated successfully !')
-      }
-    },
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      (error, data) => {
+        if (error) {
+          return next(error)
+          console.log(error)
+        } else {
+          res.json(data)
+          console.log('book updated successfully !')
+        }
+      },
   )
 })
 
