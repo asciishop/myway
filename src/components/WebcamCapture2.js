@@ -156,7 +156,7 @@ export default function WebcamCapture2(props) {
 
                         />
                     )}
-                    {shot !== '' && (
+                    {showShot && (
                         <img
                             src={shot}
                         />

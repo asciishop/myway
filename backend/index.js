@@ -24,7 +24,7 @@ const bookRoute = require('../backend/routes/book.route')
 
 // Connecting mongoDB Database
 mongoose.connect(
-    `mongodb+srv://admin:8iDs3adGQ3W0RaXk@cluster0.7geci.mongodb.net/myway?retryWrites=true&w=majority`,
+    `mongodb+srv://admin:lavidabella@cluster0.7geci.mongodb.net/myway?retryWrites=true&w=majority`,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true

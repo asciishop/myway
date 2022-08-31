@@ -1,6 +1,8 @@
 let bookSchema = require('../models/book')
 let chapterSchema = require('../models/chapter')
 let messageSchema = require('../models/message')
+let commentSchema = require('../models/comment')
+
 
 let fs = require("fs");
 
@@ -379,6 +381,23 @@ router.route('/delete-book/:id').delete((req, res, next) => {
     }
   })
 })
+
+router.route('/add-comment').post((req, res, next) => {
+  const { message, user } = req.body;
+  let comment = [{'user': user, 'message': message, 'date':new Date()}];
+
+
+  commentSchema.create(comment, (error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      console.log(data)
+      res.json(data)
+    }
+  })
+
+
+});
 
 
 function decodeBase64Image(dataString) {

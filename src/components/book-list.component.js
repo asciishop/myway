@@ -150,10 +150,7 @@ export default class bookList extends Component {
     return (<div className="table-wrapper">
       <Table striped bordered hover>
         <thead>
-          <tr>
-            <th></th>
 
-          </tr>
         </thead>
         <tbody>
 
@@ -169,7 +166,7 @@ export default class bookList extends Component {
         />
             &nbsp;&nbsp;
 
-            <BsSearch size={40} onClick={this.handleSearch} />
+            <BsSearch size={30} onClick={this.handleSearch} />
 
           </div></div>
 

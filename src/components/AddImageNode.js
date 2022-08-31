@@ -140,6 +140,8 @@ export default class AddImageNode extends Component {
 
         this.setState({ showCamera: true })
         this.setState({ showShot: false })
+        this.setState({ shot: '' })
+
 
 
     }
